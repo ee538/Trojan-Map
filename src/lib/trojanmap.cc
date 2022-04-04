@@ -10,7 +10,7 @@
  * @return {double}         : latitude
  */
 double TrojanMap::GetLat(const std::string& id) {
-    return 1.0;
+    return data[id].lat;
 }
 
 /**
@@ -20,7 +20,7 @@ double TrojanMap::GetLat(const std::string& id) {
  * @return {double}         : longitude
  */
 double TrojanMap::GetLon(const std::string& id) { 
-    return 1.0;
+    return data[id].lon;
 }
 
 /**
@@ -30,7 +30,7 @@ double TrojanMap::GetLon(const std::string& id) {
  * @return {std::string}    : name
  */
 std::string TrojanMap::GetName(const std::string& id) { 
-    return "";
+    return data[id].name;
 }
 
 /**
@@ -40,7 +40,7 @@ std::string TrojanMap::GetName(const std::string& id) {
  * @return {std::vector<std::string>}  : neighbor ids
  */
 std::vector<std::string> TrojanMap::GetNeighborIDs(const std::string& id) {
-    return {};
+    return data[id].neighbors;
 }
 
 /**
@@ -52,6 +52,12 @@ std::vector<std::string> TrojanMap::GetNeighborIDs(const std::string& id) {
  */
 std::string TrojanMap::GetID(const std::string& name) {
   std::string res = "";
+  for(auto it = data.begin(); it != data.end(); it++){
+    if( (it->second).name == name){
+      res = it->first;
+      break;
+    }
+  }
   return res;
 }
 
@@ -63,6 +69,9 @@ std::string TrojanMap::GetID(const std::string& name) {
  */
 std::pair<double, double> TrojanMap::GetPosition(std::string name) {
   std::pair<double, double> results(-1, -1);
+  auto id = GetID(name);
+  results.first = GetLat(id);
+  results.second = GetLon(id);
   return results;
 }
 
