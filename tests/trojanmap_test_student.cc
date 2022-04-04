@@ -108,10 +108,19 @@ TEST(TrojanMapStudentTest, GetPosition){
   position.second = -118.2620798;
   res = tm.GetPosition(name);
   EXPECT_EQ(position, res);
+  name = "Chevr";
+  position.first = -1;
+  position.second = -1;
+  res = tm.GetPosition(name);
+  EXPECT_EQ(position, res);
   name = "Starbucks";
   position.first = 34.0390615;
   position.second = -118.2611170;
   res = tm.GetPosition(name);
   EXPECT_EQ(position, res);
-
+  name = "starbucks";
+  position.first = -1;
+  position.second = -1;
+  res = tm.GetPosition(name);
+  EXPECT_EQ(position, res);
 }
