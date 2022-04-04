@@ -116,7 +116,6 @@ std::vector<std::string> TrojanMap::Autocomplete(std::string name){
     std::string temp = e;
     std::transform(e.begin(),e.end(),temp.begin(), ::tolower);
     if (temp.substr(0,size) == name){
-      std::cout<< e << std::endl;
       results.push_back(e);
     }
     it++;

@@ -130,4 +130,18 @@ TEST(TrojanMapStudentTest, Autocomplete) {
   std::string sub = "chi";
   std::vector<std::string> results = {"Chick-fil-A", "Chinese Street Food","Chipotle"};
   EXPECT_EQ(tm.Autocomplete(sub),results);
+  sub = "CHI";
+  EXPECT_EQ(tm.Autocomplete(sub),results);
+  sub = "ChI";
+  EXPECT_EQ(tm.Autocomplete(sub),results);
+  sub = "ch";
+  results = { "Chase", "Chase Plaza Heliport", "Cheebos Burger", "Chevron", "Chevron 1", "Chevron 2", "Chick-fil-A", "Chinese Street Food", "Chipotle", "Chucks Chicken & Waffles", "Church of Christ" };
+  EXPECT_EQ(tm.Autocomplete(sub),results);
+  sub = "CH";
+  EXPECT_EQ(tm.Autocomplete(sub),results);  
+  sub = "saint";
+  results = {"Saint Agnes Elementary School","Saint Cecilia School","Saint James Park","Saint John Baptist Church","Saint Lukes Missionary Baptist Church","Saint Marks Lutheran Church","Saint Patrick School","Saint Patricks Catholic Church","Saint Phillips Episcopal Church"};
+  EXPECT_EQ(tm.Autocomplete(sub),results);
+  sub = "SAIN";
+  EXPECT_EQ(tm.Autocomplete(sub),results);
 }
