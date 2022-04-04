@@ -83,7 +83,36 @@ std::pair<double, double> TrojanMap::GetPosition(std::string name) {
  * 
  */
 int TrojanMap::CalculateEditDistance(std::string a, std::string b){
-    return 0;
+  int m = a.size();
+  int n = b.size();
+  std::vector< std::vector<int> > d(m+1, std::vector<int>(n+1, 0)); 
+  d[0][0] = 0;
+
+  for (int i = 0; i <= n; i++){
+    d[0][i] = i;
+  }
+
+  for (int i = 0; i <= m; i++){
+    d[i][0] = i;
+  }
+
+  for (int i = 1; i <= m; i++){
+    for (int j = 1; j<= n; j++){
+      if(std::tolower(a[i-1]) == std::tolower(b[j-1])){
+        d[i][j] = 1 + std::min(std::min(d[i-1][j], d[i][j-1]), d[i-1][j-1] - 1);
+      } else {
+        d[i][j] = 1 + std::min(std::min(d[i-1][j], d[i][j-1]), d[i-1][j-1]);
+
+      }
+    }
+  }
+  // for (auto r:d){
+  //   for (auto c:r){
+  //     std::cout << c << " ";
+  //   }
+  //   std::cout << std::endl;
+  // }
+  return d[m][n];
 }
 
 /**
@@ -93,7 +122,21 @@ int TrojanMap::CalculateEditDistance(std::string a, std::string b){
  * @return {std::string} tmp           : similar name
  */
 std::string TrojanMap::FindClosestName(std::string name) {
+  int minimum = INT_MAX;
+  int distance = 0;
   std::string tmp = "";
+  auto id = GetID(name);
+  if (id.empty()){
+    for (auto it = data.begin(); it != data.end(); it++){
+      distance = CalculateEditDistance(name, (it->second).name);
+      if (distance < minimum){
+        minimum = distance;
+        tmp = (it->second).name;
+        
+      }
+    }
+  }
+  // std::cout << distance << "   "<< tmp << std::endl;
   return tmp;
 }
 

@@ -145,3 +145,15 @@ TEST(TrojanMapStudentTest, Autocomplete) {
   sub = "SAIN";
   EXPECT_EQ(tm.Autocomplete(sub),results);
 }
+
+TEST(TrojanMapTest, CalculateEditDistance) {
+  TrojanMap m;
+  EXPECT_EQ(m.CalculateEditDistance("horse", "HORSE"), 5);
+  EXPECT_EQ(m.CalculateEditDistance("Targeety", "Target"), 2);
+}
+
+TEST(TrojanMapTest, FindClosestName) {
+  TrojanMap m;
+  EXPECT_EQ(m.FindClosestName("Rolphs"), "Ralphs");
+  EXPECT_EQ(m.FindClosestName("Targeety"), "Target");
+}
