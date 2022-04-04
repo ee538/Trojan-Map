@@ -96,7 +96,12 @@ std::string TrojanMap::FindClosestName(std::string name) {
  */
 std::vector<std::string> TrojanMap::Autocomplete(std::string name){
   std::vector<std::string> results;
-  //test for git pull.
+  int size = name.length();
+  for(auto e:results){
+    if (e.substr(0,size) == name){
+      results.push_back(e);
+    }
+  }
   return results;
 }
 
