@@ -125,3 +125,9 @@ TEST(TrojanMapStudentTest, GetPosition){
   EXPECT_EQ(position, res);
 }
 
+TEST(TrojanMapStudentTest, Autocomplete) {
+  TrojanMap tm;
+  std::string sub = "chi";
+  std::vector<std::string> results = {"Chick-fil-A", "Chinese Street Food","Chipotle"};
+  EXPECT_EQ(tm.Autocomplete(sub),results);
+}
