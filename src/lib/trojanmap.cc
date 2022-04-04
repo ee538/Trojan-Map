@@ -98,7 +98,7 @@ int TrojanMap::CalculateEditDistance(std::string a, std::string b){
 
   for (int i = 1; i <= m; i++){
     for (int j = 1; j<= n; j++){
-      if(std::tolower(a[i-1]) == std::tolower(b[j-1])){
+      if(a[i-1] == b[j-1]){
         d[i][j] = 1 + std::min(std::min(d[i-1][j], d[i][j-1]), d[i-1][j-1] - 1);
       } else {
         d[i][j] = 1 + std::min(std::min(d[i-1][j], d[i][j-1]), d[i-1][j-1]);
@@ -106,12 +106,6 @@ int TrojanMap::CalculateEditDistance(std::string a, std::string b){
       }
     }
   }
-  // for (auto r:d){
-  //   for (auto c:r){
-  //     std::cout << c << " ";
-  //   }
-  //   std::cout << std::endl;
-  // }
   return d[m][n];
 }
 
@@ -132,11 +126,11 @@ std::string TrojanMap::FindClosestName(std::string name) {
       if (distance < minimum){
         minimum = distance;
         tmp = (it->second).name;
-        
       }
     }
+  } else {
+    tmp = name;
   }
-  // std::cout << distance << "   "<< tmp << std::endl;
   return tmp;
 }
 

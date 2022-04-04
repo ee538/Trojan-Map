@@ -147,13 +147,47 @@ TEST(TrojanMapStudentTest, Autocomplete) {
 }
 
 TEST(TrojanMapTest, CalculateEditDistance) {
-  TrojanMap m;
-  EXPECT_EQ(m.CalculateEditDistance("horse", "HORSE"), 5);
-  EXPECT_EQ(m.CalculateEditDistance("Targeety", "Target"), 2);
+  TrojanMap tm;
+  int distance = 6;
+  int result = tm.CalculateEditDistance("Saint Agnes Elementary School", "Saint Elementary School");
+  EXPECT_EQ(distance, result);
+  distance = 0;
+  result = tm.CalculateEditDistance("", "");
+  EXPECT_EQ(distance, result);
+  distance = 3;
+  result = tm.CalculateEditDistance("Horse", "Ros");
+  EXPECT_EQ(distance, result);
+  distance = 5;
+  result = tm.CalculateEditDistance("Horse", "");
+  EXPECT_EQ(distance, result);
+  distance = 3;
+  result = tm.CalculateEditDistance("", "ROS");
+  EXPECT_EQ(distance, result);
+  distance = 2;
+  result = tm.CalculateEditDistance("Targeety", "Target");
+  EXPECT_EQ(distance, result);
+  distance = 2;
+  result = tm.CalculateEditDistance("Trider Joe", "Trader Joes");
+  EXPECT_EQ(distance, result);
+
 }
 
 TEST(TrojanMapTest, FindClosestName) {
   TrojanMap m;
-  EXPECT_EQ(m.FindClosestName("Rolphs"), "Ralphs");
-  EXPECT_EQ(m.FindClosestName("Targeety"), "Target");
+  std::string name, result;
+  name = "Ralphs";
+  result = m.FindClosestName("Rolphs");
+  EXPECT_EQ(name, result);
+  name = "Trader Joes";
+  result = m.FindClosestName("Trider Joe");
+  EXPECT_EQ(name, result);
+  name = "Target";
+  result = m.FindClosestName("Targeety");
+  EXPECT_EQ(name, result);
+  name = "Ross";
+  result = m.FindClosestName("ROLPHS");
+  EXPECT_EQ(name, result);
+  name = "DASH 2";
+  result = m.FindClosestName("TRADER JOE");
+  EXPECT_EQ(name, result);
 }
