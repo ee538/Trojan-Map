@@ -10,7 +10,7 @@
  * @return {double}         : latitude
  */
 double TrojanMap::GetLat(const std::string& id) {
-    return 0;
+    return 1.0;
 }
 
 /**
@@ -20,7 +20,7 @@ double TrojanMap::GetLat(const std::string& id) {
  * @return {double}         : longitude
  */
 double TrojanMap::GetLon(const std::string& id) { 
-    return 0;
+    return 1.0;
 }
 
 /**
