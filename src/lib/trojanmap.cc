@@ -70,8 +70,10 @@ std::string TrojanMap::GetID(const std::string& name) {
 std::pair<double, double> TrojanMap::GetPosition(std::string name) {
   std::pair<double, double> results(-1, -1);
   auto id = GetID(name);
-  results.first = GetLat(id);
-  results.second = GetLon(id);
+  if (id != ""){
+    results.first = GetLat(id);
+    results.second = GetLon(id);
+  }
   return results;
 }
 
