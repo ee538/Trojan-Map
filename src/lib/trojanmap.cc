@@ -106,11 +106,20 @@ std::string TrojanMap::FindClosestName(std::string name) {
 std::vector<std::string> TrojanMap::Autocomplete(std::string name){
   std::vector<std::string> results;
   int size = name.length();
-  for(auto e:results){
-    if (e.substr(0,size) == name){
+  std::transform(name.begin(),name.end(),name.begin(), ::tolower);
+
+  std::unordered_map<std::string, Node>::iterator it = data.begin();
+  while(it != data.end()){
+    std::string e = GetName(it->first);
+    std::string temp = e;
+    std::transform(e.begin(),e.end(),temp.begin(), ::tolower);
+    if (temp.substr(0,size) == name){
+      std::cout<< e << std::endl;
       results.push_back(e);
     }
+    it++;
   }
+  std::sort(results.begin(),results.end());
   return results;
 }
 

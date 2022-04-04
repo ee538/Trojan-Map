@@ -8,4 +8,3 @@ TEST(TrojanMapStudentTest, GetLat) {
   double res = tm.GetLat(id);
   EXPECT_EQ(lat, res);
 }
-
