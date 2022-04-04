@@ -1,11 +1,7 @@
 # EE538 Final Project - Spring 2022 - TrojanMap
+SudharshanSubramaniamJanakiraman
 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
 ## Deadline: 
-Welcome to project
-Amrith test
-Amrith retest - 2
-
-Hello World
 
 Phase 1 submission: Monday, March 11 by 23:59 pm
 
