@@ -63,16 +63,26 @@ void MapUI::PrintMenu() {
     std::cout << menu;
     getline(std::cin, input);
     auto n = input.size();
+    // Leading and Trialing white space handling
+    // Referred from https://www.techiedelight.com/remove-leading-and-trailing-spaces-from-a-string-in-cpp/
     auto space = " \r\n\t\v\f";
     auto start = input.find_first_not_of(space);
     auto end = input.find_last_not_of(space);
     while(input.empty() || (n < start && n < end)){
       auto error = "Input is Empty\n";
-      std::cout << error << menu;
+      auto message = "Do you want to enter a non empty Location Name?[y/n]\n";
+      std::cout << error << message;
       getline(std::cin, input);
-      start = input.find_first_not_of(space);
-      end = input.find_last_not_of(space);
-      n = input.size();      
+      if(input == "y"){
+        std::cout << menu;
+        getline(std::cin, input);
+        start = input.find_first_not_of(space);
+        end = input.find_last_not_of(space);
+        n = input.size(); 
+      } else {
+        PrintMenu();
+        break;
+      }     
     }
     input = input.substr(start, end-start+1);
     auto start1 = std::chrono::high_resolution_clock::now();
