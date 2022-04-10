@@ -169,6 +169,12 @@ TEST(TrojanMapTest, CalculateEditDistance) {
   distance = 2;
   result = tm.CalculateEditDistance("Trider Joe", "Trader Joes");
   EXPECT_EQ(distance, result);
+  distance = 2;
+  result = tm.CalculateEditDistance("Western & 36th","Western & 36th 1");
+  EXPECT_EQ(distance, result);
+  distance = 6;
+  result = tm.CalculateEditDistance("Which wich?","Which wich???????");
+  EXPECT_EQ(distance, result);
 
 }
 
@@ -184,10 +190,13 @@ TEST(TrojanMapTest, FindClosestName) {
   name = "Target";
   result = m.FindClosestName("Targeety");
   EXPECT_EQ(name, result);
-  name = "Ross";
+  name = "Ralphs";
   result = m.FindClosestName("ROLPHS");
   EXPECT_EQ(name, result);
-  name = "DASH 2";
+  name = "Trader Joes";
   result = m.FindClosestName("TRADER JOE");
+  EXPECT_EQ(name, result);
+  name = "";
+  result = m.FindClosestName("");
   EXPECT_EQ(name, result);
 }
