@@ -54,7 +54,6 @@ void MapUI::PrintMenu() {
   }
   case '2':
   {
-    auto start = std::chrono::high_resolution_clock::now();
     menu =
         "**************************************************************\n"
         "* 2. Find the location                                        \n"
@@ -63,11 +62,19 @@ void MapUI::PrintMenu() {
     menu = "Please input a location:";
     std::cout << menu;
     getline(std::cin, input);
-    while(input.empty()){
+    auto n = input.size();
+    auto space = " \r\n\t\v\f";
+    auto start = input.find_first_not_of(space);
+    auto end = input.find_last_not_of(space);
+    while(input.empty() || (n < start && n < end)){
       auto error = "Input is Empty\n";
       std::cout << error << menu;
       getline(std::cin, input);
+      start = input.find_first_not_of(space);
+      end = input.find_last_not_of(space);
+      n = input.size();      
     }
+    input = input.substr(start, end-start+1);
     auto start1 = std::chrono::high_resolution_clock::now();
     auto results = map.GetPosition(input);
     auto stop1 = std::chrono::high_resolution_clock::now();
@@ -109,13 +116,8 @@ void MapUI::PrintMenu() {
         break;
       }
     }
-    // auto stop = std::chrono::high_resolution_clock::now();
-    // auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-    // menu = "**************************************************************\n";
-    // std::cout << menu;
-    // std::cout << "Time taken to Find the Location: " << duration.count()/1000 << " ms" << std::endl << std::endl;
-    // PrintMenu();
-    // break;
+    PrintMenu();
+    break;
   }
   case '3':
   {
