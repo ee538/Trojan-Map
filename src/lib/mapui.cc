@@ -62,7 +62,11 @@ void MapUI::PrintMenu() {
     menu = "Please input a location:";
     std::cout << menu;
     getline(std::cin, input);
-    
+    while(input.empty()){
+      auto error = "Input is Empty\n";
+      std::cout << error << menu;
+      getline(std::cin, input);
+    }
     auto start = std::chrono::high_resolution_clock::now();
     auto results = map.GetPosition(input);
     auto stop = std::chrono::high_resolution_clock::now();
