@@ -15,5 +15,15 @@ This project focuses on using data structures in C++ and implementing various gr
 - double GetLon(const std::string& id); : returns the longitude given the unique id : TIme Complexity O(1)
 - std::string GetName(const std::string& id); : returns the Name of the location given the unique id: Time COmplexity O(1)
 - std::string GetID(const std::string& name); : Returns the Unque ID if the given name exists in the database :  Time Complexity O(n) where n = number of unique id in the database
-- std::vector<std::string> GetNeighborIDs(const std::string& id); : Returns the list of neighbour id's given the unique id: Time Complexity O(1)
+- std::vector<std::string> GetNeighborIDs(const std::string& id); : Returns the list of neighbour id's given the unique id: Time Complexity O(1).
+
+These Functions will be called by other functions in the project to access the required data which is stored in a map <Unique id, Node>.
+
+### Feature 1 : Auto Complete
+
+### Feature 2 : Find The Location
+
+This Feature focuses on finding the location in the map (Latitude and Longitude) based on the input provided by the user. The input is of type std::string. 
+
+<p align="center"><img src="img/Feature21.png" alt="Trojan" width="500" /></p>
 
