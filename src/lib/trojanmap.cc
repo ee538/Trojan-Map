@@ -123,7 +123,7 @@ std::string TrojanMap::FindClosestName(std::string name) {
   if (id.empty()){
     for (auto it = data.begin(); it != data.end(); it++){
       distance = CalculateEditDistance(name, (it->second).name);
-      if (distance < minimum){
+      if (distance < minimum && (it->second).name.empty() != 0){
         minimum = distance;
         tmp = (it->second).name;
       }

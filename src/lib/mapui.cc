@@ -62,6 +62,7 @@ void MapUI::PrintMenu() {
     menu = "Please input a location:";
     std::cout << menu;
     getline(std::cin, input);
+    
     auto start = std::chrono::high_resolution_clock::now();
     auto results = map.GetPosition(input);
     auto stop = std::chrono::high_resolution_clock::now();
@@ -77,7 +78,7 @@ void MapUI::PrintMenu() {
       std::string tmp = map.FindClosestName(input);
       std::cout << "Did you mean " << tmp << " instead of " << input << "? [y/n]";
       getline(std::cin, input);
-      if (input == "y") {
+      if (input == "y" || input == "Y") {
         results = map.GetPosition(tmp);
         std::cout << "Latitude: " << results.first
                 << " Longitude: " << results.second << std::endl;
