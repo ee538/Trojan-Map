@@ -15,6 +15,7 @@
 #include <fstream>
 #include <sstream>
 #include <climits>
+#include <time.h>
 
 // A Node is the location of one point in the map.
 class Node {
