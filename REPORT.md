@@ -59,6 +59,23 @@ Flow Chart of FindClosestName FUnction:
 The ```Time Complexity = O(nlp)``` where n = # unique ID's, l = Length of Input Name, p = Length of the Largest Name in the data 
 
 RESULTS :
+Case Scenario 1 : When User Inputs Case Sensitive Correct Input
+Input = Ralphs, Run Time = 2ms (GetPosition Function is Directly Called)
 <p align="center"><img src="img/GetPosOutput1.png" alt="Trojan" width="500" /></p>
 <p align="center"><img src="img/GetPosMap1.png" alt="Trojan" width="1000" /></p>
+
+Input = Target, Run Time = 2ms (GetPosition Function is Directly Called)
+<p align="center"><img src="img/GetPosOutput2.png" alt="Trojan" width="500" /></p>
+<p align="center"><img src="img/GetPosMap2.png" alt="Trojan" width="1000" /></p>
+
+Case Scenario 2 : When the User Inputs Case sensitive improper Input
+Input : rOLPhs
+
+<p align="center"><img src="img/GetPosOutput3.png" alt="Trojan" width="500" /></p>
+<p align="center"><img src="img/GetPosMap3.png" alt="Trojan" width="1000" /></p>
+
+Input : Trider Jaes
+
+<p align="center"><img src="img/GetPosOutput4.png" alt="Trojan" width="500" /></p>
+<p align="center"><img src="img/GetPosMap4.png" alt="Trojan" width="1000" /></p>
 
