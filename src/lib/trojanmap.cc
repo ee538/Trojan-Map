@@ -106,7 +106,7 @@ int TrojanMap::CalculateEditDistance(std::string a, std::string b){
       }
     }
   }
-  return d[m][n];
+
 }
 
 /**
@@ -144,15 +144,18 @@ std::string TrojanMap::FindClosestName(std::string name) {
  */
 std::vector<std::string> TrojanMap::Autocomplete(std::string name){
   std::vector<std::string> results;
+  if(name.length() > 1 && name[name.length() - 1] == ' '){name.pop_back();}
+  if(name.length() > 1 && name[0]== ' '){name.erase(name.begin());}
   int size = name.length();
   std::transform(name.begin(),name.end(),name.begin(), ::tolower);
-
   std::unordered_map<std::string, Node>::iterator it = data.begin();
   while(it != data.end()){
     std::string e = GetName(it->first);
     std::string temp = e;
     std::transform(e.begin(),e.end(),temp.begin(), ::tolower);
-    if (temp.substr(0,size) == name){
+    if (size == 0 || name == " "){
+      if(e != ""){results.push_back(e);}}
+    else if (temp.substr(0,size) == name){
       results.push_back(e);
     }
     it++;

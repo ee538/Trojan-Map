@@ -144,6 +144,12 @@ TEST(TrojanMapStudentTest, Autocomplete) {
   EXPECT_EQ(tm.Autocomplete(sub),results);
   sub = "SAIN";
   EXPECT_EQ(tm.Autocomplete(sub),results);
+  sub = "SAIN ";
+  EXPECT_EQ(tm.Autocomplete(sub),results);
+  sub = " SAIN ";
+  EXPECT_EQ(tm.Autocomplete(sub),results);
+  sub = "";
+  EXPECT_EQ(tm.Autocomplete(sub),results);
 }
 
 TEST(TrojanMapTest, CalculateEditDistance) {
@@ -155,7 +161,7 @@ TEST(TrojanMapTest, CalculateEditDistance) {
   result = tm.CalculateEditDistance("", "");
   EXPECT_EQ(distance, result);
   distance = 3;
-  result = tm.CalculateEditDistance("Horse", "Ros");
+  int result = tm.CalculateEditDistance("Horse", "Ros");
   EXPECT_EQ(distance, result);
   distance = 5;
   result = tm.CalculateEditDistance("Horse", "");
@@ -169,6 +175,10 @@ TEST(TrojanMapTest, CalculateEditDistance) {
   distance = 2;
   result = tm.CalculateEditDistance("Trider Joe", "Trader Joes");
   EXPECT_EQ(distance, result);
+  distance = 2;
+  int result = tm.CalculateEditDistance("R", "Ross");
+  EXPECT_EQ(distance, result);
+
 
 }
 
