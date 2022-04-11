@@ -38,9 +38,9 @@ In order the rectify the above limitation we will make use of two more function 
 
 The declaration of the two function in the program are given as 
 
-int CalculateEditDistance(std::string, std::string);
+Function Declaration of CalculateEditDistance Function : ```int CalculateEditDistance(std::string, std::string);```
 
-std::string FindClosestName(std::string name);
+
 
 Flow Chart of CalculateEditDistance FUnction:
 <p align="center"><img src="img/CalculateEditDistance.png" alt="Trojan" width="500" /></p>
