@@ -5,18 +5,18 @@ Team Members : Sudharshan Subramaniam Janakiraman (USC ID : 8125560141), Amrith 
 <p align="center"><img src="img/TrojanMap.png" alt="Trojan" width="1000" /></p>
 
 # PROJECT FOCUS
-This project focuses on using data structures in C++ and implementing various graph algorithms to build a map application. We will have small features similar to Google Map such as Auto Complete, Finding the exact location of a place in the map. This project will also involve analysis of time complexity of each functions utilized to full fill a particular application as well as tet case behavior analysis to check if the written code indeed works as expected.
+This project focuses on using data structures in C++ and implementing various graph algorithms to build a map application. We will have small features similar to Google Maps such as Autocomplete, Finding the exact location of a place in the map. This project will also involve analysis of time complexity of each function utilized to full fill a particular application as well as test case behavior analysis to check if the written code indeed works as expected.
 
 # MAP FEATURES
 
-- Autocomplete : Displays a list of location based on the partial case insensitive input by the user
-- FindLocation : Finds the location (Latitude and Longitude) given an input location (Exactr Match) otherwise finds the location of the lexicographically closest matching location to the word
+- ```Autocomplete``` : Displays a list of location based on the partial case insensitive input by the user
+- ```FindLocation``` : Finds the location (Latitude and Longitude) given an input location (Exact Match) otherwise finds the location of the lexicographically closest matching location to the word
 
 ## Utility Functions
 - ```double GetLat(const std::string& id);```  returns the latitude given the unique id : Time Complexity  O(1)
 - ```double GetLon(const std::string& id);``` : returns the longitude given the unique id : TIme Complexity O(1)
 - ```std::string GetName(const std::string& id);``` : returns the Name of the location given the unique id: Time COmplexity O(1)
-- ```std::string GetID(const std::string& name);``` : Returns the Unque ID if the given name exists in the database :  Time Complexity O(n) where n = number of unique id in the database
+- ```std::string GetID(const std::string& name);``` : Returns the Unique ID if the given name exists in the database :  Time Complexity O(n) where n = number of unique id in the database
 - ```std::vector<std::string> GetNeighborIDs(const std::string& id);``` : Returns the list of neighbour id's given the unique id: Time Complexity O(1).
 
 These Functions will be called by other functions in the project to access the required data which is stored in a map <Unique id, Node>.
@@ -25,7 +25,7 @@ These Functions will be called by other functions in the project to access the r
 
 The AutoComplete function uses the user input as a prefix and outputs the locations which start with the prefix. If the prefix is the entire word and is available in the database, then only the word gets displayed. The function is not case sensitive and accounts for human error of adding a space before and/or after the prefix while typing. If the input is null, then the program outputs all the location names in the database. If the output sequence has more than one location, the output will be in a sorted order. 
 
-The Declation of the function is given as ```std::vector<std::string> TrojanMap::Autocomplete(std::string name);```
+The Declaration of the function is given as ```std::vector<std::string> TrojanMap::Autocomplete(std::string name);```
 
 Flow Chart of the Function:
 <p align="center"><img src="img/Feature1.png" alt="Trojan" width="1000" /></p>
@@ -33,15 +33,15 @@ Flow Chart of the Function:
 The ```Time Complexity = O(n)``` where n = #ID's in the database
 
 ### RESULTS: 
-#### Case Scenario 1 : Inputs : "chi"
+#### Case Scenario 1 : Input : "chi"
 
 <p align="center"><img src="img/autoc1.png" alt="Trojan" width="750" /></p>
 
-#### Case Scenario 1 : Inputs : "sain"
+#### Case Scenario 2 : Input : "sain"
 
 <p align="center"><img src="img/autoc2.png" alt="Trojan" width="750" /></p>
 
-Note :  Changes have been made in the mapui.cc to Handle Empty input and input with trialing and leading white spaces in a better way. If the User Inputs empty name, Then The MENU dispalys all the locations from the database and if the prefix has leading or trailing spaces, then the code has been changed to trim the spaces and only take the prefix.  
+Note :  Changes have been made in the mapui.cc to Handle Empty input and input with trailing and leading white spaces in a better way. If the User Inputs an empty name, Then The MENU dispalys all the locations from the database and if the prefix has leading or trailing spaces, then the code has been changed to trim the spaces and only take the prefix.  
 
 <p align="center"><img src="img/autoc3.png" alt="Trojan" width="750" /></p>
 
@@ -50,7 +50,7 @@ Note :  Changes have been made in the mapui.cc to Handle Empty input and input w
 
 This Feature focuses on finding the location in the map (Latitude and Longitude) based on the input provided by the user. The input is of type std::string. 
 
-The Declation of the function is given as ```std::pair<double, double> GetPosition(std::string name);```
+The Declaration of the function is given as ```std::pair<double, double> GetPosition(std::string name);```
 
 Flow Chart of the Function:
 <p align="center"><img src="img/Feature21.png" alt="Trojan" width="750" /></p>
