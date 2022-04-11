@@ -21,45 +21,45 @@ This project focuses on using data structures in C++ and implementing various gr
 
 These Functions will be called by other functions in the project to access the required data which is stored in a map <Unique id, Node>.
 
-### Feature 1 : Auto Complete
+## Feature 1 : Auto Complete
 
 The AutoComplete function uses the user input as a prefix and outputs the locations which start with the prefix. If the prefix is the entire word and is available in the database, then only the word gets displayed. The function is not case sensitive and accounts for human error of adding a space before and/or after the prefix while typing. If the input is null, then the program outputs all the location names in the database. If the output sequence has more than one location, the output will be in a sorted order. 
 
 The Declation of the function is given as ```std::vector<std::string> TrojanMap::Autocomplete(std::string name);```
 
 Flow Chart of the Function:
-<p align="center"><img src="img/Feature1.png" alt="Trojan" width="500" /></p>
+<p align="center"><img src="img/Feature1.png" alt="Trojan" width="1000" /></p>
 
 The ```Time Complexity = O(n)``` where n = #ID's in the database
 
-## RESULTS: 
-# Case Scenario 1 : Inputs : "chi"
+### RESULTS: 
+#### Case Scenario 1 : Inputs : "chi"
 
-<p align="center"><img src="img/autoc1.png" alt="Trojan" width="500" /></p>
+<p align="center"><img src="img/autoc1.png" alt="Trojan" width="750" /></p>
 
-# Case Scenario 1 : Inputs : "sain"
+#### Case Scenario 1 : Inputs : "sain"
 
-<p align="center"><img src="img/autoc2.png" alt="Trojan" width="500" /></p>
+<p align="center"><img src="img/autoc2.png" alt="Trojan" width="750" /></p>
 
 Note :  Changes have been made in the mapui.cc to Handle Empty input and input with trialing and leading white spaces in a better way. If the User Inputs empty name, Then The MENU dispalys all the locations from the database and if the prefix has leading or trailing spaces, then the code has been changed to trim the spaces and only take the prefix.  
 
 <p align="center"><img src="img/autoc3.png" alt="Trojan" width="750" /></p>
 
 
-### Feature 2 : Find The Location
+## Feature 2 : Find The Location
 
 This Feature focuses on finding the location in the map (Latitude and Longitude) based on the input provided by the user. The input is of type std::string. 
 
 The Declation of the function is given as ```std::pair<double, double> GetPosition(std::string name);```
 
 Flow Chart of the Function:
-<p align="center"><img src="img/Feature21.png" alt="Trojan" width="500" /></p>
+<p align="center"><img src="img/Feature21.png" alt="Trojan" width="750" /></p>
 
 As We can see that there is one loop which will help us finding the location given  the name, 
 
 The ```Time Complexity = O(n)``` where n = # Unique ID's in the data
 
-## Observation : This GetPosition Will only return proper location if the user inputs correct case sensitive data, Otherwise it will return (-1, -1). This provides a limitation when the user doesnt follow case sensitivity or Makes spelling mistakes in Input
+Observation : This GetPosition Will only return proper location if the user inputs correct case sensitive data, Otherwise it will return (-1, -1). This provides a limitation when the user doesnt follow case sensitivity or Makes spelling mistakes in Input
 
 In order the rectify the above limitation we will make use of two more function CalculateEditDistance and FindClosestName. as the name suggests, The FindClosestName function will find if there are any names which are lexicographically closer to the user's input name. For Finding such name, this function will make use of CalculateEditDIstance which returns the EditDistance between two string ( i.e., Number of operations needed (Insert delete, replace) to convert one string to another string). Find Closest Name will run the input name against all names in the data and will select the name from data which has minimum EditDistance.
 
@@ -70,7 +70,7 @@ Declaration of CalculateEditDistance Function : ```int CalculateEditDistance(std
 This Function Takes 2 strings as input and returns the edit distance between them. Tabulation Dynamic Programming is used so calculate EditDistance.
 
 Flow Chart of CalculateEditDistance FUnction:
-<p align="center"><img src="img/CalculateEditDistance.png" alt="Trojan" width="500" /></p>
+<p align="center"><img src="img/CalculateEditDistance.png" alt="Trojan" width="750" /></p>
 
 The ```Time Complexity = O(mn)``` where m = Length of String 1, n = Length of String 2
 
@@ -79,32 +79,32 @@ Declaration of FindClosestName Function : ```std::string FindClosestName(std::st
 This Function takes an input name and returns a name(string) which is lexicographically closer to the input name (string)
 
 Flow Chart of FindClosestName FUnction:
-<p align="center"><img src="img/FindClosestName.png" alt="Trojan" width="500" /></p>
+<p align="center"><img src="img/FindClosestName.png" alt="Trojan" width="750" /></p>
 
 The ```Time Complexity = O(nlp)``` where n = # unique ID's, l = Length of Input Name, p = Length of the Largest Name in the data 
 
-## RESULTS : The location found will also be plotted on the map
+### RESULTS : The location found will also be plotted on the map
 
-# Case Scenario 1 : When User Inputs Case Sensitive Correct Input
+#### Case Scenario 1 : When User Inputs Case Sensitive Correct Input
 
 Input = Ralphs, Run Time = 2ms (GetPosition Function is Directly Called)
-<p align="center"><img src="img/GetPosOutput1.png" alt="Trojan" width="500" /></p>
+<p align="center"><img src="img/GetPosOutput1.png" alt="Trojan" width="750" /></p>
 <p align="center"><img src="img/GetPosMap1.png" alt="Trojan" width="1000" /></p>
 
 Input = Target, Run Time = 2ms (GetPosition Function is Directly Called)
-<p align="center"><img src="img/GetPosOutput2.png" alt="Trojan" width="500" /></p>
+<p align="center"><img src="img/GetPosOutput2.png" alt="Trojan" width="750" /></p>
 <p align="center"><img src="img/GetPosMap2.png" alt="Trojan" width="1000" /></p>
 
-# Case Scenario 2 : When the User Inputs Case sensitive improper Input
+#### Case Scenario 2 : When the User Inputs Case sensitive improper Input
 
 Input : rOLPhs, Run Time : 11 + 2 = 13 ms
 
-<p align="center"><img src="img/GetPosOutput3.png" alt="Trojan" width="500" /></p>
+<p align="center"><img src="img/GetPosOutput3.png" alt="Trojan" width="750" /></p>
 <p align="center"><img src="img/GetPosMap3.png" alt="Trojan" width="1000" /></p>
 
 Input : Trider Jaes, Run Time : 15 + 3 = 18 ms
 
-<p align="center"><img src="img/GetPosOutput4.png" alt="Trojan" width="500" /></p>
+<p align="center"><img src="img/GetPosOutput4.png" alt="Trojan" width="750" /></p>
 <p align="center"><img src="img/GetPosMap4.png" alt="Trojan" width="1000" /></p>
 
 Note :  Changes have been made in the mapui.cc to Handle Empty input and input with trialing and leading white spaces in a better way. If the User Inputs empty name, Then The MENU dispalys that the input in empty and asks whether the user wants to enter new input or not. Leading and traialing white spaces are trimmed
