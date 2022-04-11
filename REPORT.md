@@ -2,6 +2,8 @@
 
 Team Members : Sudharshan Subramaniam Janakiraman (USC ID : 8125560141), Amrith Coumaran (USC ID:)
 
+<p align="center"><img src="img/TrojanMap.png" alt="Trojan" width="1000" /></p>
+
 # PROJECT FOCUS
 This project focuses on using data structures in C++ and implementing various graph algorithms to build a map application. We will have small features similar to Google Map such as Auto Complete, Finding the exact location of a place in the map. This project will also involve analysis of time complexity of each functions utilized to full fill a particular application as well as tet case behavior analysis to check if the written code indeed works as expected.
 
@@ -42,7 +44,7 @@ The declaration of the two function in the program are given as
 
 Declaration of CalculateEditDistance Function : ```int CalculateEditDistance(std::string, std::string);```
 
-This Function Takes 2 strings as input and returns the edit distance between them
+This Function Takes 2 strings as input and returns the edit distance between them. Tabulation Dynamic Programming is used so calculate EditDistance.
 
 Flow Chart of CalculateEditDistance FUnction:
 <p align="center"><img src="img/CalculateEditDistance.png" alt="Trojan" width="500" /></p>
@@ -81,4 +83,8 @@ Input : Trider Jaes, Run Time : 15 + 3 = 18 ms
 
 <p align="center"><img src="img/GetPosOutput4.png" alt="Trojan" width="500" /></p>
 <p align="center"><img src="img/GetPosMap4.png" alt="Trojan" width="1000" /></p>
+
+Note :  Chnages have been made in the mapui.cc to Handle Empty input and input with trialing and leading white spaces in a better way. If the User Inputs empty name, Then The MENU dispalys that the input in empty and asks whether the user wants to enter new input or not. Leading and traialing white spaces are trimmed
+
+<p align="center"><img src="img/EMptyInputHandlingFIndLocation.png" alt="Trojan" width="750" /></p>
 
