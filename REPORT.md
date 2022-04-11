@@ -25,5 +25,24 @@ These Functions will be called by other functions in the project to access the r
 
 This Feature focuses on finding the location in the map (Latitude and Longitude) based on the input provided by the user. The input is of type std::string. 
 
+The Declation of the function is given as std::pair<double, double> GetPosition(std::string name);
+
+Flow Chart of the Function:
 <p align="center"><img src="img/Feature21.png" alt="Trojan" width="500" /></p>
+
+As We can see that there is one loop which will help us finding the location given  the name, The Time Complexity = O(n) where n = # Unique ID's in the data
+
+Observation : This GetPosition Will only return proper location if the user inputs correct case sensitive data, Otherwise it will return (-1, -1). This provides a limitation when the user doesnt follow case sensitivity or Makes spelling mistakes in Input
+
+In order the rectify the above limitation we will make use of two more function CalculateEditDistance and FindClosestName. as the name suggests, The FindClosestName function will find if there are any names which are lexicographically closer to the user's input name. For Finding such name, this function will make use of CalculateEditDIstance which returns the EditDistance between two string ( i.e., Number of operations needed (Insert delete, replace) to convert one string to another string). Find Closest Name will run the input name against all names in the data and will select the name from data which has minimum EditDistance.
+
+The declaration of the two function in the program are given as 
+
+int CalculateEditDistance(std::string, std::string);
+
+std::string FindClosestName(std::string name);
+
+Flow Chart of CalculateEditDistance FUnction:
+<p align="center"><img src="img/CalculateEditDistance.png" alt="Trojan" width="500" /></p>
+
 
