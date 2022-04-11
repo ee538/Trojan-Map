@@ -57,3 +57,6 @@ Flow Chart of FindClosestName FUnction:
 <p align="center"><img src="img/FindClosestName.png" alt="Trojan" width="500" /></p>
 
 The ```Time Complexity = O(nlp)``` where n = # unique ID's, l = Length of Input Name, p = Length of the Largest Name in the data 
+
+RESULTS :
+<p align="center"><img src="img/GetPosOutput1.png" alt="Trojan" width="500" /></p>
