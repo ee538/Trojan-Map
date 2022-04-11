@@ -86,23 +86,19 @@ int TrojanMap::CalculateEditDistance(std::string a, std::string b){
   int m = a.size();
   int n = b.size();
   std::vector< std::vector<int> > d(m+1, std::vector<int>(n+1, 0)); 
-  d[0][0] = 0;
-
-  for (int i = 0; i <= n; i++){
-    d[0][i] = i;
-  }
 
   for (int i = 0; i <= m; i++){
-    d[i][0] = i;
-  }
-
-  for (int i = 1; i <= m; i++){
-    for (int j = 1; j<= n; j++){
-      if(a[i-1] == b[j-1]){
-        d[i][j] = 1 + std::min(std::min(d[i-1][j], d[i][j-1]), d[i-1][j-1] - 1);
+    for (int j = 0; j<= n; j++){
+      if (i == 0 && j == 0){
+        d[i][j] = 0;
+      } else if (i != 0 && j == 0){
+        d[i][j] = i;
+      } else if (i == 0 && j != 0){
+        d[i][j] = j;
+      } else if(a[i-1] == b[j-1]){
+        d[i][j] =  d[i-1][j-1];
       } else {
         d[i][j] = 1 + std::min(std::min(d[i-1][j], d[i][j-1]), d[i-1][j-1]);
-
       }
     }
   }
@@ -116,16 +112,24 @@ int TrojanMap::CalculateEditDistance(std::string a, std::string b){
  * @return {std::string} tmp           : similar name
  */
 std::string TrojanMap::FindClosestName(std::string name) {
+  auto lname = name;
+  std::transform(name.begin(),name.end(),lname.begin(), ::tolower);
   int minimum = INT_MAX;
   int distance = 0;
   std::string tmp = "";
   auto id = GetID(name);
   if (id.empty()){
     for (auto it = data.begin(); it != data.end(); it++){
-      distance = CalculateEditDistance(name, (it->second).name);
-      if (distance < minimum){
-        minimum = distance;
+      auto n = (it->second).name;
+      std::transform((it->second).name.begin(),(it->second).name.end(),n.begin(), ::tolower);
+      if (n == lname){
         tmp = (it->second).name;
+      } else if (!n.empty()){
+        distance = CalculateEditDistance(lname, n);
+        if (distance < minimum){
+          minimum = distance;
+          tmp = (it->second).name;
+        }
       }
     }
   } else {

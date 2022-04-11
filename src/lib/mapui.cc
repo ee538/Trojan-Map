@@ -48,7 +48,7 @@ void MapUI::PrintMenu() {
     }
     menu = "**************************************************************\n";
     std::cout << menu;
-    std::cout << "Time taken by function: " << duration.count()/1000 << " ms" << std::endl << std::endl;
+    std::cout << "Time taken by AutoComplete function: " << duration.count()/1000 << " ms" << std::endl << std::endl;
     PrintMenu();
     break;
   }
@@ -62,31 +62,70 @@ void MapUI::PrintMenu() {
     menu = "Please input a location:";
     std::cout << menu;
     getline(std::cin, input);
-    auto start = std::chrono::high_resolution_clock::now();
+    auto n = input.size();
+    // Leading and Trialing white space handling
+    // Referred from https://www.techiedelight.com/remove-leading-and-trailing-spaces-from-a-string-in-cpp/
+    auto space = " \r\n\t\v\f";
+    auto start = input.find_first_not_of(space);
+    auto end = input.find_last_not_of(space);
+    while(input.empty() || (n < start && n < end)){
+      auto error = "Input is Empty\n";
+      auto message = "Do you want to enter a non empty Location Name?[y/n]\n";
+      std::cout << error << message;
+      getline(std::cin, input);
+      if(input == "y"){
+        std::cout << menu;
+        getline(std::cin, input);
+        start = input.find_first_not_of(space);
+        end = input.find_last_not_of(space);
+        n = input.size(); 
+      } else {
+        PrintMenu();
+        break;
+      }     
+    }
+    input = input.substr(start, end-start+1);
+    auto start1 = std::chrono::high_resolution_clock::now();
     auto results = map.GetPosition(input);
-    auto stop = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+    auto stop1 = std::chrono::high_resolution_clock::now();
+    auto duration1 = std::chrono::duration_cast<std::chrono::microseconds>(stop1 - start1);
     menu = "*************************Results******************************\n";
     std::cout << menu;
     if (results.first != -1) {
       std::cout << "Latitude: " << results.first
                 << " Longitude: " << results.second << std::endl;
       PlotPoint(results.first, results.second);
+      menu = "**************************************************************\n";
+      std::cout << menu;
+      std::cout << "Time taken by GetPosition function: " << duration1.count()/1000 << " ms" << std::endl << std::endl;
+      PrintMenu();
+      break;
     } else {
       std::cout << "No matched locations." << std::endl;
+      auto start2 = std::chrono::high_resolution_clock::now();
       std::string tmp = map.FindClosestName(input);
+      auto stop2 = std::chrono::high_resolution_clock::now();
+      auto duration2 = std::chrono::duration_cast<std::chrono::microseconds>(stop2 - start2);
       std::cout << "Did you mean " << tmp << " instead of " << input << "? [y/n]";
       getline(std::cin, input);
-      if (input == "y") {
-        results = map.GetPosition(tmp);
+      if (input == "y" || input == "Y") {
+        auto start3 = std::chrono::high_resolution_clock::now();
+        auto results = map.GetPosition(tmp);
+        auto stop3 = std::chrono::high_resolution_clock::now();
+        auto duration3 = std::chrono::duration_cast<std::chrono::microseconds>(stop3 - start3);
         std::cout << "Latitude: " << results.first
                 << " Longitude: " << results.second << std::endl;
         PlotPoint(results.first, results.second);
+        menu = "**************************************************************\n";
+        std::cout << menu;
+        std::cout << "Time taken by FindClosestName function: " << duration2.count()/1000 << " ms" << std::endl << std::endl;
+        menu = "**************************************************************\n";
+        std::cout << menu;
+        std::cout << "Time taken by getPosition function: " << duration3.count()/1000 << " ms" << std::endl << std::endl;
+        PrintMenu();
+        break;
       }
     }
-    menu = "**************************************************************\n";
-    std::cout << menu;
-    std::cout << "Time taken by function: " << duration.count()/1000 << " ms" << std::endl << std::endl;
     PrintMenu();
     break;
   }
