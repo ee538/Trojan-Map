@@ -35,6 +35,18 @@ void MapUI::PrintMenu() {
     menu = "Please input a partial location:";
     std::cout << menu;
     getline(std::cin, input);
+    // Leading and Trialing white space handling
+    // Referred from https://www.techiedelight.com/remove-leading-and-trailing-spaces-from-a-string-in-cpp/
+    auto space = " \r\n\t\v\f";
+    auto start1 = input.find_first_not_of(space);
+    auto end1 = input.find_last_not_of(space);
+    auto n = input.size();
+    if(n < start1 &&  n < end1){
+      input = "";
+    }
+    else{
+      input = input.substr(start1,end1 - start1 + 1);
+    }
     auto start = std::chrono::high_resolution_clock::now();
     auto results = map.Autocomplete(input);
     auto stop = std::chrono::high_resolution_clock::now();

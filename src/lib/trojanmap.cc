@@ -148,8 +148,8 @@ std::string TrojanMap::FindClosestName(std::string name) {
  */
 std::vector<std::string> TrojanMap::Autocomplete(std::string name){
   std::vector<std::string> results;
-  if(name.length() > 1 && name[name.length() - 1] == ' '){name.pop_back();}
-  if(name.length() > 1 && name[0]== ' '){name.erase(name.begin());}
+  // if(name.length() > 1 && name[name.length() - 1] == ' '){name.pop_back();}
+  // if(name.length() > 1 && name[0]== ' '){name.erase(name.begin());}
   int size = name.length();
   std::transform(name.begin(),name.end(),name.begin(), ::tolower);
   std::unordered_map<std::string, Node>::iterator it = data.begin();
