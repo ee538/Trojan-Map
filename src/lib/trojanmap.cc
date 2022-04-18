@@ -209,6 +209,150 @@ double TrojanMap::CalculatePathLength(const std::vector<std::string> &path) {
  * @param  {std::string} location2_name     : goal
  * @return {std::vector<std::string>}       : path
  */
+// std::vector<std::string> TrojanMap::CalculateShortestPath_Dijkstra(
+//     std::string location1_name, std::string location2_name) {
+//   std::vector<std::string> path;
+  
+//   // Get ID's of Start Location and End Location
+//   std::string start_ID_= GetID(location1_name);
+//   std::string end_ID_ = GetID(location2_name);
+
+//   // Node start_node_ = data[start_ID_];
+//   // Node end_node = data[end_ID_];
+
+//   // Create Min Heap using Priority Queue
+//   std::priority_queue< std::pair<double, std::string>, std::vector< std::pair< double,std::string > >, std::greater< std::pair< double, std::string >>> q_;
+
+//   // Stores the Shortest Distance of Each Node using Unordered Map
+//   std::unordered_map< std::string, double > distance_;
+
+//   // Stores the predecessors for each node using unordered map
+//   std::unordered_map< std::string, std::vector< std::string > > shortest_path_;
+
+//   // Strores Visted Nodes using Unordered Map
+//   std::unordered_map< std::string, bool > visited_;
+
+//   // set start_node as visited and its shortest_distance as 0 and set the predecessor path as empty vector;
+//   // visited_[start_ID_] = true;
+//   distance_[start_ID_] = 0;
+//   // visited_[start_ID_] = true;
+//   std::vector< std::string > current_path_ = {};
+//   shortest_path_[start_ID_] = current_path_;
+//   // Push the start node into maxheap
+//   q_.push(std::make_pair(distance_[start_ID_], start_ID_));
+//   // Run Dijkstra Unitil the Priority Queue is Empty
+//   while( q_.empty() != true){
+//     // Get The Shortest Distance Node ( Top One in priority Queue)
+//     auto qtop = q_.top();
+//     auto cid = qtop.second;
+//     auto cdist = qtop.first;
+//     q_.pop();
+
+//     // Check if The current Node is same as the End Node
+//     // If Not Proceed Inside the for Loop
+//     if( cid != end_ID_ ){
+//       // Check if the Current Distance is Greater than the shortest Distance of the Node
+//       // If Not Proceed with If loop
+//       if ( cdist <= distance_[cid] ){
+//         if (visited_.find(cid) == visited_.end()){
+//           visited_[cid] = false;
+//         }
+//         if ( visited_[cid] == false) {
+//           visited_[cid] = true;
+//           auto neighbors = GetNeighborIDs(cid);
+//           for (auto neighbor : neighbors){
+//             double new_dist_ = cdist + CalculateDistance(cid, neighbor);
+//             if ( distance_.find(neighbor) == distance_.end() ){
+//               distance_[neighbor] = INT_MAX;
+//             }
+//             if (new_dist_ < distance_[neighbor]){
+//               distance_[neighbor] = new_dist_;
+//               auto previous_path = shortest_path_[cid];
+//               previous_path.push_back(cid);
+//               shortest_path_[neighbor] = previous_path;
+//               q_.push(std::make_pair(distance_[neighbor], neighbor));
+//             }
+//           }
+//         }
+//       }
+//     } else if ( cid == end_ID_ ) {
+//       path = shortest_path_[cid];
+//       path.push_back(cid);
+//       break;
+//     }
+//   }
+
+//   // std::cout << path[0] << " " << start_ID_ << " " << end_ID_ << std::endl;
+//   return path;
+// }
+
+// /**
+//  * CalculateShortestPath_Bellman_Ford: Given 2 locations, return the shortest path which is a
+//  * list of id. Hint: Do the early termination when there is no change on distance.
+//  *
+//  * @param  {std::string} location1_name     : start
+//  * @param  {std::string} location2_name     : goal
+//  * @return {std::vector<std::string>}       : path
+//  */
+// std::vector<std::string> TrojanMap::CalculateShortestPath_Bellman_Ford(
+//     std::string location1_name, std::string location2_name){
+//   std::vector<std::string> path;
+
+//   // Getting start and End Node Id's
+//   std::string start_ID_ = GetID(location1_name);
+//   std::string end_ID_ = GetID(location2_name);
+
+//   // Shortest Distance of Each Node using Unordered Map
+//   std::unordered_map< std::string, double > distance_;
+
+//   // Shortest path to cirrent Node using unordered map
+//   std::unordered_map< std::string, std::vector< std::string > > shortest_path_;
+
+//   // set a boolean stop sign to true
+//   bool stop_sign = true;
+//   std::vector<std::string> empty_predecessor_ = {};
+
+//   for (auto d : data){
+//     distance_[d.first] = INT_MAX;
+//     shortest_path_[d.first] = empty_predecessor_;
+
+//   distance_[start_ID_] = 0.0;
+//   }
+//   for ( int i = 1 ; i <= data.size() - 1 ; i ++ ){
+//     std::cout << i << std::endl;
+//     for ( auto d : data ) {
+//       auto neighbors = GetNeighborIDs(d.first);
+//       for( auto neighbor : neighbors ) {
+//         if(distance_[d.first] != INT_MAX){
+//           auto new_dist_ = distance_[d.first] + CalculateDistance(d.first, neighbor);
+//           if ( new_dist_ < distance_[neighbor]){
+//             distance_[neighbor] = new_dist_;
+//             auto cpath = shortest_path_[d.first];
+//             cpath.push_back(d.first);
+//             shortest_path_[neighbor] = cpath;
+//             stop_sign = false;
+//           } else {
+//             stop_sign = true;
+//             break;
+//           }
+//         }
+//       }
+
+//     }
+//   }
+//   path = shortest_path_[end_ID_];
+//   path.push_back(end_ID_);
+//   return path;  
+// }
+
+/**
+ * CalculateShortestPath_Dijkstra: Given 2 locations, return the shortest path which is a
+ * list of id. Hint: Use priority queue.
+ *
+ * @param  {std::string} location1_name     : start
+ * @param  {std::string} location2_name     : goal
+ * @return {std::vector<std::string>}       : path
+ */
 std::vector<std::string> TrojanMap::CalculateShortestPath_Dijkstra(
     std::string location1_name, std::string location2_name) {
   std::vector<std::string> path;
@@ -217,9 +361,6 @@ std::vector<std::string> TrojanMap::CalculateShortestPath_Dijkstra(
   std::string start_ID_= GetID(location1_name);
   std::string end_ID_ = GetID(location2_name);
 
-  // Node start_node_ = data[start_ID_];
-  // Node end_node = data[end_ID_];
-
   // Create Min Heap using Priority Queue
   std::priority_queue< std::pair<double, std::string>, std::vector< std::pair< double,std::string > >, std::greater< std::pair< double, std::string >>> q_;
 
@@ -227,7 +368,7 @@ std::vector<std::string> TrojanMap::CalculateShortestPath_Dijkstra(
   std::unordered_map< std::string, double > distance_;
 
   // Stores the predecessors for each node using unordered map
-  std::unordered_map< std::string, std::vector< std::string > > shortest_path_;
+  std::unordered_map< std::string, std::string > parent_;
 
   // Strores Visted Nodes using Unordered Map
   std::unordered_map< std::string, bool > visited_;
@@ -235,12 +376,12 @@ std::vector<std::string> TrojanMap::CalculateShortestPath_Dijkstra(
   // set start_node as visited and its shortest_distance as 0 and set the predecessor path as empty vector;
   // visited_[start_ID_] = true;
   distance_[start_ID_] = 0;
-  // visited_[start_ID_] = true;
-  std::vector< std::string > current_path_ = {};
-  shortest_path_[start_ID_] = current_path_;
+
   // Push the start node into maxheap
   q_.push(std::make_pair(distance_[start_ID_], start_ID_));
-  // Run Dijkstra Unitil the Priority Queue is Empty
+
+  // Run Dijkstra Unitil the Priority Queue is Empty or When you reach destination
+
   while( q_.empty() != true){
     // Get The Shortest Distance Node ( Top One in priority Queue)
     auto qtop = q_.top();
@@ -250,39 +391,48 @@ std::vector<std::string> TrojanMap::CalculateShortestPath_Dijkstra(
 
     // Check if The current Node is same as the End Node
     // If Not Proceed Inside the for Loop
+
     if( cid != end_ID_ ){
       // Check if the Current Distance is Greater than the shortest Distance of the Node
       // If Not Proceed with If loop
       if ( cdist <= distance_[cid] ){
-        if (visited_.find(cid) == visited_.end()){
-          visited_[cid] = false;
-        }
-        if ( visited_[cid] == false) {
+
+        if ( visited_.count(cid) == 0) {
+
           visited_[cid] = true;
+
           auto neighbors = GetNeighborIDs(cid);
           for (auto neighbor : neighbors){
+
             double new_dist_ = cdist + CalculateDistance(cid, neighbor);
-            if ( distance_.find(neighbor) == distance_.end() ){
+
+            if ( distance_.count(neighbor) == 0){
               distance_[neighbor] = INT_MAX;
             }
+
             if (new_dist_ < distance_[neighbor]){
               distance_[neighbor] = new_dist_;
-              auto previous_path = shortest_path_[cid];
-              previous_path.push_back(cid);
-              shortest_path_[neighbor] = previous_path;
+              parent_[neighbor] = cid;
               q_.push(std::make_pair(distance_[neighbor], neighbor));
             }
           }
         }
       }
-    } else if ( cid == end_ID_ ) {
-      path = shortest_path_[cid];
-      path.push_back(cid);
+    } else if (cid == end_ID_) {
       break;
     }
   }
-
-  // std::cout << path[0] << " " << start_ID_ << " " << end_ID_ << std::endl;
+  std::cout << path.size();
+  path = {};
+  path.push_back(end_ID_);
+  auto id = parent_[end_ID_];
+  while(id != start_ID_){
+    id = parent_[id];
+    path.push_back(id);
+  }
+  path.push_back(start_ID_);
+  std::reverse(path.begin(), path.end());
+  std::cout << path.size();
   return path;
 }
 
@@ -296,7 +446,7 @@ std::vector<std::string> TrojanMap::CalculateShortestPath_Dijkstra(
  */
 std::vector<std::string> TrojanMap::CalculateShortestPath_Bellman_Ford(
     std::string location1_name, std::string location2_name){
-  std::vector<std::string> path;
+ std::vector<std::string> path;
 
   // Getting start and End Node Id's
   std::string start_ID_ = GetID(location1_name);
@@ -306,44 +456,59 @@ std::vector<std::string> TrojanMap::CalculateShortestPath_Bellman_Ford(
   std::unordered_map< std::string, double > distance_;
 
   // Shortest path to cirrent Node using unordered map
-  std::unordered_map< std::string, std::vector< std::string > > shortest_path_;
+  std::unordered_map< std::string, std::string > parent_;
 
   // set a boolean stop sign to true
   bool stop_sign = true;
-  std::vector<std::string> empty_predecessor_ = {};
 
-  for (auto d : data){
-    distance_[d.first] = INT_MAX;
-    shortest_path_[d.first] = empty_predecessor_;
+  // for (auto d : data){
+  //   parent_[d.first] = "";
+  // }
 
   distance_[start_ID_] = 0.0;
-  }
+  
+  
   for ( int i = 1 ; i <= data.size() - 1 ; i ++ ){
-    std::cout << i << std::endl;
-    for ( auto d : data ) {
+    // Set Stop sign to true while starting to iterate through new data map
+    // If this is changed we will continue else it will break
+    stop_sign = true;
+
+    // iterating through data which has a distance
+    for ( auto d : distance_ ) {
+
       auto neighbors = GetNeighborIDs(d.first);
       for( auto neighbor : neighbors ) {
-        if(distance_[d.first] != INT_MAX){
-          auto new_dist_ = distance_[d.first] + CalculateDistance(d.first, neighbor);
-          if ( new_dist_ < distance_[neighbor]){
-            distance_[neighbor] = new_dist_;
-            auto cpath = shortest_path_[d.first];
-            cpath.push_back(d.first);
-            shortest_path_[neighbor] = cpath;
-            stop_sign = false;
-          } else {
-            stop_sign = true;
-            break;
-          }
-        }
-      }
+        auto new_dist_ = distance_[d.first] + CalculateDistance(d.first, neighbor);
 
+        if (distance_.count(neighbor) == 0){
+          distance_[neighbor] = INT_MAX;
+        }
+        if (distance_[neighbor] > new_dist_){
+
+          distance_[neighbor] = new_dist_;
+
+          parent_[neighbor] = d.first;
+          stop_sign = false;  
+        } 
+      }      
+    } 
+    if (stop_sign == true){
+      break;
     }
   }
-  path = shortest_path_[end_ID_];
+  path = {};
   path.push_back(end_ID_);
+  auto id = parent_[end_ID_];
+  while(id != start_ID_){
+    id = parent_[id];
+    path.push_back(id);
+  }
+  path.push_back(start_ID_);
+  std::reverse(path.begin(), path.end());
+  std::cout << path.size();
   return path;  
 }
+
 
 /**
  * Travelling salesman problem: Given a list of locations, return the shortest
