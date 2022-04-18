@@ -102,7 +102,7 @@ int TrojanMap::CalculateEditDistance(std::string a, std::string b){
       }
     }
   }
-
+  return d[m][n];
 }
 
 /**
@@ -300,6 +300,11 @@ std::vector<std::string> TrojanMap::DeliveringTrojan(std::vector<std::string> &l
  * @return {bool}                      : in square or not
  */
 bool TrojanMap::inSquare(std::string id, std::vector<double> &square) {
+  double lat = GetLat(id);
+  double lon = GetLon(id);
+  if (lat <= square[2] && lat >= square[3] && lon <= square[1] && lon >= square[0]){
+    return true;
+  }
   return false;
 }
 
@@ -311,7 +316,15 @@ bool TrojanMap::inSquare(std::string id, std::vector<double> &square) {
  */
 std::vector<std::string> TrojanMap::GetSubgraph(std::vector<double> &square) {
   // include all the nodes in subgraph
+
   std::vector<std::string> subgraph;
+  //std::unordered_map<std::string, Node>::iterator it = data.begin();
+  for (auto it = data.begin(); it != data.end(); it++){
+    if (inSquare(it->first, square)){
+      subgraph.push_back(it->first);
+    }
+
+  }
   return subgraph;
 }
 
@@ -324,6 +337,72 @@ std::vector<std::string> TrojanMap::GetSubgraph(std::vector<double> &square) {
  * @return {bool}: whether there is a cycle or not
  */
 bool TrojanMap::CycleDetection(std::vector<std::string> &subgraph, std::vector<double> &square) {
+  std::map<std::string, bool> visited;
+  std::unordered_map<std::string,std::string> predecessor;
+  for(auto n: subgraph){
+    visited[n] = false;
+    //predecessor[n] = {};
+  }
+  std::string parent_id = "-1";
+  bool result = hasCycle(subgraph[0],visited,parent_id, square, predecessor);
+  std::vector<std::string> plot;
+  if (result){
+  auto it = predecessor.begin();
+  while(it != predecessor.end()){
+    std::cout<< it->first<<" "<< it->second<<std::endl;
+    plot.push_back(predecessor[it->second]);
+    it++;
+  }
+  PlotPath(plot);
+  }
+  return result;
+}
+
+std::pair<double, double> TrojanMap::GetPlotLocation(double lat, double lon) {
+  std::pair<double, double> bottomLeft(33.9990000, -118.3210000);
+  std::pair<double, double> upperRight(34.0410000, -118.2490000);
+  double h = upperRight.first - bottomLeft.first;
+  double w = upperRight.second - bottomLeft.second;
+  std::pair<double, double> result((lon - bottomLeft.second) / w * 1280,
+                                   (1 - (lat - bottomLeft.first) / h) * 900);
+  return result;
+}
+
+void TrojanMap::PlotPath(std::vector<std::string> &location_ids) {
+  std::string image_path = cv::samples::findFile("src/lib/map.png");
+  cv::Mat img = cv::imread(image_path, cv::IMREAD_COLOR);
+  // cv::resize(img, img, cv::Size(img.cols, img.rows));
+  auto start = GetPlotLocation(data[location_ids[0]].lat, data[location_ids[0]].lon);
+  cv::circle(img, cv::Point(int(start.first), int(start.second)), DOT_SIZE,
+             cv::Scalar(0, 0, 255), cv::FILLED);
+  for (auto i = 1; i < int(location_ids.size()); i++) {
+    auto start = GetPlotLocation(data[location_ids[i - 1]].lat, data[location_ids[i - 1]].lon);
+    auto end = GetPlotLocation(data[location_ids[i]].lat, data[location_ids[i]].lon);
+    cv::circle(img, cv::Point(int(end.first), int(end.second)), DOT_SIZE,
+               cv::Scalar(0, 0, 255), cv::FILLED);
+    cv::line(img, cv::Point(int(start.first), int(start.second)),
+             cv::Point(int(end.first), int(end.second)), cv::Scalar(0, 255, 0),
+             LINE_WIDTH);
+  }
+  cv::startWindowThread();
+  cv::imshow("TrojanMap", img);
+  cv::waitKey(1);
+}
+
+bool TrojanMap::hasCycle(std::string current_id, std::map<std::string, bool> &visited, std::string parent_id,std::vector<double> &square,std::unordered_map<std::string,std::string> &predecessor) {
+  visited[current_id] = true;
+  std::vector<std::string> neighb = GetNeighborIDs(current_id);
+  for (auto n: neighb){
+    predecessor[n] = current_id;
+    if (!visited[n] && inSquare(current_id, square)){
+      if (hasCycle(n, visited, current_id, square, predecessor)){
+        return true;
+      }
+    }
+    else if(visited[n] && n != parent_id && inSquare(current_id, square)){
+      return true;
+    }
+  }
   return false;
 }
 

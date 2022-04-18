@@ -1,3 +1,8 @@
+// #ifndef MapUI_H
+// #define MapUI_H
+#define DOT_SIZE 5
+#define LINE_WIDTH 3
+
 #ifndef TROJAN_MAP_H
 #define TROJAN_MAP_H
 
@@ -17,6 +22,15 @@
 #include <climits>
 #include <time.h>
 
+
+
+#include "opencv2/core.hpp"
+#include "opencv2/highgui.hpp"
+#include "opencv2/imgcodecs.hpp"
+#include "opencv2/imgproc.hpp"
+#include "opencv2/videoio.hpp"
+
+
 // A Node is the location of one point in the map.
 class Node {
   public:
@@ -33,6 +47,9 @@ class Node {
 class TrojanMap {
  public:
   // Constructor
+  void PlotPath(std::vector<std::string> &location_ids);
+  std::pair<double, double> GetPlotLocation(double lat, double lon);
+
   TrojanMap(){CreateGraphFromCSVFile();};
   
   // A map of ids to Nodes.
@@ -121,6 +138,7 @@ class TrojanMap {
   // Given a subgraph specified by a square-shape area, determine whether there is a
   // cycle or not in this subgraph.
   bool CycleDetection(std::vector<std::string> &subgraph, std::vector<double> &square);
+  bool hasCycle(std::string current_id, std::map<std::string, bool> &visited, std::string parent_id,std::vector<double> &square,std::unordered_map<std::string,std::string> &predecessor);
 
   // Given a location id and k, find the k closest points on the map
   std::vector<std::string> FindNearby(std::string, std::string, double, int);

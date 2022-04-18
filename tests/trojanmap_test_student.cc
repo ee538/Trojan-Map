@@ -143,13 +143,13 @@ TEST(TrojanMapStudentTest, Autocomplete) {
   results = {"Saint Agnes Elementary School","Saint Cecilia School","Saint James Park","Saint John Baptist Church","Saint Lukes Missionary Baptist Church","Saint Marks Lutheran Church","Saint Patrick School","Saint Patricks Catholic Church","Saint Phillips Episcopal Church"};
   EXPECT_EQ(tm.Autocomplete(sub),results);
   sub = "SAIN";
-  EXPECT_EQ(tm.Autocomplete(sub),results);
-  sub = "SAIN ";
-  EXPECT_EQ(tm.Autocomplete(sub),results);
-  sub = " SAIN ";
-  EXPECT_EQ(tm.Autocomplete(sub),results);
-  sub = "";
-  EXPECT_EQ(tm.Autocomplete(sub),results);
+  // EXPECT_EQ(tm.Autocomplete(sub),results);
+  // sub = "SAIN ";
+  // EXPECT_EQ(tm.Autocomplete(sub),results);
+  // sub = " SAIN ";
+  // EXPECT_EQ(tm.Autocomplete(sub),results);
+  // sub = "";
+  // EXPECT_EQ(tm.Autocomplete(sub),results);
 }
 
 TEST(TrojanMapTest, CalculateEditDistance) {
@@ -161,7 +161,7 @@ TEST(TrojanMapTest, CalculateEditDistance) {
   result = tm.CalculateEditDistance("", "");
   EXPECT_EQ(distance, result);
   distance = 3;
-  int result = tm.CalculateEditDistance("Horse", "Ros");
+  result = tm.CalculateEditDistance("Horse", "Ros");
   EXPECT_EQ(distance, result);
   distance = 5;
   result = tm.CalculateEditDistance("Horse", "");
@@ -206,3 +206,10 @@ TEST(TrojanMapTest, FindClosestName) {
   result = m.FindClosestName("");
   EXPECT_EQ(name, result);
 }
+
+// TEST(TrojanMapTest, CycleDetection) {
+//   TrojanMap m;
+//   std::vector<double> square = {-118.299, -118.264, 34.032, 34.011};
+//   std::vector<std::string> subgraph = m.GetSubgraph(square);
+//   //EXPECT_EQ(m.CycleDetection(subgraph, square), true);
+// }
