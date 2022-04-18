@@ -427,12 +427,11 @@ std::vector<std::string> TrojanMap::CalculateShortestPath_Dijkstra(
   path.push_back(end_ID_);
   auto id = parent_[end_ID_];
   while(id != start_ID_){
-    id = parent_[id];
     path.push_back(id);
+    id = parent_[id];
   }
   path.push_back(start_ID_);
   std::reverse(path.begin(), path.end());
-  std::cout << path.size();
   return path;
 }
 
@@ -467,8 +466,8 @@ std::vector<std::string> TrojanMap::CalculateShortestPath_Bellman_Ford(
 
   distance_[start_ID_] = 0.0;
   
-  
-  for ( int i = 1 ; i <= data.size() - 1 ; i ++ ){
+  int length = data.size();
+  for ( int i = 1 ; i <= length - 1 ; i ++ ){
     // Set Stop sign to true while starting to iterate through new data map
     // If this is changed we will continue else it will break
     stop_sign = true;
@@ -500,12 +499,12 @@ std::vector<std::string> TrojanMap::CalculateShortestPath_Bellman_Ford(
   path.push_back(end_ID_);
   auto id = parent_[end_ID_];
   while(id != start_ID_){
-    id = parent_[id];
     path.push_back(id);
+    id = parent_[id];
+    
   }
   path.push_back(start_ID_);
   std::reverse(path.begin(), path.end());
-  std::cout << path.size();
   return path;  
 }
 

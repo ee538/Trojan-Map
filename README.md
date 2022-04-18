@@ -1,6 +1,5 @@
 # EE538 Final Project - Spring 2022 - TrojanMap
-SudharshanSubramaniamJanakiraman
-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
+
 ## Deadline: 
 
 Phase 1 submission: Monday, April 11 by 23:59 pm
