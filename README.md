@@ -1,6 +1,6 @@
 # EE538 Final Project - Spring 2022 - TrojanMap
 
-## Deadline: 
+## Deadline:: 
 
 Phase 1 submission: Monday, April 11 by 23:59 pm
 
@@ -229,7 +229,7 @@ std::string FindClosestName(std::string name);
 
 Example:
 
-Input: "Rolphs"\
+Input: "Rolphs"
 Output: "Ralphs"
 
 ```shell
