@@ -102,7 +102,7 @@ int TrojanMap::CalculateEditDistance(std::string a, std::string b){
       }
     }
   }
-
+  return d[m][n];
 }
 
 /**
