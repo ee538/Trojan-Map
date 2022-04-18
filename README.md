@@ -1,11 +1,10 @@
 # EE538 Final Project - Spring 2022 - TrojanMap
-SudharshanSubramaniamJanakiraman
-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
-## Deadline: 
 
-Phase 1 submission: Monday, March 11 by 23:59 pm
+## Deadline:: 
 
-Phase 2 submission: Wednesday, March 20 by 23:59 pm
+Phase 1 submission: Monday, April 11 by 23:59 pm
+
+Phase 2 submission: Wednesday, April 20 by 23:59 pm
 
 Phase 3 submission: Sunday, May 1 by 23:59 pm
 
@@ -230,7 +229,7 @@ std::string FindClosestName(std::string name);
 
 Example:
 
-Input: "Rolphs"\
+Input: "Rolphs"
 Output: "Ralphs"
 
 ```shell
