@@ -161,10 +161,11 @@ The ``` Time Complexity = O((m+n) log(n))``` where m = Number of Nodes, n = Numb
 <p align="center"><img src="img/ShortPathOut2.png" alt="Trojan" width="750" /></p>
 <p align="center"><img src="img/ShortPathOut3.png" alt="Trojan" width="750" /></p>
 
-
+<table align="center">
 | Source | Destination | Dijkstra | Bellman Ford |
 | :---: | :---: | :---: | :---: | 
 | Ralphs | Target | 39 ms | 8132 ms | 
 | FaceHaus | Western & Adams 3 | 162 ms | 8861 ms | 
 | Vermont & 39th (Metro 204 Northbound) (#05658) | McDonalds | 53 ms | 9103 ms | 
+</table>
 
