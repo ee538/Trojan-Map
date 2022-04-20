@@ -114,5 +114,9 @@ Note :  Changes have been made in the mapui.cc to Handle Empty input and input w
 
 ## Feature 3 : Calculate Shortest Path
 
+This Feature Focusses on Computing the shortest path between two given places using two famous Algoriths
+- ```Dijkstra's Shortest Path Algorithm```
+- ```Bellman Ford Shortest Path Algorithm```
+
 <p align="center"><img src="img/Dijkstra.png" alt="Trojan" width="750" /></p>
 
