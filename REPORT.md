@@ -179,7 +179,7 @@ The ``` Time Complexity = O((m+n) log(n))``` where m = Number of Nodes, n = Numb
 ## Time Complexity
 
 | Function | Complexity | Comments | 
-| :---: | :---: | :---: |
+| ---: | :---: | :---: |
 | GetLat() | O(1) |  |
 | GetLon() | O(1) |  |
 | Getname() | O(1) |  | 
