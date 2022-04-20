@@ -134,20 +134,22 @@ The ``` Time Complexity = O((m+n) log(n))``` where m = Number of Nodes, n = Numb
 
 ### RESULTS : Shortest Path Between Two Locations:
 
-#### DIJKSTRA'S
-<p align="center"><img src="img/Dijkstra1.png" alt="Trojan" width="750" /></p>
-<p align="center"><img src="img/Dijkstra2.png" alt="Trojan" width="750" /></p>
-<p align="center"><img src="img/Dijkstra3.png" alt="Trojan" width="750" /></p>
+#### SOURCE = Ralphs | DESTINATION = Target
+<p align="center"><img src="img/Dijkstra1.png" alt="Trojan" width="33%" /></p>
+<p align="center"><img src="img/BF1.png" alt="Trojan" width="33%" /></p>
+<p align="center"><img src="img/GM1.png" alt="Trojan" width="33%" /></p>
 
-#### BELLMAN FORD'S
-<p float="center">
-<img src="img/BF1.png" alt="Trojan" width="33%" />
+#### SOURCE = FaceHaus | DESTINATION = Western and adams 3
+<p align="center">
+<img src="img/Dijkstra2.png" alt="Trojan" width="33%" />
 <img src="img/BF2.png" alt="Trojan" width="33%" />
-<img src="img/BF3.png" alt="Trojan" width="33%" />
+<img src="img/GM2.png" alt="Trojan" width="33%" />
 </p>
 
-#### GOOGLE MAP OUTPUT
-<p align="center"><img src="img/GM1.png" alt="Trojan" width="750" /></p>
-<p align="center"><img src="img/GM2.png" alt="Trojan" width="750" /></p>
-<p align="center"><img src="img/GM3.png" alt="Trojan" width="750" /></p>
+#### SOURCE = (Metro 204 Northbound) (#05658) | DESTINATION = McDonalds
+<p align="center">
+<img src="img/Dijkstra3.png" alt="Trojan" width="33%" />
+<img src="img/BF3.png" alt="Trojan" width="33%" />
+<img src="img/GM3.png" alt="Trojan" width="33%" />
+</p>
 
