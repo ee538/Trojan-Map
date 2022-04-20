@@ -157,6 +157,6 @@ The ``` Time Complexity = O((m+n) log(n))``` where m = Number of Nodes, n = Numb
 
 #### RunTime
 
-<p align="center"><img src="img/ShortPath1.png" alt="Trojan" width="750" /></p>
-<p align="center"><img src="img/ShortPath2.png" alt="Trojan" width="750" /></p>
-<p align="center"><img src="img/ShortPath3.png" alt="Trojan" width="750" /></p>
+<p align="center"><img src="img/ShortPathOut1.png" alt="Trojan" width="750" /></p>
+<p align="center"><img src="img/ShortPathOut2.png" alt="Trojan" width="750" /></p>
+<p align="center"><img src="img/ShortPathOut3.png" alt="Trojan" width="750" /></p>
