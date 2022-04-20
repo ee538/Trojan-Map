@@ -141,9 +141,9 @@ The ``` Time Complexity = O((m+n) log(n))``` where m = Number of Nodes, n = Numb
 
 #### BELLMAN FORD'S
 <p float="center">
-<img src="img/BF1.png" alt="Trojan" width="750" />
-<img src="img/BF2.png" alt="Trojan" width="750" />
-<img src="img/BF3.png" alt="Trojan" width="750" />
+<img src="img/BF1.png" alt="Trojan" width="33%" />
+<img src="img/BF2.png" alt="Trojan" width="33%" />
+<img src="img/BF3.png" alt="Trojan" width="33%" />
 </p>
 
 #### GOOGLE MAP OUTPUT
