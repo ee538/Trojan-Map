@@ -120,7 +120,7 @@ This Feature Focusses on Computing the shortest path between two given places us
 
 #### ```Dijkstra's Algorithm```
 
-Dijkstra Algorithms Computes the shortest path between two nodes. In This Algorithm, The Source Node is Fixed (Single Source Node) and computes shortest path to all other nodes from the source Node. Our Algorithm Returs the shortest path from source node to end node.
+Dijkstra Algorithms Computes the shortest path between two nodes. In This Algorithm, The Source Node is Fixed (Single Source Node) and computes shortest path to all other nodes from the source Node. Our Algorithm Returs the shortest path from source node to end node. It is a greedy algorithm which visits the closest node (shortest distance node) and expects to grow.
 
 The Declaration of the function is given as ```std::vector<std::string> CalculateShortestPath_Dijkstra(std::string location1_name,std::string location2_name);```
 
@@ -130,6 +130,17 @@ Flow Chart | Dijkstra | Shortest Path
 The Algorithm Uses Minheap data structure so that finding the shortest distance next node from the priority is O(1) as we can access the data from the top.
 
 The ``` Time Complexity = O((m+n) log(n))``` where m = Number of Nodes, n = Number of Edges
+
+#### ```Bellman Ford Algorithm```
+
+Bellman-ford is a single source shortest pathh algorith, which will find the shortest distance between source node an every other node in the map along with the shortest path. One advantage of Bellman-ford algorithm is that it can handle and report negative edges while Dijkstra cannot. However ballman ford is much slower than dijkstra algorithm as it has to go though all nodes multiple number of times
+
+The Declaration of the function is given as ```std::vector<std::string> CalculateShortestPath_Bellman_Ford(std::string location1_name,std::string location2_name);```
+
+Flow Chart | Dijkstra | Shortest Path
+<p align="center"><img src="img/Dijkstra.png" alt="Trojan" width="750" /></p>
+
+The ``` Time Complexity = O(mn)``` where m = Number of Nodes, n = Number of Edges
 
 
 ### RESULTS : Shortest Path Between Two Locations (DIJKSTRA, BELLMANFORD, GOOGLE MAPS):
@@ -177,7 +188,7 @@ The ``` Time Complexity = O((m+n) log(n))``` where m = Number of Nodes, n = Numb
 | FaceHaus | Western & Adams 3 | 162 ms | 8861 ms | 
 | Vermont & 39th (Metro 204 Northbound) (#05658) | McDonalds | 53 ms | 9103 ms | 
 
-Inference :  Dijkstra is much faster compared to Bellman ford algorithm. Usage of min heap using priority queue has reduced the time in dijkstra where as Bellman ford will always be slow as we will have to relax each node atmost |n| - 1 times to get the output. Even with early stopping conditions the algorithms will be slower than Dijkstra Algorithm
+```Inference ```  Dijkstra is much faster compared to Bellman ford algorithm. Usage of min heap using priority queue has reduced the time in dijkstra where as Bellman ford will always be slow as we will have to relax each node atmost |n| - 1 times to get the output. Even with early stopping conditions the algorithms will be slower than Dijkstra Algorithm
 
 
 ## Time Complexity
