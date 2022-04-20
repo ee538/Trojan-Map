@@ -118,5 +118,33 @@ This Feature Focusses on Computing the shortest path between two given places us
 - ```Dijkstra's Shortest Path Algorithm```
 - ```Bellman Ford Shortest Path Algorithm```
 
+#### ```Dijkstra's Algorithm```
+
+Dijkstra Algorithms Computes the shortest path between two nodes. In This Algorithm, The Source Node is Fixed (Single Source Node) and computes shortest path to all other nodes from the source Node. Our Algorithm Returs the shortest path from source node to end node.
+
+The Declaration of the function is given as ```std::vector<std::string> CalculateShortestPath_Dijkstra(std::string location1_name,std::string location2_name);```
+
+Flow Chart | Dijkstra | Shortest Path
 <p align="center"><img src="img/Dijkstra.png" alt="Trojan" width="750" /></p>
+
+The Algorithm Uses Minheap data structure so that finding the shortest distance next node from the priority is O(1) as we can access the data from the top.
+
+The ``` Time Complexity = O((m+n) log(n))``` where m = Number of Nodes, n = Number of Edges
+
+
+### RESULTS : Shortest Path Between Two Locations:
+
+#### DIJKSTRA'S
+<p align="center"><img src="img/Dijkstra1.png" alt="Trojan" width="750" /></p>
+<p align="center"><img src="img/Dijkstra2.png" alt="Trojan" width="750" /></p>
+<p align="center"><img src="img/Dijkstra3.png" alt="Trojan" width="750" /></p>
+#### BELLMAN FORD'S
+<p align="center"><img src="img/BF1.png" alt="Trojan" width="750" /></p>
+<p align="center"><img src="img/BF2.png" alt="Trojan" width="750" /></p>
+<p align="center"><img src="img/BF3.png" alt="Trojan" width="750" /></p>
+
+#### GOOGLE MAP OUTPUT
+<p align="center"><img src="img/GM1.png" alt="Trojan" width="750" /></p>
+<p align="center"><img src="img/GM2.png" alt="Trojan" width="750" /></p>
+<p align="center"><img src="img/GM3.png" alt="Trojan" width="750" /></p>
 

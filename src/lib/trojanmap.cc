@@ -278,7 +278,6 @@ std::vector<std::string> TrojanMap::CalculateShortestPath_Dijkstra(
       break;
     }
   }
-  std::cout << path.size();
   path = {};
   path.push_back(end_ID_);
   auto id = parent_[end_ID_];
