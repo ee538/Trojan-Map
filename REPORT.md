@@ -162,9 +162,9 @@ The ``` Time Complexity = O((m+n) log(n))``` where m = Number of Nodes, n = Numb
 
 | Source | Destination | Dijkstra | Bellman Ford | Google Maps |
 | :---: | :---: | :---: | :---: | :---: | 
-| Ralphs | Target | 39 ms | 8132 ms | 8132 ms | 
-| FaceHaus | Western & Adams 3 | 162 ms | 8861 ms | 8861 ms |  
-| Vermont & 39th (Metro 204 Northbound) (#05658) | McDonalds | 53 ms | 9103 ms | 9103 ms |  
+| Ralphs | Target | 0.927969 miles | 0.927969 miles | 0.9 miles | 
+| FaceHaus | Western & Adams 3 | 2.00231 miles | 2.00231 miles | 2 miles |  
+| Vermont & 39th (Metro 204 Northbound) (#05658) | McDonalds | 0.971709 miles | 0.971709 miles | 0.9 miles |  
 
 #### RunTime
 
@@ -179,9 +179,30 @@ The ``` Time Complexity = O((m+n) log(n))``` where m = Number of Nodes, n = Numb
 ## Time Complexity
 
 | Function | Complexity | Comments | 
-| :---: | :---: | :---: | :---: | 
-| Ralphs | Target | 39 ms |
-| FaceHaus | Western & Adams 3 | 162 ms |
-| Vermont & 39th (Metro 204 Northbound) (#05658) | McDonalds | 53 ms | 
+| :---: | :---: | :---: |
+| GetLat() | O(1) |  |
+| GetLon() | O(1) |  |
+| Getname() | O(1) |  | 
+| GetID() | O(n) |  |
+| GetNeighborIDs() | O(1) |  |
+| Autocomplete() | O(n) |  | 
+| GetPosition() | O(n) |  | 
+| CalculateEditDistance() | O(mn) |  |
+| FindClosestName() | O(nlp) |  |
+| CalculateShortestPath_Dijkstra() | O((m+n) logn) |  | 
+| CalculateShortestPath_Bellman_Ford() | O(mn) |  | 
+| ReadLocationsFromCSVFile() | O() |  |
+| ReadDependenciesFromCSVFile() | O() |  |
+| DeliveringTrojan() | O() |  | 
+| TopoSortHelper() | O() |  |
+| TopoCycleHelper() | O() |  |
+| TopoCycle() | O() |  | 
+| TravellingTrojan_Brute_force() | O() |  | 
+| TravellingTrojan_Backtracking() | O() |  |
+| TravellingTrojan_2opt() | O() |  |
+| inSquare() | O() |  | 
+| CycleDetection() | O() |  | 
+| hasCycle() | O() |  | 
+| FindNearby() | O() |  | 
 
 
