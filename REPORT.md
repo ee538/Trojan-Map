@@ -135,9 +135,10 @@ The ``` Time Complexity = O((m+n) log(n))``` where m = Number of Nodes, n = Numb
 ### RESULTS : Shortest Path Between Two Locations:
 
 #### SOURCE = Ralphs | DESTINATION = Target
-<p align="center"><img src="img/Dijkstra1.png" alt="Trojan" width="30%" /></p>
-<p align="center"><img src="img/BF1.png" alt="Trojan" width="30%" /></p>
-<p align="center"><img src="img/GM1.png" alt="Trojan" width="30%" /></p>
+<p align="center">
+<img src="img/Dijkstra1.png" alt="Trojan" width="33%" />
+<img src="img/BF1.png" alt="Trojan" width="33%" />
+<img src="img/GM1.png" alt="Trojan" width="33%" /></p>
 
 #### SOURCE = FaceHaus | DESTINATION = Western and adams 3
 <p align="center">
