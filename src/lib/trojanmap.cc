@@ -622,6 +622,17 @@ std::vector<std::string> TrojanMap::DeliveringTrojan(std::vector<std::string> &l
   return result;                                                     
 }
 
+/**
+ * TopoSortHelper: It is a topological sorting recursive helper function. Modifes the topo_sort
+ * vector based on DFS algorithm which in turn can be used to find the topological sort.
+ 
+ *
+ * @param  {std::vector<std::string>} locations                              : locations
+ * @param  {std::map<std::string, bool>} visited                             : visited locations
+ * @param  {std::unordered_map<std::string, std::vector<std::string>>} adj   : DAG
+ * @param  {std::vector<std::string>} topo_list                              : DFS Topological vector
+ */
+
 void TrojanMap::TopoSortHelper(std::string location, std::map<std::string, bool> &visited, std::unordered_map<std::string, std::vector<std::string>> adj ,std::vector<std::string> &topo_list){
   visited[location] = true;
   for(auto child: adj[location]){
@@ -631,6 +642,16 @@ void TrojanMap::TopoSortHelper(std::string location, std::map<std::string, bool>
   }
   topo_list.push_back(location);
 }
+
+/**
+ * TopoCycle: A helper function for DeliveryTrojan function. Function is used to check if
+ * There is a cycle from given Adjacency matrix. Returns TRUE if there exists a cycle and FALSE
+ * if there is no cycle and a valid DAG.
+ 
+ *
+ * @param  {std::vector<std::string>} locations                              : locations
+ * @param  {std::unordered_map<std::string, std::vector<std::string>>} adj   : DAG
+ */
 
 bool TrojanMap::TopoCycle(std::vector<std::string> locations,std::unordered_map<std::string, std::vector<std::string>> adj) {
   std::map<std::string, bool> visited;
@@ -646,6 +667,18 @@ bool TrojanMap::TopoCycle(std::vector<std::string> locations,std::unordered_map<
   }
   return false;
 }
+
+/**
+ * TopoCycleHelper: A helper function for TopoCycle function which is called recursively and
+ * used to find if there exsists a cycle from given Adjacency matrix. It performs DFS on the 
+ * given graph data and a backedge vector is used to keep track of back edges. 
+ 
+ *
+ * @param  {std::string} current_id                                          : Current location
+ * @param  {std::map<std::string, bool>} visited                             : visited locations
+ * @param  {std::unordered_map<std::string, std::vector<std::string>>} adj   : DAG
+ * @param  {std::map<std::string, bool>} backedge                            : Back Edge vector
+ */
 
 bool TrojanMap::TopoCycleHelper(std::string current_id, std::map<std::string, bool> &visited,std::unordered_map<std::string, std::vector<std::string>> adj,std::map<std::string, bool> &backedge) {
   if(!visited[current_id]){
