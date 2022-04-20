@@ -162,7 +162,7 @@ The ``` Time Complexity = O((m+n) log(n))``` where m = Number of Nodes, n = Numb
 <p align="center"><img src="img/ShortPathOut3.png" alt="Trojan" width="750" /></p>
 
 <p align="center">
-| First Header  | Second Header | First Header  | Second Header |
+| First Header  | Second Header | Third Header  | Fourth Header |
 | ------------- | ------------- | ------------- | ------------- |
 | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
 | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
