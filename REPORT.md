@@ -139,6 +139,7 @@ The ``` Time Complexity = O((m+n) log(n))``` where m = Number of Nodes, n = Numb
 <img src="img/Dijkstra1.png" alt="Trojan" width="33%" />
 <img src="img/BF1.png" alt="Trojan" width="33%" />
 <img src="img/GM1.png" alt="Trojan" width="33%" /></p>
+<p align="center"><img src="img/ShortPathOut1.png" alt="Trojan" width="1000" /></p>
 
 #### SOURCE = FaceHaus | DESTINATION = Western and adams 3
 <p align="center">
@@ -147,6 +148,7 @@ The ``` Time Complexity = O((m+n) log(n))``` where m = Number of Nodes, n = Numb
 <img src="img/GM2.png" alt="Trojan" width="33%" />
 </p>
 
+<p align="center"><img src="img/ShortPathOut2.png" alt="Trojan" width="1000" /></p>
 #### SOURCE = Vermont & 39th (Metro 204 Northbound) (#05658) | DESTINATION = McDonalds
 <p align="center">
 <img src="img/Dijkstra3.png" alt="Trojan" width="33%" />
@@ -154,18 +156,32 @@ The ``` Time Complexity = O((m+n) log(n))``` where m = Number of Nodes, n = Numb
 <img src="img/GM3.png" alt="Trojan" width="33%" />
 </p>
 
+<p align="center"><img src="img/ShortPathOut3.png" alt="Trojan" width="1000" /></p>
+
+#### Comparison
+
+| Source | Destination | Dijkstra | Bellman Ford | Google Maps |
+| :---: | :---: | :---: | :---: | :---: | 
+| Ralphs | Target | 39 ms | 8132 ms | 8132 ms | 
+| FaceHaus | Western & Adams 3 | 162 ms | 8861 ms | 8861 ms |  
+| Vermont & 39th (Metro 204 Northbound) (#05658) | McDonalds | 53 ms | 9103 ms | 9103 ms |  
 
 #### RunTime
 
-<p align="center"><img src="img/ShortPathOut1.png" alt="Trojan" width="750" /></p>
-<p align="center"><img src="img/ShortPathOut2.png" alt="Trojan" width="750" /></p>
-<p align="center"><img src="img/ShortPathOut3.png" alt="Trojan" width="750" /></p>
-
-<table align="center">
 | Source | Destination | Dijkstra | Bellman Ford |
 | :---: | :---: | :---: | :---: | 
 | Ralphs | Target | 39 ms | 8132 ms | 
 | FaceHaus | Western & Adams 3 | 162 ms | 8861 ms | 
 | Vermont & 39th (Metro 204 Northbound) (#05658) | McDonalds | 53 ms | 9103 ms | 
-</table>
+
+
+
+## Time Complexity
+
+| Function | Complexity | Comments | 
+| :---: | :---: | :---: | :---: | 
+| Ralphs | Target | 39 ms |
+| FaceHaus | Western & Adams 3 | 162 ms |
+| Vermont & 39th (Metro 204 Northbound) (#05658) | McDonalds | 53 ms | 
+
 
