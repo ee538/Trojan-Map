@@ -147,7 +147,7 @@ The ``` Time Complexity = O((m+n) log(n))``` where m = Number of Nodes, n = Numb
 <img src="img/GM2.png" alt="Trojan" width="33%" />
 </p>
 
-#### SOURCE = (Metro 204 Northbound) (#05658) | DESTINATION = McDonalds
+#### SOURCE = Vermont & 39th (Metro 204 Northbound) (#05658) | DESTINATION = McDonalds
 <p align="center">
 <img src="img/Dijkstra3.png" alt="Trojan" width="33%" />
 <img src="img/BF3.png" alt="Trojan" width="33%" />
