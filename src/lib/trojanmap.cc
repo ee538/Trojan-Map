@@ -543,6 +543,15 @@ std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTr
  */
 std::vector<std::string> TrojanMap::ReadLocationsFromCSVFile(std::string locations_filename){
   std::vector<std::string> location_names_from_csv;
+   std::fstream fin;
+  fin.open(locations_filename, std::ios::in);
+  std::string line, word;
+  getline(fin, line);
+  while (getline(fin, line)) {
+    std::stringstream s(line);
+    location_names_from_csv.push_back(line);
+    }
+  fin.close();
   return location_names_from_csv;
 }
 
@@ -555,8 +564,30 @@ std::vector<std::string> TrojanMap::ReadLocationsFromCSVFile(std::string locatio
  */
 std::vector<std::vector<std::string>> TrojanMap::ReadDependenciesFromCSVFile(std::string dependencies_filename){
   std::vector<std::vector<std::string>> dependencies_from_csv;
-  return dependencies_from_csv;
-}
+  std::vector<std::string> temp;
+  std::fstream fin;
+  fin.open(dependencies_filename, std::ios::in);
+  std::string line, word;
+  getline(fin, line);
+  while (getline(fin, line)) {
+    std::stringstream s(line);
+    int count = 0;
+    while (getline(s, word, ',')) {
+      if (count == 0){
+        temp.push_back(word);
+        }
+      else if (count == 1){
+        temp.push_back(word);
+        }
+      count++;
+      }
+      dependencies_from_csv.push_back(temp);
+      temp = {};
+    }
+    fin.close();
+    return dependencies_from_csv;
+  }
+  
 
 /**
  * DeliveringTrojan: Given a vector of location names, it should return a sorting of nodes
@@ -569,8 +600,71 @@ std::vector<std::vector<std::string>> TrojanMap::ReadDependenciesFromCSVFile(std
 std::vector<std::string> TrojanMap::DeliveringTrojan(std::vector<std::string> &locations,
                                                      std::vector<std::vector<std::string>> &dependencies){
   std::vector<std::string> result;
+  std::unordered_map<std::string, std::vector<std::string>> adj;
+  for (auto loc: locations){
+    std::vector<std::string> temp;
+    adj[loc] = temp;
+  }
+  for(auto dep: dependencies){
+    adj[dep[0]].push_back(dep[1]);
+  }
+  bool cycle = TopoCycle(locations,adj);
+  if(cycle){return {};}
+  std::map<std::string, bool> visited;
+  auto it = adj.begin();
+  while(it != adj.end()){
+    if(!visited[it->first]){
+      TopoSortHelper(it->first,visited,adj,result);
+    }
+    it++;
+  }
+  std::reverse(result.begin(), result.end());
   return result;                                                     
 }
+
+void TrojanMap::TopoSortHelper(std::string location, std::map<std::string, bool> &visited, std::unordered_map<std::string, std::vector<std::string>> adj ,std::vector<std::string> &topo_list){
+  visited[location] = true;
+  for(auto child: adj[location]){
+    if(!visited[child]){
+      TopoSortHelper(child, visited, adj, topo_list);
+    }   
+  }
+  topo_list.push_back(location);
+}
+
+bool TrojanMap::TopoCycle(std::vector<std::string> locations,std::unordered_map<std::string, std::vector<std::string>> adj) {
+  std::map<std::string, bool> visited;
+  std::map<std::string, bool> backedge;
+  for(auto n: locations){
+    visited[n] = false;
+    backedge[n] = false;
+  }
+  for(auto n: locations){
+    if(!visited[n] && TopoCycleHelper(n, visited, adj, backedge)){
+      return true;
+    }
+  }
+  return false;
+}
+
+bool TrojanMap::TopoCycleHelper(std::string current_id, std::map<std::string, bool> &visited,std::unordered_map<std::string, std::vector<std::string>> adj,std::map<std::string, bool> &backedge) {
+  if(!visited[current_id]){
+    visited[current_id] = true;
+    backedge[current_id] = true;
+    auto neigh = adj[current_id];
+    for(auto n: neigh){
+      if(!visited[n] && TopoCycleHelper(n, visited, adj, backedge)){
+        return true;
+      }
+      else if(backedge[n]){
+        return true;
+      }
+    }
+  }
+  backedge[current_id] = false;
+  return false;
+}
+  
 
 /**
  * inSquare: Give a id retunr whether it is in square or not.
@@ -618,6 +712,7 @@ std::vector<std::string> TrojanMap::GetSubgraph(std::vector<double> &square) {
  */
 bool TrojanMap::CycleDetection(std::vector<std::string> &subgraph, std::vector<double> &square) {
   std::map<std::string, bool> visited;
+  std::cout<<"Number of points in the subgraph: "<<subgraph.size()<<std::endl;
   std::unordered_map<std::string,std::string> predecessor;
   for(auto n: subgraph){
     visited[n] = false;
@@ -629,11 +724,11 @@ bool TrojanMap::CycleDetection(std::vector<std::string> &subgraph, std::vector<d
   if (result){
   auto it = predecessor.begin();
   while(it != predecessor.end()){
-    std::cout<< it->first<<" "<< it->second<<std::endl;
+    //std::cout<< it->first<<" "<< it->second<<std::endl;
     plot.push_back(predecessor[it->second]);
     it++;
   }
-  PlotPath(plot);
+  //PlotPath(plot);
   }
   return result;
 }

@@ -298,27 +298,25 @@ void MapUI::PrintMenu() {
         "* 5. Cycle Detection                                          \n"
         "**************************************************************\n";
     std::cout << menu << std::endl;
-    // std::cout << "Please input the left bound longitude(between -118.320 and -118.250):";
-    // getline(std::cin, input);
-    // std::vector<double> square;
-    // square.push_back(atof(input.c_str()));
+    std::cout << "Please input the left bound longitude(between -118.320 and -118.250):";
+    getline(std::cin, input);
+    std::vector<double> square;
+    square.push_back(atof(input.c_str()));
 
-    // std::cout << "Please input the right bound longitude(between -118.320 and -118.250):";
-    // getline(std::cin, input);
-    // square.push_back(atof(input.c_str()));
+    std::cout << "Please input the right bound longitude(between -118.320 and -118.250):";
+    getline(std::cin, input);
+    square.push_back(atof(input.c_str()));
 
-    // std::cout << "Please input the upper bound latitude(between 34.000 and 34.040):";
-    // getline(std::cin, input);
-    // square.push_back(atof(input.c_str()));
+    std::cout << "Please input the upper bound latitude(between 34.000 and 34.040):";
+    getline(std::cin, input);
+    square.push_back(atof(input.c_str()));
 
-    // std::cout << "Please input the lower bound latitude(between 34.000 and 34.040):";
-    // getline(std::cin, input);
-    // square.push_back(atof(input.c_str()));
-
-    std::vector<double> square = {-118.299, -118.264, 34.032, 34.011}; 
-    //std::vector<double> square = {-118.276, -118.251, 34.039, 34.021}; 
+    std::cout << "Please input the lower bound latitude(between 34.000 and 34.040):";
+    getline(std::cin, input);
+    square.push_back(atof(input.c_str()));
+     
     auto subgraph = map.GetSubgraph(square);
-    //PlotPointsandEdges(subgraph, square);
+    PlotPointsandEdges(subgraph, square);
     
     auto start = std::chrono::high_resolution_clock::now();
     auto results = map.CycleDetection(subgraph, square);
@@ -360,7 +358,7 @@ void MapUI::PrintMenu() {
     // Read dependencies from CSV file
     std::vector<std::vector<std::string>> dependencies;
     if (dependencies_filename == "")
-      dependencies = {{"Ralphs","Chick-fil-A"}, {"Ralphs","KFC"}, {"Chick-fil-A","KFC"}};
+      dependencies = {{"Ralphs","Chick-fil-A"}, {"Ralphs","KFC"}, {"Chick-fil-A","KFC"},{"KFC","Chick-fil-A"}};
     else
       dependencies = map.ReadDependenciesFromCSVFile(dependencies_filename);
 
