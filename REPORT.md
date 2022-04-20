@@ -111,3 +111,8 @@ Note :  Changes have been made in the mapui.cc to Handle Empty input and input w
 
 <p align="center"><img src="img/EMptyInputHandlingFIndLocation.png" alt="Trojan" width="750" /></p>
 
+
+## Feature 3 : Calculate Shortest Path
+
+<p align="center"><img src="img/Dijkstra.png" alt="Trojan" width="750" /></p>
+
