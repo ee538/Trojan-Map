@@ -132,7 +132,7 @@ The Algorithm Uses Minheap data structure so that finding the shortest distance 
 The ``` Time Complexity = O((m+n) log(n))``` where m = Number of Nodes, n = Number of Edges
 
 
-### RESULTS : Shortest Path Between Two Locations:
+### RESULTS : Shortest Path Between Two Locations (DIJKSTRA, BELLMANFORD, GOOGLE MAPS):
 
 #### SOURCE = Ralphs | DESTINATION = Target
 <p align="center">
@@ -149,6 +149,7 @@ The ``` Time Complexity = O((m+n) log(n))``` where m = Number of Nodes, n = Numb
 </p>
 
 <p align="center"><img src="img/ShortPathOut2.png" alt="Trojan" width="1000" /></p>
+
 #### SOURCE = Vermont & 39th (Metro 204 Northbound) (#05658) | DESTINATION = McDonalds
 <p align="center">
 <img src="img/Dijkstra3.png" alt="Trojan" width="33%" />
@@ -166,6 +167,8 @@ The ``` Time Complexity = O((m+n) log(n))``` where m = Number of Nodes, n = Numb
 | FaceHaus | Western & Adams 3 | 2.00231 miles | 2.00231 miles | 2 miles |  
 | Vermont & 39th (Metro 204 Northbound) (#05658) | McDonalds | 0.971709 miles | 0.971709 miles | 0.9 miles |  
 
+``` Inference ``` The results obtained by Dijkstra and Bellman ford algorithm is in accordance with the google Maps result however Google Maps takes other attributs such as Traffic, Regularly used road and etc., in computation of the path. this effect can be seen in Result 2 :  where our shortest distance algoithm computs overall shortest distance where as Google Maps give much easier route of walking straight at the same distance.
+
 #### RunTime
 
 | Source | Destination | Dijkstra | Bellman Ford |
@@ -174,6 +177,7 @@ The ``` Time Complexity = O((m+n) log(n))``` where m = Number of Nodes, n = Numb
 | FaceHaus | Western & Adams 3 | 162 ms | 8861 ms | 
 | Vermont & 39th (Metro 204 Northbound) (#05658) | McDonalds | 53 ms | 9103 ms | 
 
+Inference :  Dijkstra is much faster compared to Bellman ford algorithm. Usage of min heap using priority queue has reduced the time in dijkstra where as Bellman ford will always be slow as we will have to relax each node atmost |n| - 1 times to get the output. Even with early stopping conditions the algorithms will be slower than Dijkstra Algorithm
 
 
 ## Time Complexity
