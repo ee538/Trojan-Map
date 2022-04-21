@@ -339,24 +339,24 @@ If there is no cycle detected in the graph, we perform DFS, and find the output 
 | Getname() | O(1) |  | 
 | GetID() | O(n) |  |
 | GetNeighborIDs() | O(1) |  |
-| Autocomplete() | O(n) |  | 
+| Autocomplete() | O(n) |n = # of IDs in database | 
 | GetPosition() | O(n) |  | 
 | CalculateEditDistance() | O(mn) |  |
 | FindClosestName() | O(nlp) |  |
 | CalculateShortestPath_Dijkstra() | O((m+n) logn) |  | 
 | CalculateShortestPath_Bellman_Ford() | O(mn) |  | 
-| ReadLocationsFromCSVFile() | O(n) |  |
-| ReadDependenciesFromCSVFile() | O(n) |  |
-| DeliveringTrojan() | O(m+n) |  | 
-| TopoSortHelper() | O(m+n) |  |
-| TopoCycle() | O(m + n) |  | 
+| ReadLocationsFromCSVFile() | O(n) | n = # of IDs in database |
+| ReadDependenciesFromCSVFile() | O(n) | n = # of IDs in database |
+| DeliveringTrojan() | O(m+n) | m = # of locations, n = # of edges | 
+| TopoSortHelper() | O(m+n) | m = # of locations, n = # of edges |
+| TopoCycle() | O(m + n) | m = # of locations, n = # of edges | 
 | TravellingTrojan_Brute_force() | O() |  | 
 | TravellingTrojan_Backtracking() | O() |  |
 | TravellingTrojan_2opt() | O() |  |
-| GetSubgraph() | O(n) | | 
+| GetSubgraph() | O(n) |  n = # of IDs in database| 
 | inSquare() | O(1) |  | 
-| CycleDetection() | O(m + n) |  | 
-| hasCycle() | O(m + n) |  | 
+| CycleDetection() | O(m + n) | m = # of locations, n = # of edges | 
+| hasCycle() | O(m + n) | m = # of locations, n = # of edges | 
 | FindNearby() | O() |  | 
 
 
