@@ -190,6 +190,145 @@ The ``` Time Complexity = O(mn)``` where m = Number of Nodes, n = Number of Edge
 
 ```Inference ```  Dijkstra is much faster compared to Bellman ford algorithm. Usage of min heap using priority queue has reduced the time in dijkstra where as Bellman ford will always be slow as we will have to relax each node atmost |n| - 1 times to get the output. Even with early stopping conditions the algorithms will be slower than Dijkstra Algorithm
 
+## Feature 5 : Cycle Detection
+
+This Feature focuses on finding if there exsists a cycle in the subgraph. The input is of type std::vector<double> and output a bool. 
+
+The Declaration of the function is given as ```bool CycleDetection(std::vector<double> &square);```
+
+Flow Chart of the Function:
+<p align="center"><img src="img/CycleDet-fc.png" alt="Trojan" width="750" /></p>
+
+The ```Time Complexity = O(m + n)``` where m = #locations, n = # edges 
+
+We use several helper functions as given below:
+1) hasCycle 
+
+This function is recursive DFS function to check if the function has a a cycle or not. Returns true if there is a cycle in the given subgraph.
+
+The Declaration of the function is given as ```bool hasCycle(std::string current_id, std::map<std::string, bool> &visited, std::string parent_id,std::vector<double> &square,std::unordered_map<std::string,std::string> &predecessor);```
+
+Flow Chart of the Function:
+<p align="center"><img src="img/hasCycle-fc.png" alt="Trojan" width="750" /></p>
+
+The ```Time Complexity = O(m + n)``` where m = #locations, n = # edges 
+
+2) inSquare
+
+This function checks if the given location is in the square (limits of latitudes and longitudes)
+
+The Declaration of the function is given as ```bool inSquare(std::string id, std::vector<double> &square);```
+
+Flow Chart of the Function:
+<p align="center"><img src="img/insquare-fc.png" alt="Trojan" width="750" /></p>
+
+The ```Time Complexity = O(1)``` 
+
+3) GetSubgraph
+
+Iterates over all the locations in the data and returns the vector of all those locations in the square
+
+The Declaration of the function is given as ```std::vector<std::string> GetSubgraph(std::vector<double> &square);```
+
+Flow Chart of the Function:
+<p align="center"><img src="img/GetSubgraph-fc.png" alt="Trojan" width="750" /></p>
+
+
+The ```Time Complexity = O(n)``` where n = # Unique ID's in the data
+
+Observation : 
+This function emphasis another important application of DFS, that is finding if exsists a cycle in the graph. In this case, the graph is undirected and we apply recursive DFS function itreating through all the location. If the location is not already visited and recursively call the DFS function again for it's childern nodes. If the location is already visited, in the square and is not the parent location, return true, else return false.
+
+While iterating through all the nodes, keep updating the predecessor map based on the current location and it's parent location. We use this predecessor map to plot the locations in the cycle on the map. If there are not cycle detection, just return false and not plot any locations. We use the given PlotPath function to display the locations on the map (No changes made to the function).
+
+### RESULTS: 
+#### Case Scenario 1 : Input : {-118.264, -118.260, 34.014, 34.010}
+
+<p align="center"><img src="img/phase5-1-op.png" alt="Trojan" width="750" /></p>
+
+<p align="center"><img src="img/phase5-1-a.png" alt="Trojan" width="750" /></p>
+
+<p align="center"><img src="img/phase5-1-b.png" alt="Trojan" width="750" /></p>
+
+#### Case Scenario 2 : Input : {-118.312, -118.311, 34.004, 34.003}
+
+<p align="center"><img src="img/phase6-1-op.png" alt="Trojan" width="750" /></p>
+
+<p align="center"><img src="img/phase6-1-a.png" alt="Trojan" width="750" /></p>
+
+## Feature 6 : Topological Sort
+
+This Feature focuses on finding a path through the given location and depending on the given dependecies. The input to the function is of the form std::vector<std::string>.  
+
+The Declaration of the function is given as ```std::vector<std::string> DeliveringTrojan(std::vector<std::string> &location_names,std::vector<std::vector<std::string>> &dependencies);```
+
+Flow Chart of the Function:
+<p align="center"><img src="img/Deliverytrojan-fc.png" alt="Trojan" width="750" /></p>
+
+The ```Time Complexity = O(m + n)``` where n = # of locations and m = # of dependencies
+
+We use several helper functions as given below:
+1) TopoSortHelper 
+
+This function is recursive DFS function which returns the location in the order of the Depth first algorithm, we then reverse this string and get the topological order.
+
+The Declaration of the function is given as ```void TopoSortHelper(std::string location, std::map<std::string, bool> &visited,std::unordered_map<std::string, std::vector<std::string>> adj ,std::vector<std::string> &topo_list);```
+
+Flow Chart of the Function:
+<p align="center"><img src="img/TopoSortHelper-fc.png" alt="Trojan" width="750" /></p>
+
+The ```Time Complexity = O(m + n)``` where n = # of locations and m = # of dependencies
+
+2) TopoCycle
+
+The function uses a helper function and return true if there exsists a cycle in the given graph. As this a directed graph, we call the DFS Helper function from all the unvisited locations in the adjacency matrix. 
+
+The Declaration of the function is given as ```bool TopoCycle(std::vector<std::string> locations,std::unordered_map<std::string, std::vector<std::string>> adj);```
+
+Flow Chart of the Function:
+<p align="center"><img src="img/TopoCycle-fc.png" alt="Trojan" width="750" /></p>
+
+3) TopoCycleHelper
+
+This is a helper function for TopoCycle and uses recursive method to perform DFS. As this a direceted graph, we keep track of back edges, If there is a back edge, then there is a cycle in the graph. We mark the current location as visited and backedge as true. Iterate through all univisted locations connected and perform DFS on it and return true if there is a backedge. Return false if there is no back edge. 
+
+The Declaration of the function is given as ```bool TopoCycleHelper(std::string current_id, std::map<std::string, bool> &visited,std::unordered_map<std::string, std::vector<std::string>> adj,std::map<std::string, bool> &rechelper);```
+
+Flow Chart of the Function:
+<p align="center"><img src="img/TopoCycleHelper-fc.png" alt="Trojan" width="750" /></p>
+
+
+The ```Time Complexity = O(m + n)``` where n = # of locations and m = # of dependencies
+
+Observation : 
+The function uses DFS algorithm to find the topological order. The function converts the given dependencies to a Adjacent matrix. We have to make sure this is a DAG, so we check if there exists a cycle in the graph, if not, we can find a topological order as it is dependent on the DAG, so the function return an empty vector. 
+
+If there is no cycle detected in the graph, we perform DFS, and find the output of DFS over all the nodes. We then reverse the output as we need a topological order, and return the output vector. The output is then plotted on the map using the given function with arrow marks giving the directions. 
+
+### RESULTS: 
+#### Case Scenario 1 : Input : 
+#### location_names = {"Ralphs", "KFC", "Chick-fil-A"}
+#### dependencies = {{"Ralphs","Chick-fil-A"}, {"Ralphs","KFC"},{"Chick-fil-A","KFC" }                       
+
+<p align="center"><img src="img/phase6-1-op.png" alt="Trojan" width="750" /></p>
+
+<p align="center"><img src="img/phase6-1.png" alt="Trojan" width="750" /></p>
+
+#### Case Scenario 2 : Input : 
+#### location_names = {"Ralphs", "KFC", "Chick-fil-A"}
+#### dependencies = {{"Chick-fil-A","Ralphs"},{"Ralphs","KFC"},{"Chick-fil-A","KFC"}}
+
+<p align="center"><img src="img/phase6-2-op.png" alt="Trojan" width="750" /></p>
+
+<p align="center"><img src="img/phase6-2.png" alt="Trojan" width="750" /></p>
+
+#### Case Scenario 3 : Input : 
+#### location_names = {"Ralphs", "KFC", "Chick-fil-A"}
+#### dependencies = {{"Chick-fil-A","Ralphs"},{"Ralphs","Chick-fil-A"}}
+
+<p align="center"><img src="img/phase6-3-op.png" alt="Trojan" width="750" /></p>
+
+
 
 ## Time Complexity
 
@@ -206,18 +345,18 @@ The ``` Time Complexity = O(mn)``` where m = Number of Nodes, n = Number of Edge
 | FindClosestName() | O(nlp) |  |
 | CalculateShortestPath_Dijkstra() | O((m+n) logn) |  | 
 | CalculateShortestPath_Bellman_Ford() | O(mn) |  | 
-| ReadLocationsFromCSVFile() | O() |  |
-| ReadDependenciesFromCSVFile() | O() |  |
-| DeliveringTrojan() | O() |  | 
-| TopoSortHelper() | O() |  |
-| TopoCycleHelper() | O() |  |
-| TopoCycle() | O() |  | 
+| ReadLocationsFromCSVFile() | O(n) |  |
+| ReadDependenciesFromCSVFile() | O(n) |  |
+| DeliveringTrojan() | O(m+n) |  | 
+| TopoSortHelper() | O(m+n) |  |
+| TopoCycle() | O(m + n) |  | 
 | TravellingTrojan_Brute_force() | O() |  | 
 | TravellingTrojan_Backtracking() | O() |  |
 | TravellingTrojan_2opt() | O() |  |
-| inSquare() | O() |  | 
-| CycleDetection() | O() |  | 
-| hasCycle() | O() |  | 
+| GetSubgraph() | O(n) | | 
+| inSquare() | O(1) |  | 
+| CycleDetection() | O(m + n) |  | 
+| hasCycle() | O(m + n) |  | 
 | FindNearby() | O() |  | 
 
 
