@@ -207,173 +207,173 @@ TEST(TrojanMapTest, FindClosestName) {
   EXPECT_EQ(name, result);
 }
 
-// TEST(TrojanMap, Dijkstra){
-//   TrojanMap m;
-//   std::string start_name = "Ralphs";
-//   std::string end_name = "Target";
-//   std::vector< std::string > result = m.CalculateShortestPath_Dijkstra(start_name, end_name);
-//   std::vector< std::string > path = {"2578244375","4380040154","4380040158","4380040167","6805802087",
-//                                      "8410938469","6813416131","7645318201","6813416130","6813416129",
-//                                      "123318563","452688940","6816193777","123408705","6816193774",
-//                                      "452688933","452688931","123230412","6816193770","6787470576",
-//                                      "4015442011","6816193692","6816193693","6816193694","4015377691",
-//                                      "544693739","6816193696","6804883323","6807937309","6807937306",
-//                                      "6816193698","4015377690","4015377689","122814447","6813416159",
-//                                      "6813405266","4015372488","4015372487","6813405229","122719216",
-//                                      "6813405232","4015372486","7071032399","4015372485","6813379479",
-//                                      "6813379584","6814769289","5237417650"};
-//   EXPECT_EQ(path, result);
-//   EXPECT_EQ(m.CalculatePathLength(path), m.CalculatePathLength(result));
-//   EXPECT_EQ(path.size(), result.size());
-//   result = m.CalculateShortestPath_Dijkstra(end_name, start_name);
-//   std::reverse(path.begin(), path.end());
-//   EXPECT_EQ(path, result);
-//   EXPECT_EQ(m.CalculatePathLength(path), m.CalculatePathLength(result));
-//   EXPECT_EQ(path.size(), result.size());
-//   start_name = "Ralphs";
-//   end_name = "Chick-fil-A";
-//   result = m.CalculateShortestPath_Dijkstra(start_name, end_name);
-//   path = {"2578244375","4380040154","4380040153","4380040152","4380040148","6818427920","6818427919",
-//           "6818427918","6818427892","6818427898","6818427917","6818427916","7232024780","6813416145",
-//           "6813416154","6813416153","6813416152","6813416151","6813416155","6808069740","6816193785",
-//           "6816193786","123152294","4015203136","4015203134","4015203133","21098539","6389467809",
-//           "4015203132","3195897587","4015203129","4015203127","6352865690","6813379589","6813379483",
-//           "3402887081","6814958394","3402887080","602606656","4872897515","4399697589","6814958391",
-//           "123209598","6787673296","122728406","6807762271","4399697304","4399697302","5231967015",
-//           "1862347583","3233702827","4540763379","6819179753","6820935900","6820935901","6813379556",
-//           "6820935898","1781230450","1781230449","4015405542","4015405543","1837212104","1837212107",
-//           "2753199985","6820935907","1837212100","4015372458","6813411588","1837212101","6814916516",
-//           "6814916515","6820935910","4547476733"};
-//   EXPECT_EQ(path, result);
-//   EXPECT_EQ(m.CalculatePathLength(path), m.CalculatePathLength(result));
-//   EXPECT_EQ(path.size(), result.size());
-//   result = m.CalculateShortestPath_Dijkstra(end_name, start_name);
-//   std::reverse(path.begin(), path.end());
-//   EXPECT_EQ(path, result);
-//   EXPECT_EQ(m.CalculatePathLength(path), m.CalculatePathLength(result));
-//   EXPECT_EQ(path.size(), result.size());
+TEST(TrojanMap, Dijkstra){
+  TrojanMap m;
+  std::string start_name = "Ralphs";
+  std::string end_name = "Target";
+  std::vector< std::string > result = m.CalculateShortestPath_Dijkstra(start_name, end_name);
+  std::vector< std::string > path = {"2578244375","4380040154","4380040158","4380040167","6805802087",
+                                     "8410938469","6813416131","7645318201","6813416130","6813416129",
+                                     "123318563","452688940","6816193777","123408705","6816193774",
+                                     "452688933","452688931","123230412","6816193770","6787470576",
+                                     "4015442011","6816193692","6816193693","6816193694","4015377691",
+                                     "544693739","6816193696","6804883323","6807937309","6807937306",
+                                     "6816193698","4015377690","4015377689","122814447","6813416159",
+                                     "6813405266","4015372488","4015372487","6813405229","122719216",
+                                     "6813405232","4015372486","7071032399","4015372485","6813379479",
+                                     "6813379584","6814769289","5237417650"};
+  EXPECT_EQ(path, result);
+  EXPECT_EQ(m.CalculatePathLength(path), m.CalculatePathLength(result));
+  EXPECT_EQ(path.size(), result.size());
+  result = m.CalculateShortestPath_Dijkstra(end_name, start_name);
+  std::reverse(path.begin(), path.end());
+  EXPECT_EQ(path, result);
+  EXPECT_EQ(m.CalculatePathLength(path), m.CalculatePathLength(result));
+  EXPECT_EQ(path.size(), result.size());
+  start_name = "Ralphs";
+  end_name = "Chick-fil-A";
+  result = m.CalculateShortestPath_Dijkstra(start_name, end_name);
+  path = {"2578244375","4380040154","4380040153","4380040152","4380040148","6818427920","6818427919",
+          "6818427918","6818427892","6818427898","6818427917","6818427916","7232024780","6813416145",
+          "6813416154","6813416153","6813416152","6813416151","6813416155","6808069740","6816193785",
+          "6816193786","123152294","4015203136","4015203134","4015203133","21098539","6389467809",
+          "4015203132","3195897587","4015203129","4015203127","6352865690","6813379589","6813379483",
+          "3402887081","6814958394","3402887080","602606656","4872897515","4399697589","6814958391",
+          "123209598","6787673296","122728406","6807762271","4399697304","4399697302","5231967015",
+          "1862347583","3233702827","4540763379","6819179753","6820935900","6820935901","6813379556",
+          "6820935898","1781230450","1781230449","4015405542","4015405543","1837212104","1837212107",
+          "2753199985","6820935907","1837212100","4015372458","6813411588","1837212101","6814916516",
+          "6814916515","6820935910","4547476733"};
+  EXPECT_EQ(path, result);
+  EXPECT_EQ(m.CalculatePathLength(path), m.CalculatePathLength(result));
+  EXPECT_EQ(path.size(), result.size());
+  result = m.CalculateShortestPath_Dijkstra(end_name, start_name);
+  std::reverse(path.begin(), path.end());
+  EXPECT_EQ(path, result);
+  EXPECT_EQ(m.CalculatePathLength(path), m.CalculatePathLength(result));
+  EXPECT_EQ(path.size(), result.size());
 
-//   start_name = "Washington & Broadway 1";
-//   end_name = "Pico & Maple";
-//   result = m.CalculateShortestPath_Dijkstra(start_name, end_name);
-//   path = {"9596558262","4060083400","21098546","1866577831","1738419621","72092084",
-//           "2611833620","6805256739","1873055923","6818460838","6818460837","6818460836",
-//           "8164416107","122840581","250745156","1614922726","1918477977","122986158",
-//           "122607557","1837231044","122868247","3010199904","2611809734","4291117324"};
-//   EXPECT_EQ(path, result);
-//   EXPECT_EQ(m.CalculatePathLength(path), m.CalculatePathLength(result));
-//   EXPECT_EQ(path.size(), result.size());
-//   result = m.CalculateShortestPath_Dijkstra(end_name, start_name);
-//   std::reverse(path.begin(), path.end());
-//   EXPECT_EQ(path, result);
-//   EXPECT_EQ(m.CalculatePathLength(path), m.CalculatePathLength(result));
-//   EXPECT_EQ(path.size(), result.size());
+  start_name = "Washington & Broadway 1";
+  end_name = "Pico & Maple";
+  result = m.CalculateShortestPath_Dijkstra(start_name, end_name);
+  path = {"9596558262","4060083400","21098546","1866577831","1738419621","72092084",
+          "2611833620","6805256739","1873055923","6818460838","6818460837","6818460836",
+          "8164416107","122840581","250745156","1614922726","1918477977","122986158",
+          "122607557","1837231044","122868247","3010199904","2611809734","4291117324"};
+  EXPECT_EQ(path, result);
+  EXPECT_EQ(m.CalculatePathLength(path), m.CalculatePathLength(result));
+  EXPECT_EQ(path.size(), result.size());
+  result = m.CalculateShortestPath_Dijkstra(end_name, start_name);
+  std::reverse(path.begin(), path.end());
+  EXPECT_EQ(path, result);
+  EXPECT_EQ(m.CalculatePathLength(path), m.CalculatePathLength(result));
+  EXPECT_EQ(path.size(), result.size());
 
-//   start_name = "Western & Washington";
-//   end_name = "Adams & Hoover";
-//   result = m.CalculateShortestPath_Dijkstra(start_name, end_name);
-//   path = {"8189262087","8382458681","4009709283","6819144993","1771004838","4009709281","4009709279",
-//           "4037559775","4009673255","122532758","9035099537","4009673254","660937747","660937746",
-//           "122537361","1614656116","1614656215","1614656221","5345018537","5345018536","5345018534",
-//           "604242638","452688855","452688846","123161895","2613120766","123161891","122935678","1771004849",
-//           "123161885","123561991","6819212758","8410938475","8410938474","8410938473","8410938476","8410938479",
-//           "8410938477","122740210","6914795320","6799110594","122740207","122817133","123183657","6816193765",
-//           "6807583301","123183652","7477442524","1922565220","1841016364","123408705","6816193774","452688933",
-//           "452688931","123230412","6816193770","6787470576","4015442011","6816193692","123408740","6816193688",
-//           "4015442010","4015442009","9561513950"};
-//   EXPECT_EQ(path, result);
-//   EXPECT_EQ(m.CalculatePathLength(path), m.CalculatePathLength(result));
-//   EXPECT_EQ(path.size(), result.size());
-//   result = m.CalculateShortestPath_Dijkstra(end_name, start_name);
-//   std::reverse(path.begin(), path.end());
-//   EXPECT_EQ(path, result);
-//   EXPECT_EQ(m.CalculatePathLength(path), m.CalculatePathLength(result));
-//   EXPECT_EQ(path.size(), result.size());
-// }
+  start_name = "Western & Washington";
+  end_name = "Adams & Hoover";
+  result = m.CalculateShortestPath_Dijkstra(start_name, end_name);
+  path = {"8189262087","8382458681","4009709283","6819144993","1771004838","4009709281","4009709279",
+          "4037559775","4009673255","122532758","9035099537","4009673254","660937747","660937746",
+          "122537361","1614656116","1614656215","1614656221","5345018537","5345018536","5345018534",
+          "604242638","452688855","452688846","123161895","2613120766","123161891","122935678","1771004849",
+          "123161885","123561991","6819212758","8410938475","8410938474","8410938473","8410938476","8410938479",
+          "8410938477","122740210","6914795320","6799110594","122740207","122817133","123183657","6816193765",
+          "6807583301","123183652","7477442524","1922565220","1841016364","123408705","6816193774","452688933",
+          "452688931","123230412","6816193770","6787470576","4015442011","6816193692","123408740","6816193688",
+          "4015442010","4015442009","9561513950"};
+  EXPECT_EQ(path, result);
+  EXPECT_EQ(m.CalculatePathLength(path), m.CalculatePathLength(result));
+  EXPECT_EQ(path.size(), result.size());
+  result = m.CalculateShortestPath_Dijkstra(end_name, start_name);
+  std::reverse(path.begin(), path.end());
+  EXPECT_EQ(path, result);
+  EXPECT_EQ(m.CalculatePathLength(path), m.CalculatePathLength(result));
+  EXPECT_EQ(path.size(), result.size());
+}
 
-// TEST(TrojanMap, Bellman_Ford){
-//   TrojanMap m;
-//   std::string start_name = "Ralphs";
-//   std::string end_name = "Target";
-//   std::vector< std::string > result = m.CalculateShortestPath_Bellman_Ford(start_name, end_name);
-//   std::vector< std::string > path = {"2578244375","4380040154","4380040158","4380040167","6805802087",
-//                                      "8410938469","6813416131","7645318201","6813416130","6813416129",
-//                                      "123318563","452688940","6816193777","123408705","6816193774",
-//                                      "452688933","452688931","123230412","6816193770","6787470576",
-//                                      "4015442011","6816193692","6816193693","6816193694","4015377691",
-//                                      "544693739","6816193696","6804883323","6807937309","6807937306",
-//                                      "6816193698","4015377690","4015377689","122814447","6813416159",
-//                                      "6813405266","4015372488","4015372487","6813405229","122719216",
-//                                      "6813405232","4015372486","7071032399","4015372485","6813379479",
-//                                      "6813379584","6814769289","5237417650"};
-//   EXPECT_EQ(path, result);
-//   EXPECT_EQ(m.CalculatePathLength(path), m.CalculatePathLength(result));
-//   EXPECT_EQ(path.size(), result.size());
-//   result = m.CalculateShortestPath_Bellman_Ford(end_name, start_name);
-//   std::reverse(path.begin(), path.end());
-//   EXPECT_EQ(path, result);
-//   EXPECT_EQ(m.CalculatePathLength(path), m.CalculatePathLength(result));
-//   EXPECT_EQ(path.size(), result.size());
-//   start_name = "Ralphs";
-//   end_name = "Chick-fil-A";
-//   result = m.CalculateShortestPath_Bellman_Ford(start_name, end_name);
-//   path = {"2578244375","4380040154","4380040153","4380040152","4380040148","6818427920","6818427919",
-//           "6818427918","6818427892","6818427898","6818427917","6818427916","7232024780","6813416145",
-//           "6813416154","6813416153","6813416152","6813416151","6813416155","6808069740","6816193785",
-//           "6816193786","123152294","4015203136","4015203134","4015203133","21098539","6389467809",
-//           "4015203132","3195897587","4015203129","4015203127","6352865690","6813379589","6813379483",
-//           "3402887081","6814958394","3402887080","602606656","4872897515","4399697589","6814958391",
-//           "123209598","6787673296","122728406","6807762271","4399697304","4399697302","5231967015",
-//           "1862347583","3233702827","4540763379","6819179753","6820935900","6820935901","6813379556",
-//           "6820935898","1781230450","1781230449","4015405542","4015405543","1837212104","1837212107",
-//           "2753199985","6820935907","1837212100","4015372458","6813411588","1837212101","6814916516",
-//           "6814916515","6820935910","4547476733"};
-//   EXPECT_EQ(path, result);
-//   EXPECT_EQ(m.CalculatePathLength(path), m.CalculatePathLength(result));
-//   EXPECT_EQ(path.size(), result.size());
-//   result = m.CalculateShortestPath_Bellman_Ford(end_name, start_name);
-//   std::reverse(path.begin(), path.end());
-//   EXPECT_EQ(path, result);
-//   EXPECT_EQ(m.CalculatePathLength(path), m.CalculatePathLength(result));
-//   EXPECT_EQ(path.size(), result.size());
+TEST(TrojanMap, Bellman_Ford){
+  TrojanMap m;
+  std::string start_name = "Ralphs";
+  std::string end_name = "Target";
+  std::vector< std::string > result = m.CalculateShortestPath_Bellman_Ford(start_name, end_name);
+  std::vector< std::string > path = {"2578244375","4380040154","4380040158","4380040167","6805802087",
+                                     "8410938469","6813416131","7645318201","6813416130","6813416129",
+                                     "123318563","452688940","6816193777","123408705","6816193774",
+                                     "452688933","452688931","123230412","6816193770","6787470576",
+                                     "4015442011","6816193692","6816193693","6816193694","4015377691",
+                                     "544693739","6816193696","6804883323","6807937309","6807937306",
+                                     "6816193698","4015377690","4015377689","122814447","6813416159",
+                                     "6813405266","4015372488","4015372487","6813405229","122719216",
+                                     "6813405232","4015372486","7071032399","4015372485","6813379479",
+                                     "6813379584","6814769289","5237417650"};
+  EXPECT_EQ(path, result);
+  EXPECT_EQ(m.CalculatePathLength(path), m.CalculatePathLength(result));
+  EXPECT_EQ(path.size(), result.size());
+  result = m.CalculateShortestPath_Bellman_Ford(end_name, start_name);
+  std::reverse(path.begin(), path.end());
+  EXPECT_EQ(path, result);
+  EXPECT_EQ(m.CalculatePathLength(path), m.CalculatePathLength(result));
+  EXPECT_EQ(path.size(), result.size());
+  start_name = "Ralphs";
+  end_name = "Chick-fil-A";
+  result = m.CalculateShortestPath_Bellman_Ford(start_name, end_name);
+  path = {"2578244375","4380040154","4380040153","4380040152","4380040148","6818427920","6818427919",
+          "6818427918","6818427892","6818427898","6818427917","6818427916","7232024780","6813416145",
+          "6813416154","6813416153","6813416152","6813416151","6813416155","6808069740","6816193785",
+          "6816193786","123152294","4015203136","4015203134","4015203133","21098539","6389467809",
+          "4015203132","3195897587","4015203129","4015203127","6352865690","6813379589","6813379483",
+          "3402887081","6814958394","3402887080","602606656","4872897515","4399697589","6814958391",
+          "123209598","6787673296","122728406","6807762271","4399697304","4399697302","5231967015",
+          "1862347583","3233702827","4540763379","6819179753","6820935900","6820935901","6813379556",
+          "6820935898","1781230450","1781230449","4015405542","4015405543","1837212104","1837212107",
+          "2753199985","6820935907","1837212100","4015372458","6813411588","1837212101","6814916516",
+          "6814916515","6820935910","4547476733"};
+  EXPECT_EQ(path, result);
+  EXPECT_EQ(m.CalculatePathLength(path), m.CalculatePathLength(result));
+  EXPECT_EQ(path.size(), result.size());
+  result = m.CalculateShortestPath_Bellman_Ford(end_name, start_name);
+  std::reverse(path.begin(), path.end());
+  EXPECT_EQ(path, result);
+  EXPECT_EQ(m.CalculatePathLength(path), m.CalculatePathLength(result));
+  EXPECT_EQ(path.size(), result.size());
 
-//   start_name = "Washington & Broadway 1";
-//   end_name = "Pico & Maple";
-//   result = m.CalculateShortestPath_Bellman_Ford(start_name, end_name);
-//   path = {"9596558262","4060083400","21098546","1866577831","1738419621","72092084",
-//           "2611833620","6805256739","1873055923","6818460838","6818460837","6818460836",
-//           "8164416107","122840581","250745156","1614922726","1918477977","122986158",
-//           "122607557","1837231044","122868247","3010199904","2611809734","4291117324"};
-//   EXPECT_EQ(path, result);
-//   EXPECT_EQ(m.CalculatePathLength(path), m.CalculatePathLength(result));
-//   EXPECT_EQ(path.size(), result.size());
-//   result = m.CalculateShortestPath_Bellman_Ford(end_name, start_name);
-//   std::reverse(path.begin(), path.end());
-//   EXPECT_EQ(path, result);
-//   EXPECT_EQ(m.CalculatePathLength(path), m.CalculatePathLength(result));
-//   EXPECT_EQ(path.size(), result.size());
+  start_name = "Washington & Broadway 1";
+  end_name = "Pico & Maple";
+  result = m.CalculateShortestPath_Bellman_Ford(start_name, end_name);
+  path = {"9596558262","4060083400","21098546","1866577831","1738419621","72092084",
+          "2611833620","6805256739","1873055923","6818460838","6818460837","6818460836",
+          "8164416107","122840581","250745156","1614922726","1918477977","122986158",
+          "122607557","1837231044","122868247","3010199904","2611809734","4291117324"};
+  EXPECT_EQ(path, result);
+  EXPECT_EQ(m.CalculatePathLength(path), m.CalculatePathLength(result));
+  EXPECT_EQ(path.size(), result.size());
+  result = m.CalculateShortestPath_Bellman_Ford(end_name, start_name);
+  std::reverse(path.begin(), path.end());
+  EXPECT_EQ(path, result);
+  EXPECT_EQ(m.CalculatePathLength(path), m.CalculatePathLength(result));
+  EXPECT_EQ(path.size(), result.size());
 
-//   start_name = "Western & Washington";
-//   end_name = "Adams & Hoover";
-//   result = m.CalculateShortestPath_Bellman_Ford(start_name, end_name);
-//   path = {"8189262087","8382458681","4009709283","6819144993","1771004838","4009709281","4009709279",
-//           "4037559775","4009673255","122532758","9035099537","4009673254","660937747","660937746",
-//           "122537361","1614656116","1614656215","1614656221","5345018537","5345018536","5345018534",
-//           "604242638","452688855","452688846","123161895","2613120766","123161891","122935678","1771004849",
-//           "123161885","123561991","6819212758","8410938475","8410938474","8410938473","8410938476","8410938479",
-//           "8410938477","122740210","6914795320","6799110594","122740207","122817133","123183657","6816193765",
-//           "6807583301","123183652","7477442524","1922565220","1841016364","123408705","6816193774","452688933",
-//           "452688931","123230412","6816193770","6787470576","4015442011","6816193692","123408740","6816193688",
-//           "4015442010","4015442009","9561513950"};
-//   EXPECT_EQ(path, result);
-//   EXPECT_EQ(m.CalculatePathLength(path), m.CalculatePathLength(result));
-//   EXPECT_EQ(path.size(), result.size());
-//   result = m.CalculateShortestPath_Bellman_Ford(end_name, start_name);
-//   std::reverse(path.begin(), path.end());
-//   EXPECT_EQ(path, result);
-//   EXPECT_EQ(m.CalculatePathLength(path), m.CalculatePathLength(result));
-//   EXPECT_EQ(path.size(), result.size());
-// }
+  start_name = "Western & Washington";
+  end_name = "Adams & Hoover";
+  result = m.CalculateShortestPath_Bellman_Ford(start_name, end_name);
+  path = {"8189262087","8382458681","4009709283","6819144993","1771004838","4009709281","4009709279",
+          "4037559775","4009673255","122532758","9035099537","4009673254","660937747","660937746",
+          "122537361","1614656116","1614656215","1614656221","5345018537","5345018536","5345018534",
+          "604242638","452688855","452688846","123161895","2613120766","123161891","122935678","1771004849",
+          "123161885","123561991","6819212758","8410938475","8410938474","8410938473","8410938476","8410938479",
+          "8410938477","122740210","6914795320","6799110594","122740207","122817133","123183657","6816193765",
+          "6807583301","123183652","7477442524","1922565220","1841016364","123408705","6816193774","452688933",
+          "452688931","123230412","6816193770","6787470576","4015442011","6816193692","123408740","6816193688",
+          "4015442010","4015442009","9561513950"};
+  EXPECT_EQ(path, result);
+  EXPECT_EQ(m.CalculatePathLength(path), m.CalculatePathLength(result));
+  EXPECT_EQ(path.size(), result.size());
+  result = m.CalculateShortestPath_Bellman_Ford(end_name, start_name);
+  std::reverse(path.begin(), path.end());
+  EXPECT_EQ(path, result);
+  EXPECT_EQ(m.CalculatePathLength(path), m.CalculatePathLength(result));
+  EXPECT_EQ(path.size(), result.size());
+}
 
 
 TEST(TrojanMap, CycleDet){

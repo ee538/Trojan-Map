@@ -358,7 +358,7 @@ void MapUI::PrintMenu() {
     // Read dependencies from CSV file
     std::vector<std::vector<std::string>> dependencies;
     if (dependencies_filename == "")
-      dependencies = {{"Ralphs","Chick-fil-A"}, {"Ralphs","KFC"}, {"Chick-fil-A","KFC"},{"KFC","Chick-fil-A"}};
+      dependencies = {{"Ralphs","Chick-fil-A"}, {"Ralphs","KFC"}, {"Chick-fil-A","KFC"}};
     else
       dependencies = map.ReadDependenciesFromCSVFile(dependencies_filename);
 

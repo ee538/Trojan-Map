@@ -111,3 +111,113 @@ Note :  Changes have been made in the mapui.cc to Handle Empty input and input w
 
 <p align="center"><img src="img/EMptyInputHandlingFIndLocation.png" alt="Trojan" width="750" /></p>
 
+
+## Feature 3 : Calculate Shortest Path
+
+This Feature Focusses on Computing the shortest path between two given places using two famous Algoriths
+- ```Dijkstra's Shortest Path Algorithm```
+- ```Bellman Ford Shortest Path Algorithm```
+
+#### ```Dijkstra's Algorithm```
+
+Dijkstra Algorithms Computes the shortest path between two nodes. In This Algorithm, The Source Node is Fixed (Single Source Node) and computes shortest path to all other nodes from the source Node. Our Algorithm Returs the shortest path from source node to end node. It is a greedy algorithm which visits the closest node (shortest distance node) and expects to grow.
+
+The Declaration of the function is given as ```std::vector<std::string> CalculateShortestPath_Dijkstra(std::string location1_name,std::string location2_name);```
+
+Flow Chart | Dijkstra | Shortest Path
+<p align="center"><img src="img/Dijkstra.png" alt="Trojan" width="750" /></p>
+
+The Algorithm Uses Minheap data structure so that finding the shortest distance next node from the priority is O(1) as we can access the data from the top.
+
+The ``` Time Complexity = O((m+n) log(n))``` where m = Number of Nodes, n = Number of Edges
+
+#### ```Bellman Ford Algorithm```
+
+Bellman-ford is a single source shortest pathh algorith, which will find the shortest distance between source node an every other node in the map along with the shortest path. One advantage of Bellman-ford algorithm is that it can handle and report negative edges while Dijkstra cannot. However ballman ford is much slower than dijkstra algorithm as it has to go though all nodes multiple number of times
+
+The Declaration of the function is given as ```std::vector<std::string> CalculateShortestPath_Bellman_Ford(std::string location1_name,std::string location2_name);```
+
+Flow Chart | Dijkstra | Shortest Path
+<p align="center"><img src="img/Dijkstra.png" alt="Trojan" width="750" /></p>
+
+The ``` Time Complexity = O(mn)``` where m = Number of Nodes, n = Number of Edges
+
+
+### RESULTS : Shortest Path Between Two Locations (DIJKSTRA, BELLMANFORD, GOOGLE MAPS):
+
+#### SOURCE = Ralphs | DESTINATION = Target
+<p align="center">
+<img src="img/Dijkstra1.png" alt="Trojan" width="33%" />
+<img src="img/BF1.png" alt="Trojan" width="33%" />
+<img src="img/GM1.png" alt="Trojan" width="33%" /></p>
+<p align="center"><img src="img/ShortPathOut1.png" alt="Trojan" width="1000" /></p>
+
+#### SOURCE = FaceHaus | DESTINATION = Western and adams 3
+<p align="center">
+<img src="img/Dijkstra2.png" alt="Trojan" width="33%" />
+<img src="img/BF2.png" alt="Trojan" width="33%" />
+<img src="img/GM2.png" alt="Trojan" width="33%" />
+</p>
+
+<p align="center"><img src="img/ShortPathOut2.png" alt="Trojan" width="1000" /></p>
+
+#### SOURCE = Vermont & 39th (Metro 204 Northbound) (#05658) | DESTINATION = McDonalds
+<p align="center">
+<img src="img/Dijkstra3.png" alt="Trojan" width="33%" />
+<img src="img/BF3.png" alt="Trojan" width="33%" />
+<img src="img/GM3.png" alt="Trojan" width="33%" />
+</p>
+
+<p align="center"><img src="img/ShortPathOut3.png" alt="Trojan" width="1000" /></p>
+
+#### Comparison
+
+| Source | Destination | Dijkstra | Bellman Ford | Google Maps |
+| :---: | :---: | :---: | :---: | :---: | 
+| Ralphs | Target | 0.927969 miles | 0.927969 miles | 0.9 miles | 
+| FaceHaus | Western & Adams 3 | 2.00231 miles | 2.00231 miles | 2 miles |  
+| Vermont & 39th (Metro 204 Northbound) (#05658) | McDonalds | 0.971709 miles | 0.971709 miles | 0.9 miles |  
+
+``` Inference ``` The results obtained by Dijkstra and Bellman ford algorithm is in accordance with the google Maps result however Google Maps takes other attributs such as Traffic, Regularly used road and etc., in computation of the path. this effect can be seen in Result 2 :  where our shortest distance algoithm computs overall shortest distance where as Google Maps give much easier route of walking straight at the same distance.
+
+#### RunTime
+
+| Source | Destination | Dijkstra | Bellman Ford |
+| :---: | :---: | :---: | :---: | 
+| Ralphs | Target | 39 ms | 8132 ms | 
+| FaceHaus | Western & Adams 3 | 162 ms | 8861 ms | 
+| Vermont & 39th (Metro 204 Northbound) (#05658) | McDonalds | 53 ms | 9103 ms | 
+
+```Inference ```  Dijkstra is much faster compared to Bellman ford algorithm. Usage of min heap using priority queue has reduced the time in dijkstra where as Bellman ford will always be slow as we will have to relax each node atmost |n| - 1 times to get the output. Even with early stopping conditions the algorithms will be slower than Dijkstra Algorithm
+
+
+## Time Complexity
+
+| Function | Complexity | Comments | 
+| :--- | :--- | :---: |
+| GetLat() | O(1) |  |
+| GetLon() | O(1) |  |
+| Getname() | O(1) |  | 
+| GetID() | O(n) |  |
+| GetNeighborIDs() | O(1) |  |
+| Autocomplete() | O(n) |  | 
+| GetPosition() | O(n) |  | 
+| CalculateEditDistance() | O(mn) |  |
+| FindClosestName() | O(nlp) |  |
+| CalculateShortestPath_Dijkstra() | O((m+n) logn) |  | 
+| CalculateShortestPath_Bellman_Ford() | O(mn) |  | 
+| ReadLocationsFromCSVFile() | O() |  |
+| ReadDependenciesFromCSVFile() | O() |  |
+| DeliveringTrojan() | O() |  | 
+| TopoSortHelper() | O() |  |
+| TopoCycleHelper() | O() |  |
+| TopoCycle() | O() |  | 
+| TravellingTrojan_Brute_force() | O() |  | 
+| TravellingTrojan_Backtracking() | O() |  |
+| TravellingTrojan_2opt() | O() |  |
+| inSquare() | O() |  | 
+| CycleDetection() | O() |  | 
+| hasCycle() | O() |  | 
+| FindNearby() | O() |  | 
+
+
