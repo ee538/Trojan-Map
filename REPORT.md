@@ -252,9 +252,9 @@ While iterating through all the nodes, keep updating the predecessor map based o
 
 #### Case Scenario 2 : Input : {-118.312, -118.311, 34.004, 34.003}
 
-<p align="center"><img src="img/phase5-1-op.png" alt="Trojan" width="750" /></p>
+<p align="center"><img src="img/phase5-2-op.png" alt="Trojan" width="750" /></p>
 
-<p align="center"><img src="img/phase5-1-a.png" alt="Trojan" width="750" /></p>
+<p align="center"><img src="img/phase5-2-a.png" alt="Trojan" width="750" /></p>
 
 ## Feature 6 : Topological Sort
 
