@@ -231,7 +231,7 @@ Iterates over all the locations in the data and returns the vector of all those 
 The Declaration of the function is given as ```std::vector<std::string> GetSubgraph(std::vector<double> &square);```
 
 Flow Chart of the Function:
-<p align="center"><img src="img/GetSubgraph-fc.png" alt="Trojan" width="750" /></p>
+<p align="center"><img src="img/GetSubgraph.png" alt="Trojan" width="750" /></p>
 
 
 The ```Time Complexity = O(n)``` where n = # Unique ID's in the data
@@ -252,9 +252,9 @@ While iterating through all the nodes, keep updating the predecessor map based o
 
 #### Case Scenario 2 : Input : {-118.312, -118.311, 34.004, 34.003}
 
-<p align="center"><img src="img/phase6-1-op.png" alt="Trojan" width="750" /></p>
+<p align="center"><img src="img/phase5-1-op.png" alt="Trojan" width="750" /></p>
 
-<p align="center"><img src="img/phase6-1-a.png" alt="Trojan" width="750" /></p>
+<p align="center"><img src="img/phase5-1-a.png" alt="Trojan" width="750" /></p>
 
 ## Feature 6 : Topological Sort
 
