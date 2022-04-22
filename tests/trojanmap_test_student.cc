@@ -289,6 +289,43 @@ TEST(TrojanMap, Dijkstra){
   EXPECT_EQ(path, result);
   EXPECT_EQ(m.CalculatePathLength(path), m.CalculatePathLength(result));
   EXPECT_EQ(path.size(), result.size());
+
+
+  start_name = "";
+  end_name = "";
+  result = m.CalculateShortestPath_Dijkstra(start_name, end_name);
+  path = {};
+  EXPECT_EQ(path, result);
+  EXPECT_EQ(m.CalculatePathLength(path), m.CalculatePathLength(result));
+  EXPECT_EQ(path.size(), result.size());
+  result = m.CalculateShortestPath_Dijkstra(end_name, start_name);
+
+  start_name = "";
+  end_name = "Ralphs";
+  result = m.CalculateShortestPath_Dijkstra(start_name, end_name);
+  path = {};
+  EXPECT_EQ(path, result);
+  EXPECT_EQ(m.CalculatePathLength(path), m.CalculatePathLength(result));
+  EXPECT_EQ(path.size(), result.size());
+  result = m.CalculateShortestPath_Dijkstra(end_name, start_name);
+
+  start_name = "Target";
+  end_name = "";
+  result = m.CalculateShortestPath_Dijkstra(start_name, end_name);
+  path = {};
+  EXPECT_EQ(path, result);
+  EXPECT_EQ(m.CalculatePathLength(path), m.CalculatePathLength(result));
+  EXPECT_EQ(path.size(), result.size());
+  result = m.CalculateShortestPath_Dijkstra(end_name, start_name);
+
+  start_name = "Rolphs";
+  end_name = "NoTarget";
+  result = m.CalculateShortestPath_Dijkstra(start_name, end_name);
+  path = {};
+  EXPECT_EQ(path, result);
+  EXPECT_EQ(m.CalculatePathLength(path), m.CalculatePathLength(result));
+  EXPECT_EQ(path.size(), result.size());
+  result = m.CalculateShortestPath_Dijkstra(end_name, start_name);
 }
 
 TEST(TrojanMap, Bellman_Ford){
@@ -370,6 +407,38 @@ TEST(TrojanMap, Bellman_Ford){
   EXPECT_EQ(path.size(), result.size());
   result = m.CalculateShortestPath_Bellman_Ford(end_name, start_name);
   std::reverse(path.begin(), path.end());
+  EXPECT_EQ(path, result);
+  EXPECT_EQ(m.CalculatePathLength(path), m.CalculatePathLength(result));
+  EXPECT_EQ(path.size(), result.size());
+
+  start_name = "";
+  end_name = "";
+  result = m.CalculateShortestPath_Bellman_Ford(start_name, end_name);
+  path = {};
+  EXPECT_EQ(path, result);
+  EXPECT_EQ(m.CalculatePathLength(path), m.CalculatePathLength(result));
+  EXPECT_EQ(path.size(), result.size());
+
+  start_name = "";
+  end_name = "Ralphs";
+  result = m.CalculateShortestPath_Bellman_Ford(start_name, end_name);
+  path = {};
+  EXPECT_EQ(path, result);
+  EXPECT_EQ(m.CalculatePathLength(path), m.CalculatePathLength(result));
+  EXPECT_EQ(path.size(), result.size());
+
+  start_name = "Target";
+  end_name = "";
+  result = m.CalculateShortestPath_Bellman_Ford(start_name, end_name);
+  path = {};
+  EXPECT_EQ(path, result);
+  EXPECT_EQ(m.CalculatePathLength(path), m.CalculatePathLength(result));
+  EXPECT_EQ(path.size(), result.size());
+
+  start_name = "Rolphs";
+  end_name = "NoTarget";
+  result = m.CalculateShortestPath_Bellman_Ford(start_name, end_name);
+  path = {};
   EXPECT_EQ(path, result);
   EXPECT_EQ(m.CalculatePathLength(path), m.CalculatePathLength(result));
   EXPECT_EQ(path.size(), result.size());

@@ -137,8 +137,8 @@ Bellman-ford is a single source shortest pathh algorith, which will find the sho
 
 The Declaration of the function is given as ```std::vector<std::string> CalculateShortestPath_Bellman_Ford(std::string location1_name,std::string location2_name);```
 
-Flow Chart | Dijkstra | Shortest Path
-<p align="center"><img src="img/Dijkstra.png" alt="Trojan" width="750" /></p>
+Flow Chart | Bellman Ford | Shortest Path
+<p align="center"><img src="img/BF.png" alt="Trojan" width="750" /></p>
 
 The ``` Time Complexity = O(mn)``` where m = Number of Nodes, n = Number of Edges
 

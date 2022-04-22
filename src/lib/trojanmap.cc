@@ -211,12 +211,20 @@ double TrojanMap::CalculatePathLength(const std::vector<std::string> &path) {
  */
 std::vector<std::string> TrojanMap::CalculateShortestPath_Dijkstra(
     std::string location1_name, std::string location2_name) {
-  std::vector<std::string> path;
+  
+  std::vector<std::string> path ={};
+
+  if ((location1_name.empty()) || (location2_name.empty())){
+    return path;
+  }
+
   
   // Get ID's of Start Location and End Location
   std::string start_ID_= GetID(location1_name);
   std::string end_ID_ = GetID(location2_name);
-
+  if ((start_ID_.empty()) || (end_ID_.empty())){
+    return path;
+  }
   // Create Min Heap using Priority Queue
   std::priority_queue< std::pair<double, std::string>, std::vector< std::pair< double,std::string > >, std::greater< std::pair< double, std::string >>> q_;
 
@@ -300,12 +308,17 @@ std::vector<std::string> TrojanMap::CalculateShortestPath_Dijkstra(
  */
 std::vector<std::string> TrojanMap::CalculateShortestPath_Bellman_Ford(
     std::string location1_name, std::string location2_name){
- std::vector<std::string> path;
+  std::vector<std::string> path = {};
 
+  if ((location1_name.empty()) || (location2_name.empty())){
+    return path;
+  }
   // Getting start and End Node Id's
   std::string start_ID_ = GetID(location1_name);
   std::string end_ID_ = GetID(location2_name);
-
+  if ((start_ID_.empty()) || (end_ID_.empty())){
+    return path;
+  }
   // Shortest Distance of Each Node using Unordered Map
   std::unordered_map< std::string, double > distance_;
 
@@ -350,6 +363,7 @@ std::vector<std::string> TrojanMap::CalculateShortestPath_Bellman_Ford(
       break;
     }
   }
+  
   path = {};
   path.push_back(end_ID_);
   auto id = parent_[end_ID_];
