@@ -491,6 +491,17 @@ std::vector<std::string> TrojanMap::DeliveringTrojan(std::vector<std::string> &l
   return result;                                                     
 }
 
+/**
+ * TopoSortHelper: It is a topological sorting recursive helper function. Modifes the topo_sort
+ * vector based on DFS algorithm which in turn can be used to find the topological sort.
+ 
+ *
+ * @param  {std::vector<std::string>} locations                              : locations
+ * @param  {std::map<std::string, bool>} visited                             : visited locations
+ * @param  {std::unordered_map<std::string, std::vector<std::string>>} adj   : DAG
+ * @param  {std::vector<std::string>} topo_list                              : DFS Topological vector
+ */
+
 void TrojanMap::TopoSortHelper(std::string location, std::map<std::string, bool> &visited, std::unordered_map<std::string, std::vector<std::string>> adj ,std::vector<std::string> &topo_list){
   visited[location] = true;
   for(auto child: adj[location]){
@@ -500,6 +511,16 @@ void TrojanMap::TopoSortHelper(std::string location, std::map<std::string, bool>
   }
   topo_list.push_back(location);
 }
+
+/**
+ * TopoCycle: A helper function for DeliveryTrojan function. Function is used to check if
+ * There is a cycle from given Adjacency matrix. Returns TRUE if there exists a cycle and FALSE
+ * if there is no cycle and a valid DAG.
+ 
+ *
+ * @param  {std::vector<std::string>} locations                              : locations
+ * @param  {std::unordered_map<std::string, std::vector<std::string>>} adj   : DAG
+ */
 
 bool TrojanMap::TopoCycle(std::vector<std::string> locations,std::unordered_map<std::string, std::vector<std::string>> adj) {
   std::map<std::string, bool> visited;
@@ -515,6 +536,18 @@ bool TrojanMap::TopoCycle(std::vector<std::string> locations,std::unordered_map<
   }
   return false;
 }
+
+/**
+ * TopoCycleHelper: A helper function for TopoCycle function which is called recursively and
+ * used to find if there exsists a cycle from given Adjacency matrix. It performs DFS on the 
+ * given graph data and a backedge vector is used to keep track of back edges. 
+ 
+ *
+ * @param  {std::string} current_id                                          : Current location
+ * @param  {std::map<std::string, bool>} visited                             : visited locations
+ * @param  {std::unordered_map<std::string, std::vector<std::string>>} adj   : DAG
+ * @param  {std::map<std::string, bool>} backedge                            : Back Edge vector
+ */
 
 bool TrojanMap::TopoCycleHelper(std::string current_id, std::map<std::string, bool> &visited,std::unordered_map<std::string, std::vector<std::string>> adj,std::map<std::string, bool> &backedge) {
   if(!visited[current_id]){
@@ -581,7 +614,7 @@ std::vector<std::string> TrojanMap::GetSubgraph(std::vector<double> &square) {
  */
 bool TrojanMap::CycleDetection(std::vector<std::string> &subgraph, std::vector<double> &square) {
   std::map<std::string, bool> visited;
-  std::cout<<"Number of points in the subgraph: "<<subgraph.size()<<std::endl;
+  //std::cout<<"Number of points in the subgraph: "<<subgraph.size()<<std::endl;
   std::unordered_map<std::string,std::string> predecessor;
   for(auto n: subgraph){
     visited[n] = false;
@@ -597,10 +630,18 @@ bool TrojanMap::CycleDetection(std::vector<std::string> &subgraph, std::vector<d
     plot.push_back(predecessor[it->second]);
     it++;
   }
-  //PlotPath(plot);
+  PlotPath(plot);
   }
   return result;
 }
+
+/**
+ * GetPlotLocation: Transform the location to the position on the map
+ * 
+ * @param  {double} lat         : latitude 
+ * @param  {double} lon         : longitude
+ * @return {std::pair<double, double>}  : position on the map
+ */
 
 std::pair<double, double> TrojanMap::GetPlotLocation(double lat, double lon) {
   std::pair<double, double> bottomLeft(33.9990000, -118.3210000);
@@ -611,6 +652,12 @@ std::pair<double, double> TrojanMap::GetPlotLocation(double lat, double lon) {
                                    (1 - (lat - bottomLeft.first) / h) * 900);
   return result;
 }
+
+/**
+ * PlotPath: Given a vector of location ids draws the path (connects the points)
+ * 
+ * @param  {std::vector<std::string>} location_ids : path
+ */
 
 void TrojanMap::PlotPath(std::vector<std::string> &location_ids) {
   std::string image_path = cv::samples::findFile("src/lib/map.png");
@@ -632,6 +679,19 @@ void TrojanMap::PlotPath(std::vector<std::string> &location_ids) {
   cv::imshow("TrojanMap", img);
   cv::waitKey(1);
 }
+
+/**
+ * hasCycle: A helper function which is called recursively and used to find if 
+ * there exsists a cycle. It performs DFS on the given graph data and return true 
+ * if there exists a cycle in the graph. 
+ 
+ *
+ * @param  {std::string} current_id                                          : Current location
+ * @param  {std::map<std::string, bool>} visited                             : visited locations
+ * @param  {std::string} parent_id                                           : Parent location to the current location
+ * @param  {std::unordered_map<std::string,std::string>} predecessor         : predecessor location for the current location
+ * @param  {sstd::vector<double>} square                                     : Square coordinates
+ */
 
 bool TrojanMap::hasCycle(std::string current_id, std::map<std::string, bool> &visited, std::string parent_id,std::vector<double> &square,std::unordered_map<std::string,std::string> &predecessor) {
   visited[current_id] = true;

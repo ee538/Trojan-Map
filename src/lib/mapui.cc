@@ -316,7 +316,7 @@ void MapUI::PrintMenu() {
     square.push_back(atof(input.c_str()));
      
     auto subgraph = map.GetSubgraph(square);
-    PlotPointsandEdges(subgraph, square);
+    //PlotPointsandEdges(subgraph, square);
     
     auto start = std::chrono::high_resolution_clock::now();
     auto results = map.CycleDetection(subgraph, square);
@@ -358,7 +358,9 @@ void MapUI::PrintMenu() {
     // Read dependencies from CSV file
     std::vector<std::vector<std::string>> dependencies;
     if (dependencies_filename == "")
-      dependencies = {{"Ralphs","Chick-fil-A"}, {"Ralphs","KFC"}, {"Chick-fil-A","KFC"}};
+      //dependencies = {{"Ralphs","Chick-fil-A"}, {"Ralphs","KFC"}, {"Chick-fil-A","KFC"}};
+      //dependencies = {{"Chick-fil-A","Ralphs"},{"Ralphs","KFC"},{"Chick-fil-A","KFC"}};
+        dependencies = {{"Chick-fil-A","Ralphs"},{"Ralphs","Chick-fil-A"}};
     else
       dependencies = map.ReadDependenciesFromCSVFile(dependencies_filename);
 

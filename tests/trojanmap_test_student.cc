@@ -451,11 +451,11 @@ TEST(TrojanMap, CycleDet){
   std::vector<std::string> subgraph = m.GetSubgraph(square);
   EXPECT_EQ(m.CycleDetection(subgraph, square), false);
 
-  square = {-118.264, -118.260, 34.014, 34.010};
+  square = {-118.264, -118.260, 34.014, 34.010}; //1
   subgraph = m.GetSubgraph(square);
   EXPECT_EQ(m.CycleDetection(subgraph, square), true);
 
-  square = {-118.312, -118.311, 34.004, 34.003};
+  square = {-118.312, -118.311, 34.004, 34.003}; //2
   subgraph = m.GetSubgraph(square);
   EXPECT_EQ(m.CycleDetection(subgraph, square), false);
 
