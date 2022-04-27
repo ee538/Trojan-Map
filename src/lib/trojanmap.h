@@ -17,10 +17,13 @@
 #include <algorithm>
 #include <cfloat>
 #include <math.h>
+
 #include <fstream>
 #include <sstream>
 #include <climits>
 #include <time.h>
+#include<stdlib.h>
+
 
 
 
@@ -120,6 +123,9 @@ class TrojanMap {
 
   bool TopoCycle(std::vector<std::string> locations,std::unordered_map<std::string, std::vector<std::string>> adj);
 
+  std::vector<std::vector<std::string>> BruteForceHelper(std::vector<std::string> location_ids);
+
+
   // Given a vector of location ids, it should reorder them such that the path
   // that covers all these points has the minimum length.
   // The return value is a pair where the first member is the total_path,
@@ -129,6 +135,8 @@ class TrojanMap {
   std::pair<double, std::vector<std::vector<std::string>>> TravellingTrojan_Brute_force(
       std::vector<std::string> location_ids);
   
+
+
   std::pair<double, std::vector<std::vector<std::string>>> TravellingTrojan_Backtracking(
       std::vector<std::string> location_ids);
   

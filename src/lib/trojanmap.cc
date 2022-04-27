@@ -385,11 +385,59 @@ std::vector<std::string> TrojanMap::CalculateShortestPath_Bellman_Ford(
  * @param  {std::vector<std::string>} input : a list of locations needs to visit
  * @return {std::pair<double, std::vector<std::vector<std::string>>} : a pair of total distance and the all the progress to get final path
  */
-std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTrojan_Brute_force(
-                                    std::vector<std::string> location_ids) {
+std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTrojan_Brute_force(std::vector<std::string> location_ids) {
   std::pair<double, std::vector<std::vector<std::string>>> records;
+  // std::cout <<" Hello ";
+  auto result = this->BruteForceHelper(location_ids);
+  int best_path_loc = 0;
+  double distance_ = INT_MAX;
+  for(int i = 0; i < result.size(); i++){
+    result[i].push_back(result[i][0]);
+    auto path_distance = CalculatePathLength(result[i]);
+    if (path_distance < distance_){
+      distance_ = path_distance;
+      best_path_loc = i;
+    }
+  }
+
+  for (auto &e : result[best_path_loc]){
+    std::cout << e << " ";
+  }
+  std::cout<<std::endl;
+  std::swap(result[best_path_loc], result[result.size() - 1]);
+  std::cout << distance_;
+  records.first = distance_;
+  records.second = result;
+
+
   return records;
 }
+
+std::vector<std::vector<std::string>> TrojanMap::BruteForceHelper(std::vector<std::string> location_ids){
+  std::vector<std::vector<std::string>> result;
+
+  if(location_ids.size() == 1){
+    result.push_back(location_ids);
+    return result;
+  }
+
+  for (int i = 0; i < location_ids.size(); i++){
+    auto current = location_ids[i];
+    std::vector<std::string> next_locations(location_ids.begin(), location_ids.end());
+    // std::copy(location_ids.begin(), location_ids.end(), next_locations);
+    next_locations.erase(next_locations.begin() + i);
+
+    auto next_result = BruteForceHelper(next_locations);
+
+    for (auto &e : next_result){
+      e.insert(e.begin(), current);
+      result.push_back(e);
+    }
+  }
+
+  return result;
+}
+
 
 std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTrojan_Backtracking(
                                     std::vector<std::string> location_ids) {
