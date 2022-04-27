@@ -630,7 +630,7 @@ bool TrojanMap::CycleDetection(std::vector<std::string> &subgraph, std::vector<d
     plot.push_back(predecessor[it->second]);
     it++;
   }
-  PlotPath(plot);
+  // PlotPath(plot);
   }
   return result;
 }
