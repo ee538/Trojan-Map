@@ -156,6 +156,9 @@ class TrojanMap {
 
   // Given a location id and k, find the k closest points on the map
   std::vector<std::string> FindNearby(std::string, std::string, double, int);
+
+   // Get the Attributes given its name.
+  std::string GetAttributes(const std::string& id);
   
   //----------------------------------------------------- User-defined functions
 

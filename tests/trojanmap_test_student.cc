@@ -519,3 +519,38 @@ TEST(TravellingTrojan, BruteForce){
   
   EXPECT_EQ(flag, true);
 }
+
+TEST(TrojanMapTest, FindNearby) {
+  TrojanMap m;
+  
+  auto result = m.FindNearby("supermarket", "Ralphs", 10, 10);
+  std::vector<std::string> ans{"5237417649", "6045067406", "7158034317"};
+  EXPECT_EQ(result, ans);
+
+  result = m.FindNearby("restaurant", "Little Galen Center", 10, 10);
+  ans = {"5567727178", "6813379473","5237417652", "9591449458", "5237417654", "6814620863", "5261316289", "5231970324", "5231970325", "6655857589"};
+  EXPECT_EQ(result, ans);
+
+  result = m.FindNearby("restaurant", "Little Galen Center", 10, 5);
+  ans = {"5567727178", "6813379473","5237417652", "9591449458", "5237417654"};
+  EXPECT_EQ(result, ans);
+
+  result = m.FindNearby("restaurant", "Little Galen Center", 10, 0);
+  ans = {};
+  EXPECT_EQ(result, ans);
+
+  result = m.FindNearby("bar", "The Pearl", 5, 5);
+  ans = {"6045035789", "6045038065"};
+  EXPECT_EQ(result, ans);
+
+}
+
+
+
+
+
+
+
+
+
+

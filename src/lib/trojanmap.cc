@@ -768,8 +768,40 @@ bool TrojanMap::hasCycle(std::string current_id, std::map<std::string, bool> &vi
  * @param {int} k: search numbers
  * @return {std::vector<std::string>}: location name that meets the requirements
  */
-std::vector<std::string> TrojanMap::FindNearby(std::string attributesName, std::string name, double r, int k) {
+
+  std::vector<std::string> TrojanMap::FindNearby(std::string attributesName, std::string name, double r, int k) {
   std::vector<std::string> res;
+  std::vector<std::pair<double, std::string>> temp;
+  std::pair<double,std::string> temp_pair;
+  if(k == 0){return res;}
+
+  for (auto it = data.begin(); it != data.end(); it++){
+      auto id = it->first;
+      auto ref_name = GetName(id);
+      auto att = data[id].attributes;
+
+      if(ref_name.size() != 0 && att.size() != 0){
+        auto base_id = GetID(name);
+        auto id_vec = {id,base_id};
+        if(att.count(attributesName)){
+          auto length = CalculatePathLength(id_vec);
+          if(length <= r && id != base_id){
+            temp_pair.first = length;
+            temp_pair.second = id;
+            temp.push_back(temp_pair);
+          }
+        }
+      }
+    }
+  std::make_heap(temp.begin(),temp.end());
+  std::sort_heap(temp.begin(),temp.end());
+  int ctr = 0;
+  int i = 0;
+  while(ctr < k && i < temp.size()){;
+    res.push_back(temp[i].second);
+    ctr+=1;
+    i+=1;
+  }
   return res;
 }
 
