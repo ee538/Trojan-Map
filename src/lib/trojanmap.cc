@@ -503,25 +503,66 @@ void TrojanMap::BacktrackingHelper(std::vector<std::string> &location_ids, std::
 }
 
 std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTrojan_2opt(std::vector<std::string> location_ids){
-
   std::pair<double, std::vector<std::vector<std::string>>> records;
-  double distance_ = INT_MAX;
-  for(int i = 0; i < location_ids.size() - 1; i++){
-    for(int j = i+1;j<location_ids.size() - 1; j++){
-      auto path = location_ids;
-      distance_ = CalculatePathLength(path);
-      std::reverse(path.begin()+i, path.begin()+j);
-      path.push_back(path[0]);
-      auto path_length = CalculatePathLength(path);
-      if (path_length < distance_){
-        distance_ = path_length;
-        std::swap(location_ids[i], location_ids[j]);
-        records.second.push_back(path);
+  TravellingTrojan_2optHelper(location_ids, records);
+  double best_distance = INT_MAX;
+  int idx = 0;
+  for(int i = 0; i< records.second.size(); i++){
+    auto path = records.second[i];
+    double distance = CalculatePathLength(path);
+    if (distance < best_distance){
+      best_distance = distance;
+      idx = i;}
+  }
+  // for(auto n: records.second[idx]){
+  //   std::cout<<n<<" ";
+  // }
+  std::swap(records.second[idx],records.second[records.second.size()-1]);
+  return records;
+}
+
+void TrojanMap::TravellingTrojan_2optHelper(std::vector<std::string> location_ids,   std::pair<double, std::vector<std::vector<std::string>>> &records){
+  location_ids.push_back(location_ids[0]);
+  double best_distance = CalculatePathLength(location_ids);
+  location_ids.pop_back();
+  auto best_path = location_ids;
+  for(int i = 1; i < location_ids.size(); i++){
+    for(int j = i+1;j<location_ids.size(); j++){
+      auto new_route = Swap2opt(location_ids,i,j);
+      new_route.push_back(new_route[0]);
+      double new_distance = CalculatePathLength(new_route);
+      records.second.push_back(new_route);
+      new_route.pop_back();
+      if (new_distance < best_distance){
+        best_distance = new_distance;
+        best_path = new_route;
+        records.first = new_distance;
+        TravellingTrojan_2optHelper(best_path, records);
       }
     }
   }
-  records.first = distance_;
-  return records;
+}
+
+
+std::vector<std::string> TrojanMap::Swap2opt(std::vector<std::string> location_ids, int s, int k){
+  std::vector<std::string> sub;
+  if(s > location_ids.size() || k > location_ids.size()){return sub;}
+  int j = k;
+  int i = 0;
+  while(i < location_ids.size()){
+    if (i < s){
+      sub.push_back(location_ids[i]);
+    }
+    else if(i >= s && j >= s){
+      sub.push_back(location_ids[j]);
+      j = j - 1;
+    }
+    else{
+      sub.push_back(location_ids[i]);
+    }
+    i+=1;
+  }
+  return sub;
 }
 
 /**
