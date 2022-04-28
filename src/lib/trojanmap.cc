@@ -391,6 +391,7 @@ std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTr
   auto result = this->BruteForceHelper(location_ids);
   int best_path_loc = 0;
   double distance_ = INT_MAX;
+
   for(int i = 0; i < result.size(); i++){
     result[i].push_back(result[i][0]);
     auto path_distance = CalculatePathLength(result[i]);
@@ -399,17 +400,9 @@ std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTr
       best_path_loc = i;
     }
   }
-
-  for (auto &e : result[best_path_loc]){
-    std::cout << e << " ";
-  }
-  std::cout<<std::endl;
   std::swap(result[best_path_loc], result[result.size() - 1]);
-  std::cout << distance_;
   records.first = distance_;
   records.second = result;
-
-
   return records;
 }
 
@@ -439,15 +432,95 @@ std::vector<std::vector<std::string>> TrojanMap::BruteForceHelper(std::vector<st
 }
 
 
-std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTrojan_Backtracking(
-                                    std::vector<std::string> location_ids) {
+std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTrojan_Backtracking(std::vector<std::string> location_ids) {
   std::pair<double, std::vector<std::vector<std::string>>> records;
+  std::vector<std::vector<std::string>> result;
+  std::vector<std::string> curResult;
+  double distance_ = INT_MAX;
+  BacktrackingHelper(location_ids, result, curResult, distance_);
+  int best_path_loc = 0;
+  distance_ = INT_MAX;
+  for(int i = 0; i < result.size(); i++){
+    // result[i].push_back(result[i][0]);
+    auto path_distance = CalculatePathLength(result[i]);
+    if (path_distance < distance_){
+      distance_ = path_distance;
+      best_path_loc = i;
+    }
+  }
+
+  std::swap(result[best_path_loc], result[result.size() - 1]);
+
+  records.first = CalculatePathLength(result[result.size() - 1]);
+  records.second = result;
+
+  
+  // std::cout << " " << " Distance = " << distance_ << std::endl;
+  // for(auto &e : result[result.size() - 1]){
+  //   std::cout << e <<" ";
+  // }
+  // std::cout << std::endl;
+
+  
   return records;
 }
 
-std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTrojan_2opt(
-      std::vector<std::string> location_ids){
+void TrojanMap::BacktrackingHelper(std::vector<std::string> &location_ids, std::vector<std::vector<std::string>> &result, std::vector<std::string> &curResult, double distance_){
+
+  if(curResult.size() == location_ids.size()){
+    auto r1 = curResult;
+    r1.push_back(r1[0]);
+    auto currDist = CalculatePathLength(location_ids);
+    if (currDist < distance_){
+      distance_ = currDist;
+      result.push_back(r1);
+    }
+    return;  
+  }
+
+  for (int i = 0; i < location_ids.size(); i++){
+    if( std::find(curResult.begin(), curResult.end(), location_ids[i]) != curResult.end()){
+      continue;
+    }
+
+
+    curResult.push_back(location_ids[i]);
+    // double d;
+    // if(distance_ == INT_MAX){
+    //   d = CalculatePathLength(location_ids);
+    // } else {
+    //   d = CalculatePathLength(location_ids);
+    //   // distance_ = d;
+    // }
+    if (CalculatePathLength(curResult) < distance_){
+      BacktrackingHelper(location_ids, result, curResult, distance_);
+    }
+    curResult.pop_back();
+
+  }
+
+
+}
+
+std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTrojan_2opt(std::vector<std::string> location_ids){
+
   std::pair<double, std::vector<std::vector<std::string>>> records;
+  double distance_ = INT_MAX;
+  for(int i = 0; i < location_ids.size() - 1; i++){
+    for(int j = i+1;j<location_ids.size() - 1; j++){
+      auto path = location_ids;
+      distance_ = CalculatePathLength(path);
+      std::reverse(path.begin()+i, path.begin()+j);
+      path.push_back(path[0]);
+      auto path_length = CalculatePathLength(path);
+      if (path_length < distance_){
+        distance_ = path_length;
+        std::swap(location_ids[i], location_ids[j]);
+        records.second.push_back(path);
+      }
+    }
+  }
+  records.first = distance_;
   return records;
 }
 

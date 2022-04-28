@@ -123,7 +123,7 @@ class TrojanMap {
 
   bool TopoCycle(std::vector<std::string> locations,std::unordered_map<std::string, std::vector<std::string>> adj);
 
-  std::vector<std::vector<std::string>> BruteForceHelper(std::vector<std::string> location_ids);
+  
 
 
   // Given a vector of location ids, it should reorder them such that the path
@@ -135,10 +135,13 @@ class TrojanMap {
   std::pair<double, std::vector<std::vector<std::string>>> TravellingTrojan_Brute_force(
       std::vector<std::string> location_ids);
   
+  std::vector<std::vector<std::string>> BruteForceHelper(std::vector<std::string> location_ids);
 
 
   std::pair<double, std::vector<std::vector<std::string>>> TravellingTrojan_Backtracking(
       std::vector<std::string> location_ids);
+
+  void BacktrackingHelper(std::vector<std::string> &location_ids, std::vector<std::vector<std::string>> &result, std::vector<std::string> &curResult, double distance_);
   
   std::pair<double, std::vector<std::vector<std::string>>> TravellingTrojan_2opt(
       std::vector<std::string> location_ids);
