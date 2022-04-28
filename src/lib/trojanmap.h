@@ -123,7 +123,9 @@ class TrojanMap {
 
   bool TopoCycle(std::vector<std::string> locations,std::unordered_map<std::string, std::vector<std::string>> adj);
 
-  
+  std::vector<std::string> Swap2opt(std::vector<std::string> location_ids,int s,int k);
+  void TravellingTrojan_2optHelper(std::vector<std::string> location_ids,   std::pair<double, std::vector<std::vector<std::string>>> &records);
+
 
 
   // Given a vector of location ids, it should reorder them such that the path
@@ -159,9 +161,6 @@ class TrojanMap {
 
   // Given a location id and k, find the k closest points on the map
   std::vector<std::string> FindNearby(std::string, std::string, double, int);
-
-   // Get the Attributes given its name.
-  std::string GetAttributes(const std::string& id);
   
   //----------------------------------------------------- User-defined functions
 
