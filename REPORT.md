@@ -388,7 +388,7 @@ Once we find all the locations which matches our conditions, we then use the STL
 ### RESULTS: 
 #### Case Scenario 1 : Input : (attribute: "supermarket", locations: "Ralphs", radius: 10, k: 10)
 
-<p align="center"><img src="img/phase7-1-op.png" alt="Trojan" width="750" /></p>
+<p align="center"><img src="img/phase7-1-op1.png" alt="Trojan" width="750" /></p>
 
 <p align="center"><img src="img/phase7-1.png" alt="Trojan" width="750" /></p>
 
