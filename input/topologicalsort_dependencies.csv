@@ -1,4 +1,9 @@
 Source, Destination
-Ralphs,Chick-fil-A
+Ralphs,Target
+Target,Ralphs
 Ralphs,KFC
-Chick-fil-A,KFC
+Chick-fil-A,Target
+KFC,Target
+Target,Lotus Temple
+Target,Jefferson
+KFC,Subway

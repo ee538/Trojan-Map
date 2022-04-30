@@ -265,7 +265,7 @@ void MapUI::PrintMenu() {
            "You could find your animation at src/lib/output0_backtracking.avi.\n";
     std::cout << menu;
     std::cout << "Time taken by function: " << duration.count()/1000 << " ms" << std::endl << std::endl;
-    
+
     std::cout << "Calculating ..." << std::endl;
     start = std::chrono::high_resolution_clock::now();
     results = map.TravellingTrojan_2opt(locations);
@@ -285,6 +285,28 @@ void MapUI::PrintMenu() {
     }
     menu = "**************************************************************\n"
            "You could find your animation at src/lib/output0_2opt.avi.     \n";
+    std::cout << menu;
+    std::cout << "Time taken by function: " << duration.count()/1000 << " ms" << std::endl << std::endl;
+
+    std::cout << "Calculating ..." << std::endl;
+    start = std::chrono::high_resolution_clock::now();
+    results = map.TravellingTrojan_3opt(locations);
+    stop = std::chrono::high_resolution_clock::now();
+    duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+    CreateAnimation(results.second, "output0_3opt.avi");
+    menu = "*************************Results******************************\n";
+    std::cout << menu;
+    menu = "TravellingTrojan_3opt\n";
+    std::cout << menu;
+    if (results.second.size() != 0) {
+      for (auto x : results.second[results.second.size()-1]) std::cout << "\"" << x << "\",";
+      std::cout << "\nThe distance of the path is:" << results.first << " miles" << std::endl;
+      PlotPath(results.second[results.second.size()-1]);
+    } else {
+      std::cout << "The size of the path is 0" << std::endl;
+    }
+    menu = "**************************************************************\n"
+           "You could find your animation at src/lib/output0_3opt.avi.     \n";
     std::cout << menu;
     std::cout << "Time taken by function: " << duration.count()/1000 << " ms" << std::endl << std::endl;
 
@@ -316,7 +338,7 @@ void MapUI::PrintMenu() {
     square.push_back(atof(input.c_str()));
      
     auto subgraph = map.GetSubgraph(square);
-    //PlotPointsandEdges(subgraph, square);
+    PlotPointsandEdges(subgraph, square);
     
     auto start = std::chrono::high_resolution_clock::now();
     auto results = map.CycleDetection(subgraph, square);
@@ -351,18 +373,19 @@ void MapUI::PrintMenu() {
     // Read location names from CSV file
     std::vector<std::string> location_names;
     if (locations_filename == "") 
-      location_names = {"Ralphs", "KFC", "Chick-fil-A"};
+      location_names = {"Ralphs", "Target", "Chick-fil-A","KFC","Lotus Temple", "Jefferson","Subway"};
     else
       location_names = map.ReadLocationsFromCSVFile(locations_filename);
     
     // Read dependencies from CSV file
     std::vector<std::vector<std::string>> dependencies;
     if (dependencies_filename == "")
-      //dependencies = {{"Ralphs","Chick-fil-A"}, {"Ralphs","KFC"}, {"Chick-fil-A","KFC"}};
+      dependencies = {{"Ralphs","Chick-fil-A"}, {"Chick-fil-A","Ralphs"},{"Ralphs","Target"},{"Ralphs","KFC"},{"Chick-fil-A","Target"},{"KFC","Target"},{"Target","Lotus Temple"},{"Target","Jefferson"},{"KFC","Subway"}};
       //dependencies = {{"Chick-fil-A","Ralphs"},{"Ralphs","KFC"},{"Chick-fil-A","KFC"}};
-        dependencies = {{"Chick-fil-A","Ralphs"},{"Ralphs","Chick-fil-A"}};
+       // dependencies = {{"Chick-fil-A","Ralphs"},{"Ralphs","Chick-fil-A"}};
     else
       dependencies = map.ReadDependenciesFromCSVFile(dependencies_filename);
+///home/amrith/Documents/ee538/final-project-SudharshanSubramaniamJanakiraman/input/topologicalsort_locations.csv
 
     auto start = std::chrono::high_resolution_clock::now();
     auto result = map.DeliveringTrojan(location_names, dependencies);
@@ -420,6 +443,9 @@ void MapUI::PrintMenu() {
     std::cout << menu << std::endl;
     std::cout << "Find Nearby Results:" << std::endl;
     int cnt = 1;
+    if(result.size()==0){
+      std::cout<<"No locations Near by or Please check the input."<<std::endl;
+    }
     for (auto x : result) { 
       std::cout << cnt << " " << map.data[x].name << std::endl;
       cnt++;

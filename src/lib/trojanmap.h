@@ -161,6 +161,13 @@ class TrojanMap {
 
   // Given a location id and k, find the k closest points on the map
   std::vector<std::string> FindNearby(std::string, std::string, double, int);
+
+    std::pair<double, std::vector<std::vector<std::string>>> TravellingTrojan_3opt(
+        std::vector<std::string> location_ids);
+
+  void TravellingTrojan_3optHelper(std::vector<std::string> location_ids,   std::pair<double, std::vector<std::vector<std::string>>> &records);
+  std::vector<std::string> Swap3opt(std::vector<std::string> location_ids,int s,int k);
+
   
   //----------------------------------------------------- User-defined functions
 
