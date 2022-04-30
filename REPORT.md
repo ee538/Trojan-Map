@@ -190,6 +190,46 @@ The ``` Time Complexity = O(mn)``` where m = Number of Nodes, n = Number of Edge
 
 ```Inference ```  Dijkstra is much faster compared to Bellman ford algorithm. Usage of min heap using priority queue has reduced the time in dijkstra where as Bellman ford will always be slow as we will have to relax each node atmost |n| - 1 times to get the output. Even with early stopping conditions the algorithms will be slower than Dijkstra Algorithm
 
+## Feature 4c: 2-opt
+This is a heuristic approach to solve the travelling salesman problem. 
+
+The Declaration of the function is given as ```std::pair<double,         std::vector<std::vector<std::string>>> TravellingTrojan_2opt(std::vector<std::string> location_ids);```
+
+Flow Chart of the Function:
+
+<p align="center"><img src="img/2opt-main.png" alt="Trojan" width="750" /></p>
+
+The ```Time Complexity = O((n^2) * k)``` where n = #locations, k = Number of iterations untill no improvement was found
+
+We use several helper functions as given below:
+1) TravellingTrojan_2optHelper 
+
+This is a helper function which iterated through two indexes and swaps the substring (2opt-swap) and check if the path has the best distance. The function runs untill there is an imporvement, that is, if there is an improvement, then the function is called again.  
+
+The Declaration of the function is given as ```void TravellingTrojan_2optHelper(std::vector<std::string> location_ids,   std::pair<double, std::vector<std::vector<std::string>>> &records);```
+
+Flow Chart of the Function:
+<p align="center"><img src="img/2opt-helper.png" alt="Trojan" width="750" /></p>
+
+The ```Time Complexity = O((n^2) * k)``` where n = #locations, k = Number of iterations untill no improvement was found
+
+2) Swap2opt
+
+Given the vector and two indexes, the function swaps the substring between s and k and returns the path.
+
+The Declaration of the function is given as ```std::vector<std::string> Swap2opt(std::vector<std::string> location_ids, int s, int k);```
+
+Flow Chart of the Function:
+<p align="center"><img src="img/2opt-swap.png" alt="Trojan" width="750" /></p>
+
+
+Observation : 
+This is an heuristric based approach to solve the travelling salesman problem. We iterate through all possible combination of index pairs and swap the substring(2-opt swap) (change the edges) and calculate the distance. We call the function recursively untill no improvement has been found. 
+This approach, however is very time efficient, sometime it may not give out the best path compared to other two methods. 
+
+### RESULTS: 
+#### Case Scenario 1 : Input : {"6819019976","6820935923","122702233","8566227783","8566227656","6816180153","1873055993","7771782316"}; // Input location ids 
+
 ## Feature 5 : Cycle Detection
 
 This Feature focuses on finding if there exsists a cycle in the subgraph. The input is of type std::vector<double> and output a bool. 
@@ -329,6 +369,74 @@ If there is no cycle detected in the graph, we perform DFS, and find the output 
 <p align="center"><img src="img/phase6-3-op.png" alt="Trojan" width="750" /></p>
 
 
+## Feature 7 : Find Nearby
+
+This Feature focuses on finding the nearest locations belonging to a specified class to the given input inside a given radius. 
+
+The Declaration of the function is given as ```std::vector<std::string> FindNearby(std::string attributesName, std::string name, double r, int k);```
+
+Flow Chart of the Function:
+<p align="center"><img src="img/FindNearby.png" alt="Trojan" width="750" /></p>
+
+The ```Time Complexity = O(n)``` where n = #locations
+
+Observation : 
+We iterate through all the locations in dataset and if a name exists and if it belongs to a given class, we make use of the CalculatePathLength function to find the distance between the given location(center) to the iterated location. We consider this location if the distance is less than radius. The ID and the distance is stored a pair.
+
+Once we find all the locations which matches our conditions, we then use the STL heap data structure. We then sort it based on the distance and return k(given input) closest locations to the given ID.
+
+### RESULTS: 
+#### Case Scenario 1 : Input : (attribute: "supermarket", locations: "Ralphs", radius: 10, k: 10)
+
+<p align="center"><img src="img/phase7-1-op.png" alt="Trojan" width="750" /></p>
+
+<p align="center"><img src="img/phase7-1.png" alt="Trojan" width="750" /></p>
+
+#### Case Scenario 2 : Input : Input : (attribute: "supermarket", locations: "Little Galen Center", radius: 10, k: 10)
+
+<p align="center"><img src="img/phase7-2-op.png" alt="Trojan" width="750" /></p>
+
+<p align="center"><img src="img/phase7-2.png" alt="Trojan" width="750" /></p>
+
+## Feature: 3-opt (EXTRA CREDIT)
+This is a heuristic approach to solve the travelling salesman problem. 
+
+The Declaration of the function is given as ```std::pair<double,         std::vector<std::vector<std::string>>> TravellingTrojan_3opt(std::vector<std::string> location_ids);```
+
+Flow Chart of the Function:
+
+<p align="center"><img src="img/2opt-main.png" alt="Trojan" width="750" /></p>
+
+The ```Time Complexity = O((n^3) * k)``` where n = #locations, k = Number of iterations untill no improvement was found
+
+We use several helper functions as given below:
+1) TravellingTrojan_3optHelper 
+
+This is a helper function which iterats through all combination of three indexes and swaps the substring (2opt-swap) and check if the path has the best distance. The function runs untill there is an imporvement, that is, if there is an improvement, then the function is called again.  
+
+The Declaration of the function is given as ```void TravellingTrojan_3optHelper(std::vector<std::string> location_ids,   std::pair<double, std::vector<std::vector<std::string>>> &records);```
+
+Flow Chart of the Function:
+<p align="center"><img src="img/2opt-helper.png" alt="Trojan" width="750" /></p>
+
+The ```Time Complexity = O((n^2) * k)``` where n = #locations, k = Number of iterations untill no improvement was found
+
+2) Swap3opt
+
+Given the vector and two indexes, the function swaps the substring between s and k and returns the path.
+
+The Declaration of the function is given as ```std::vector<std::string> Swap3opt(std::vector<std::string> location_ids, int s, int k);```
+
+Flow Chart of the Function:
+<p align="center"><img src="img/2opt-swap.png" alt="Trojan" width="750" /></p>
+
+
+Observation : 
+This is an heuristric based approach to solve the travelling salesman problem. We iterate through all possible combination of index pairs and swap the substring(2-opt swap) (change the edges) and calculate the distance. We call the function recursively untill no improvement has been found. This very similar to 2-opt, only difference is that we exhcange three edges with all perumutations and check if there is any improvement or not.
+This approach, however is very time efficient, sometime it may not give out the best path compared to brute force or backtracking. 
+
+### RESULTS: 
+#### Case Scenario 1 : Input : {"6819019976","6820935923","122702233","8566227783","8566227656","6816180153","1873055993","7771782316"}; // Input location ids
 
 ## Time Complexity
 
@@ -339,7 +447,7 @@ If there is no cycle detected in the graph, we perform DFS, and find the output 
 | Getname() | O(1) |  | 
 | GetID() | O(n) |  |
 | GetNeighborIDs() | O(1) |  |
-| Autocomplete() | O(n) |n = # of IDs in database | 
+| Autocomplete() | O(n) | n = # of IDs in database | 
 | GetPosition() | O(n) |  | 
 | CalculateEditDistance() | O(mn) |  |
 | FindClosestName() | O(nlp) |  |
@@ -357,6 +465,6 @@ If there is no cycle detected in the graph, we perform DFS, and find the output 
 | inSquare() | O(1) |  | 
 | CycleDetection() | O(m + n) | m = # of locations, n = # of edges | 
 | hasCycle() | O(m + n) | m = # of locations, n = # of edges | 
-| FindNearby() | O() |  | 
+| FindNearby() | O(n) | n = # of IDs in database | 
 
 

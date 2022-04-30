@@ -791,7 +791,7 @@ bool TrojanMap::CycleDetection(std::vector<std::string> &subgraph, std::vector<d
     //std::cout<< it->first<<" "<< it->second<<std::endl;
     plot.push_back(predecessor[it->second]);
     it++;
-  }
+  } 
   // PlotPath(plot);
   }
   return result;
@@ -960,4 +960,73 @@ void TrojanMap::CreateGraphFromCSVFile() {
     data[n.id] = n;
   }
   fin.close();
+}
+
+std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTrojan_3opt(std::vector<std::string> location_ids){
+  std::pair<double, std::vector<std::vector<std::string>>> records;
+  TravellingTrojan_3optHelper(location_ids, records);
+  std::cout<<"Helper working";
+  double best_distance = INT_MAX;
+  int idx = 0;
+  for(int i = 0; i< records.second.size(); i++){
+    auto path = records.second[i];
+    double distance = CalculatePathLength(path);
+    if (distance < best_distance){
+      best_distance = distance;
+      idx = i;}
+  }
+  std::swap(records.second[idx],records.second[records.second.size()-1]);
+  return records;
+}
+
+void TrojanMap::TravellingTrojan_3optHelper(std::vector<std::string> location_ids,   std::pair<double, std::vector<std::vector<std::string>>> &records){
+  location_ids.push_back(location_ids[0]);
+  double best_distance = CalculatePathLength(location_ids);
+  location_ids.pop_back();
+  auto best_path = location_ids;
+  for(int i = 1; i < location_ids.size(); i++){
+    for(int j = i+1;j<location_ids.size(); j++){
+      for(int k = j+1;k<location_ids.size(); k++){
+          std::vector<int> vec = {i,j,k};
+          do{              
+            auto new_route = Swap3opt(location_ids,vec[0],vec[1]);
+            new_route.push_back(new_route[0]);
+            double new_distance = CalculatePathLength(new_route);
+            records.second.push_back(new_route);
+            new_route.pop_back();
+            if (new_distance < best_distance){
+              best_distance = new_distance;
+              best_path = new_route;
+              records.first = new_distance;
+              TravellingTrojan_3optHelper(best_path, records);
+            }
+          }while(std::next_permutation(vec.begin(), vec.end()));
+      }    
+    }
+  }
+}
+
+std::vector<std::string> TrojanMap::Swap3opt(std::vector<std::string> location_ids, int s, int k){
+  std::vector<std::string> sub;
+  std::vector<int> vec = {s,k};
+  std::sort(vec.begin(),vec.end());
+  s = vec[0];
+  k = vec[1];
+  if(s > location_ids.size() || k > location_ids.size()){return sub;}
+  int j = k;
+  int i = 0;
+  while(i < location_ids.size()){
+    if (i < s){
+      sub.push_back(location_ids[i]);
+    }
+    else if(i >= s && j >= s){
+      sub.push_back(location_ids[j]);
+      j = j - 1;
+    }
+    else{
+      sub.push_back(location_ids[i]);
+    }
+    i+=1;
+  }
+  return sub;
 }

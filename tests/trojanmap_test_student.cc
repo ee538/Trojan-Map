@@ -471,6 +471,8 @@ TEST(TrojanMap, CycleDet){
   subgraph = m.GetSubgraph(square);
   EXPECT_EQ(m.CycleDetection(subgraph, square), false);
 }
+//f{-118.290, -118.289, 34.025, 34.020} , {-118.300, -118.299, 34.002, 34.001};
+
 
 TEST(TrojanMap, DeliveryTrojan){
   TrojanMap m;
@@ -570,6 +572,24 @@ TEST(TrojanMapTest, Travel2opt) {
   std::vector<std::string> input{"6819019976","6820935923","122702233","8566227783","8566227656","6816180153","1873055993","7771782316"}; // Input location ids 
   auto result = m.TravellingTrojan_2opt(input);
   std::cout << "2optMy path length: "  << result.first << "miles" << std::endl; // Print the result path lengths
+  std::vector<std::string> gt{"6819019976","1873055993","8566227656","122702233","8566227783","6816180153","7771782316","6820935923","6819019976"}; // Expected order
+  std::cout << "GT path length: "  << m.CalculatePathLength(gt) << "miles" << std::endl; // Print the gt path lengths
+  bool flag = false;
+  if (gt == result.second[result.second.size()-1]) // clockwise
+    flag = true;
+  std::reverse(gt.begin(),gt.end()); // Reverse the expected order because the counterclockwise result is also correct
+  if (gt == result.second[result.second.size()-1]) 
+    flag = true;
+  
+  EXPECT_EQ(flag, true);
+}
+
+TEST(TrojanMapTest, Travel3opt) {
+  TrojanMap m;
+  
+  std::vector<std::string> input{"6819019976","6820935923","122702233","8566227783","8566227656","6816180153","1873055993","7771782316"}; // Input location ids 
+  auto result = m.TravellingTrojan_3opt(input);
+  std::cout << "3opt My path length: "  << result.first << "miles" << std::endl; // Print the result path lengths
   std::vector<std::string> gt{"6819019976","1873055993","8566227656","122702233","8566227783","6816180153","7771782316","6820935923","6819019976"}; // Expected order
   std::cout << "GT path length: "  << m.CalculatePathLength(gt) << "miles" << std::endl; // Print the gt path lengths
   bool flag = false;
