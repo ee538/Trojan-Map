@@ -386,6 +386,7 @@ std::vector<std::string> TrojanMap::CalculateShortestPath_Bellman_Ford(
  * @return {std::pair<double, std::vector<std::vector<std::string>>} : a pair of total distance and the all the progress to get final path
  */
 std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTrojan_Brute_force(std::vector<std::string> location_ids) {
+  auto start = std::chrono::high_resolution_clock::now();
   std::pair<double, std::vector<std::vector<std::string>>> records;
   // std::cout <<" Hello ";
   auto result = this->BruteForceHelper(location_ids);
@@ -403,6 +404,9 @@ std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTr
   std::swap(result[best_path_loc], result[result.size() - 1]);
   records.first = distance_;
   records.second = result;
+  auto end = std::chrono::high_resolution_clock::now();
+  auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+  // std::cout << " COST = " << distance_ << " TIME = " << duration.count()/1000 << std::endl;
   return records;
 }
 
@@ -433,6 +437,7 @@ std::vector<std::vector<std::string>> TrojanMap::BruteForceHelper(std::vector<st
 
 
 std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTrojan_Backtracking(std::vector<std::string> location_ids) {
+  auto start = std::chrono::high_resolution_clock::now();
   std::pair<double, std::vector<std::vector<std::string>>> records;
   std::vector<std::vector<std::string>> result;
   std::vector<std::string> curResult;
@@ -461,7 +466,9 @@ std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTr
   // }
   // std::cout << std::endl;
 
-  
+  auto end = std::chrono::high_resolution_clock::now();
+  auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+  // std::cout << " COST = " << distance_ << " TIME = " << duration.count()/1000 << std::endl;
   return records;
 }
 
@@ -503,6 +510,7 @@ void TrojanMap::BacktrackingHelper(std::vector<std::string> &location_ids, std::
 }
 
 std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTrojan_2opt(std::vector<std::string> location_ids){
+  auto start = std::chrono::high_resolution_clock::now();
   std::pair<double, std::vector<std::vector<std::string>>> records;
   TravellingTrojan_2optHelper(location_ids, records);
   double best_distance = INT_MAX;
@@ -518,6 +526,9 @@ std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTr
   //   std::cout<<n<<" ";
   // }
   std::swap(records.second[idx],records.second[records.second.size()-1]);
+  auto stop = std::chrono::high_resolution_clock::now();
+  auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+  // std::cout << " COST = " << best_distance << " TIME = " << duration.count()/1000 << std::endl;
   return records;
 }
 
