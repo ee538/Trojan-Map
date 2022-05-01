@@ -484,12 +484,11 @@ Observation :
 This is an heuristric based approach to solve the travelling salesman problem. We iterate through all possible combination of index pairs and swap the substring(2-opt swap) (change the edges) and calculate the distance. We call the function recursively untill no improvement has been found. This very similar to 2-opt, only difference is that we exhcange three edges with all perumutations and check if there is any improvement or not.
 This approach, however is very time efficient, sometime it may not give out the best path compared to brute force or backtracking.
 
+### RESULTS: 
 We display the path generation video for 3-opt algorithm for 6 randomly generate locations on the map
 <p align="center">
 <img src="img/output3opt.gif" alt="Trojan" width="750"/>
 </p>
-
-### RESULTS: 
 
 ## Time Complexity
 
