@@ -489,23 +489,13 @@ void TrojanMap::BacktrackingHelper(std::vector<std::string> &location_ids, std::
     if( std::find(curResult.begin(), curResult.end(), location_ids[i]) != curResult.end()){
       continue;
     }
-
-
     curResult.push_back(location_ids[i]);
-    // double d;
-    // if(distance_ == INT_MAX){
-    //   d = CalculatePathLength(location_ids);
-    // } else {
-    //   d = CalculatePathLength(location_ids);
-    //   // distance_ = d;
-    // }
     if (CalculatePathLength(curResult) < distance_){
       BacktrackingHelper(location_ids, result, curResult, distance_);
     }
     curResult.pop_back();
 
   }
-
 
 }
 
