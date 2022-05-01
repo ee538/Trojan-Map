@@ -275,7 +275,7 @@ We display the path generation video for each of the 3 algorithm for 6 randomly 
 <p align="center">
 <img src="img/bruteforce.gif" alt="Trojan" width="33%" />
 <img src="img/backtracking.gif" alt="Trojan" width="33%" />
-<img src="img/TSPOPT.gif" alt="Trojan" width="33%" />
+<img src="img/TSPOPT2.gif" alt="Trojan" width="33%" />
 </p>
 
 ### RESULTS: 
