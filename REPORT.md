@@ -269,12 +269,13 @@ Observation :
 This is an heuristric based approach to solve the travelling salesman problem. We iterate through all possible combination of index pairs and swap the substring(2-opt swap) (change the edges) and calculate the distance. We call the function recursively untill no improvement has been found. 
 This approach, however is very time efficient, sometime it may not give out the best path compared to other two methods. 
 
-### Results
+### RESULTS (BRUTE FORCE | BACKTRACKING | 2OPT)
 
+We display the path generation video for each of the 3 algorithm for 6 randomly generate locations on the map
 <p align="center">
 <img src="img/bruteforce.gif" alt="Trojan" width="33%" />
-<img src="img/bruteforce.gif" alt="Trojan" width="33%" />
-<img src="img/bruteforce.gif" alt="Trojan" width="33%" />
+<img src="img/backtracking.gif" alt="Trojan" width="33%" />
+<img src="img/TSPOPT.gif" alt="Trojan" width="33%" />
 </p>
 
 ### RESULTS: 
