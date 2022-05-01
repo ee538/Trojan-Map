@@ -190,7 +190,48 @@ The ``` Time Complexity = O(mn)``` where m = Number of Nodes, n = Number of Edge
 
 ```Inference ```  Dijkstra is much faster compared to Bellman ford algorithm. Usage of min heap using priority queue has reduced the time in dijkstra where as Bellman ford will always be slow as we will have to relax each node atmost |n| - 1 times to get the output. Even with early stopping conditions the algorithms will be slower than Dijkstra Algorithm
 
-## Feature 4c: 2-opt
+## Feature 4: Travelling Salesman
+
+```Goal``` Find the Shortest path to vist all given locations only once and return to the source
+The problem has been solved utilizing three famous algorithm.
+```Implementation```
+- Brute Force
+- BackTracking
+- 2opt 
+
+#### ```Brute Force```
+
+We generate all possible permutations of path locations and select the path that produces lowest cost.
+``` Time Complexity ``` O(n!). The Algorithm is very naive and slow.
+
+The Declaration of Function is given as ``` std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTrojan_Brute_force(std::vector<std::string> location_ids) ```
+
+We utilize a helper function called BruteForceHelper which is called recursively to generate all possible permutations.
+
+FlowChart | BruteForce
+
+<p align="center"><img src="img/TSPBruteForce.png" alt="Trojan" width="750" /></p>
+
+```Inference``` Very Slow and Time Consuming
+
+#### ```Backtracking```
+
+We generate all (or some) combinations of path which will provide optimal cost. Decisions are made locally to skip exploring the trees which exceeds the optimal cost. This will speed up the process. However in the worst case scenario, the time complexity is same as O(n!)
+
+The Declaration of Function is given as ``` std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTrojan_Brute_force(std::vector<std::string> location_ids) ```
+
+FlowChart | BruteForce
+
+<p align="center"><img src="img/TSPBacktracking.png" alt="Trojan" width="750" /></p>
+<p align="center"><img src="img/TSPBacktrackingA.png" alt="Trojan" width="750" /></p>
+
+we skip exploring nodes which is not optimal
+
+``` Time Complexity O(n!)```
+
+```Inference``` Can be faster or at worst equal to brute force
+
+#### ```2opt```
 This is a heuristic approach to solve the travelling salesman problem. 
 
 The Declaration of the function is given as ```std::pair<double,         std::vector<std::vector<std::string>>> TravellingTrojan_2opt(std::vector<std::string> location_ids);```
@@ -198,6 +239,7 @@ The Declaration of the function is given as ```std::pair<double,         std::ve
 Flow Chart of the Function:
 
 <p align="center"><img src="img/2opt-main.png" alt="Trojan" width="750" /></p>
+
 
 The ```Time Complexity = O((n^2) * k)``` where n = #locations, k = Number of iterations untill no improvement was found
 
@@ -226,6 +268,15 @@ Flow Chart of the Function:
 Observation : 
 This is an heuristric based approach to solve the travelling salesman problem. We iterate through all possible combination of index pairs and swap the substring(2-opt swap) (change the edges) and calculate the distance. We call the function recursively untill no improvement has been found. 
 This approach, however is very time efficient, sometime it may not give out the best path compared to other two methods. 
+
+### RESULTS (BRUTE FORCE | BACKTRACKING | 2OPT)
+
+We display the path generation video for each of the 3 algorithm for 6 randomly generate locations on the map
+<p align="center">
+<img src="img/bruteforce.gif" alt="Trojan" width="33%" />
+<img src="img/backtracking.gif" alt="Trojan" width="33%" />
+<img src="img/TSPOPT2.gif" alt="Trojan" width="33%" />
+</p>
 
 
 ## Feature 5 : Cycle Detection
