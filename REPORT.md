@@ -227,8 +227,6 @@ Observation :
 This is an heuristric based approach to solve the travelling salesman problem. We iterate through all possible combination of index pairs and swap the substring(2-opt swap) (change the edges) and calculate the distance. We call the function recursively untill no improvement has been found. 
 This approach, however is very time efficient, sometime it may not give out the best path compared to other two methods. 
 
-### RESULTS: 
-#### Case Scenario 1 : Input : {"6819019976","6820935923","122702233","8566227783","8566227656","6816180153","1873055993","7771782316"}; // Input location ids 
 
 ## Feature 5 : Cycle Detection
 
@@ -405,7 +403,7 @@ The Declaration of the function is given as ```std::pair<double,         std::ve
 
 Flow Chart of the Function:
 
-<p align="center"><img src="img/2opt-main.png" alt="Trojan" width="750" /></p>
+<p align="center"><img src="img/3opt-main.png" alt="Trojan" width="750" /></p>
 
 The ```Time Complexity = O((n^3) * k)``` where n = #locations, k = Number of iterations untill no improvement was found
 
@@ -417,7 +415,7 @@ This is a helper function which iterats through all combination of three indexes
 The Declaration of the function is given as ```void TravellingTrojan_3optHelper(std::vector<std::string> location_ids,   std::pair<double, std::vector<std::vector<std::string>>> &records);```
 
 Flow Chart of the Function:
-<p align="center"><img src="img/2opt-helper.png" alt="Trojan" width="750" /></p>
+<p align="center"><img src="img/3opt-helper.png" alt="Trojan" width="750" /></p>
 
 The ```Time Complexity = O((n^2) * k)``` where n = #locations, k = Number of iterations untill no improvement was found
 
@@ -436,7 +434,6 @@ This is an heuristric based approach to solve the travelling salesman problem. W
 This approach, however is very time efficient, sometime it may not give out the best path compared to brute force or backtracking. 
 
 ### RESULTS: 
-#### Case Scenario 1 : Input : {"6819019976","6820935923","122702233","8566227783","8566227656","6816180153","1873055993","7771782316"}; // Input location ids
 
 ## Time Complexity
 
