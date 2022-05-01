@@ -220,7 +220,7 @@ We generate all (or some) combinations of path which will provide optimal cost. 
 
 The Declaration of Function is given as ``` std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTrojan_Brute_force(std::vector<std::string> location_ids) ```
 
-FlowChart | BruteForce
+FlowChart | BackTracking
 
 <p align="center"><img src="img/TSPBacktracking.png" alt="Trojan" width="750" /></p>
 <p align="center"><img src="img/TSPBacktrackingA.png" alt="Trojan" width="750" /></p>
@@ -468,7 +468,7 @@ The Declaration of the function is given as ```void TravellingTrojan_3optHelper(
 Flow Chart of the Function:
 <p align="center"><img src="img/3opt-helper.png" alt="Trojan" width="750" /></p>
 
-The ```Time Complexity = O((n^2) * k)``` where n = #locations, k = Number of iterations untill no improvement was found
+The ```Time Complexity = O((n^3) * k)``` where n = #locations, k = Number of iterations untill no improvement was found
 
 2) Swap3opt
 
@@ -510,9 +510,10 @@ We display the path generation video for 3-opt algorithm for 6 randomly generate
 | DeliveringTrojan() | O(m+n) | m = # of locations, n = # of edges | 
 | TopoSortHelper() | O(m+n) | m = # of locations, n = # of edges |
 | TopoCycle() | O(m + n) | m = # of locations, n = # of edges | 
-| TravellingTrojan_Brute_force() | O() |  | 
-| TravellingTrojan_Backtracking() | O() |  |
-| TravellingTrojan_2opt() | O() |  |
+| TravellingTrojan_Brute_force() | O(n!) | n = #locations  | 
+| TravellingTrojan_Backtracking() | O(n!) | n = #locations |
+| TravellingTrojan_2opt() | O((n^2) * k) | n = #locations, k = Number of iterations |
+| TravellingTrojan_3opt() | O((n^3) * k) | n = #locations, k = Number of iterations |
 | GetSubgraph() | O(n) |  n = # of IDs in database| 
 | inSquare() | O(1) |  | 
 | CycleDetection() | O(m + n) | m = # of locations, n = # of edges | 
