@@ -531,3 +531,35 @@ We display the path generation video for 3-opt algorithm for 6 randomly generate
 | FindNearby() | O(n) | n = # of IDs in database | 
 
 
+## Time Spent by each Function
+
+| Feature | Comments | Time taken(ms) |
+| :--- | :--- | :---: |
+| AutoComplete | Input = Trader | 39ms |
+| FindLocation | Correct Name | 3ms |
+| FindLocation | Incorrect Name | 34 ms |
+| Shortest Path | Dijksta | 130 ms |
+| Shortest Path | Bellman Ford | 12258 ms |
+| Travelling Salesman | Brute Force 6 Places | 16 ms |
+| Travelling Salesman | Backtracking 6 places| 34 ms |
+| Travelling Salesman | 2opt 6 places | 4 ms |
+| Cycle Detection |  | 9 ms |
+| Topological Sort |  | 0 ms |
+| Find Near By |  | 310 ms |
+
+#### Future Improvements
+
+- Heuristic approaches for Travelling Salesman problem
+- Interactive tool for User-interface Input and Data Visualization
+
+#### Lessons Learnt
+
+- Choosing different data structures and algorithms, will impact the performance of problem being solved. (Eg: Dijkstra will perform better using heap) 
+
+#### Course Outcome
+
+
+- Successfully learnt about utilization of various data structures as well as optimized algorithms for problem solving.
+- Learnt how to optimally select algorithms and data structures for a given problem.
+- Understood version control using git 
+
