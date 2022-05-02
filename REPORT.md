@@ -278,9 +278,6 @@ We display the path generation video for each of the 3 algorithm for 6 randomly 
 <img src="img/TSPOPT2.gif" alt="Trojan" width="33%" />
 </p>
 
-### RESULTS: 
-#### Case Scenario 1 : Input : {"6819019976","6820935923","122702233","8566227783","8566227656","6816180153","1873055993","7771782316"}; // Input location ids 
-
 ## Feature 5 : Cycle Detection
 
 This Feature focuses on finding if there exsists a cycle in the subgraph. The input is of type std::vector<double> and output a bool. 
