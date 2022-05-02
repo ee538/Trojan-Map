@@ -227,7 +227,14 @@ void MapUI::PrintMenu() {
     auto results = map.TravellingTrojan_Brute_force(locations);
     auto stop = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+    if(results.second.size()==0){
+      std::cout<<"Not a valid path"<<std::endl;
+      duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+    }
+    else{
+    duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
     CreateAnimation(results.second, "output0.avi");
+    }
     menu = "*************************Results******************************\n";
     std::cout << menu;
     menu = "TravellingTrojan_Brute_force\n";
@@ -248,8 +255,14 @@ void MapUI::PrintMenu() {
     start = std::chrono::high_resolution_clock::now();
     results = map.TravellingTrojan_Backtracking(locations);
     stop = std::chrono::high_resolution_clock::now();
+    if(results.second.size()==0){
+      std::cout<<"Not a valid path"<<std::endl;
+      duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+    }
+    else{
     duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
     CreateAnimation(results.second, "output0_backtracking.avi");
+    }
     menu = "*************************Results******************************\n";
     std::cout << menu;
     menu = "TravellingTrojan_Backtracking\n";
@@ -271,7 +284,12 @@ void MapUI::PrintMenu() {
     results = map.TravellingTrojan_2opt(locations);
     stop = std::chrono::high_resolution_clock::now();
     duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+    if(results.second.size()==0){
+      std::cout<<"Not a valid path"<<std::endl;
+    }
+    else{
     CreateAnimation(results.second, "output0_2opt.avi");
+    }
     menu = "*************************Results******************************\n";
     std::cout << menu;
     menu = "TravellingTrojan_2opt\n";
@@ -293,7 +311,12 @@ void MapUI::PrintMenu() {
     results = map.TravellingTrojan_3opt(locations);
     stop = std::chrono::high_resolution_clock::now();
     duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+    if(results.second.size()==0){
+      std::cout<<"Not a valid path"<<std::endl;
+    }
+    else{
     CreateAnimation(results.second, "output0_3opt.avi");
+    }
     menu = "*************************Results******************************\n";
     std::cout << menu;
     menu = "TravellingTrojan_3opt\n";

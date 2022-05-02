@@ -388,6 +388,7 @@ std::vector<std::string> TrojanMap::CalculateShortestPath_Bellman_Ford(
 std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTrojan_Brute_force(std::vector<std::string> location_ids) {
   auto start = std::chrono::high_resolution_clock::now();
   std::pair<double, std::vector<std::vector<std::string>>> records;
+  if(location_ids.size()<=1){return records;}
   // std::cout <<" Hello ";
   auto result = this->BruteForceHelper(location_ids);
   int best_path_loc = 0;
@@ -439,6 +440,7 @@ std::vector<std::vector<std::string>> TrojanMap::BruteForceHelper(std::vector<st
 std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTrojan_Backtracking(std::vector<std::string> location_ids) {
   auto start = std::chrono::high_resolution_clock::now();
   std::pair<double, std::vector<std::vector<std::string>>> records;
+  if(location_ids.size()<=1){return records;}
   std::vector<std::vector<std::string>> result;
   std::vector<std::string> curResult;
   double distance_ = INT_MAX;
@@ -502,6 +504,7 @@ void TrojanMap::BacktrackingHelper(std::vector<std::string> &location_ids, std::
 std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTrojan_2opt(std::vector<std::string> location_ids){
   auto start = std::chrono::high_resolution_clock::now();
   std::pair<double, std::vector<std::vector<std::string>>> records;
+  if(location_ids.size()<=1){return records;}
   TravellingTrojan_2optHelper(location_ids, records);
   double best_distance = INT_MAX;
   int idx = 0;
@@ -965,6 +968,7 @@ void TrojanMap::CreateGraphFromCSVFile() {
 
 std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTrojan_3opt(std::vector<std::string> location_ids){
   std::pair<double, std::vector<std::vector<std::string>>> records;
+  if(location_ids.size()<=1){return records;}
   TravellingTrojan_3optHelper(location_ids, records);
   double best_distance = INT_MAX;
   int idx = 0;
