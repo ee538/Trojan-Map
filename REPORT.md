@@ -278,6 +278,15 @@ We display the path generation video for each of the 3 algorithm for 6 randomly 
 <img src="img/TSPOPT2.gif" alt="Trojan" width="33%" />
 </p>
 
+Time and Cost Comparison of the three algorithms
+
+| #Places | Brute Force (ms) | Backtracking (ms) | 2opt (ms) | Cost (BruteForce) miles | Cost (2opt) miles | 
+| :--- | :--- | :---: | :--- | :---: |
+| 4 | 0 | 0 | 0 | 4.4766 | 4.4766 | 
+| 6 | 16 | 34 | 4 | 7.0898 | 7.0898 |
+| 8 | 1182 | 2378 | 767 | 10.4065 | 10.4065 |
+| 10 | 127199 | 258405 | 13932 | 12.7386 | 12.7386 |
+| 12 |  |  | 21341 |  | 11.276 |
 
 ## Feature 5 : Cycle Detection
 
