@@ -966,7 +966,6 @@ void TrojanMap::CreateGraphFromCSVFile() {
 std::pair<double, std::vector<std::vector<std::string>>> TrojanMap::TravellingTrojan_3opt(std::vector<std::string> location_ids){
   std::pair<double, std::vector<std::vector<std::string>>> records;
   TravellingTrojan_3optHelper(location_ids, records);
-  std::cout<<"Helper working";
   double best_distance = INT_MAX;
   int idx = 0;
   for(int i = 0; i< records.second.size(); i++){
