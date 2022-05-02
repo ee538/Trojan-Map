@@ -563,3 +563,7 @@ We display the path generation video for 3-opt algorithm for 6 randomly generate
 - Learnt how to optimally select algorithms and data structures for a given problem.
 - Understood version control using git 
 
+
+### Youtube Link 
+
+https://youtu.be/c5HLbD28uqI
