@@ -288,6 +288,7 @@ Time and Cost Comparison of the three algorithms
 | 10 | 127199 | 258405 | 13932 | 12.7386 | 12.7386 |
 | 12 |  |  | 21341 |  | 11.276 |
 
+2opt performs much faster compared to brute force and backtracking and wer can see as the number of places go beyond 10 (ex 12 here) we can see only 2opt gives answer in a consderable time (10 minutes is considered as timeout)
 ## Feature 5 : Cycle Detection
 
 This Feature focuses on finding if there exsists a cycle in the subgraph. The input is of type std::vector<double> and output a bool. 
